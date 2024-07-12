@@ -5,7 +5,7 @@
 
 - 🔭 I’m currently working on **Finance and Technology projects**
 
-- 🌱 I’m currently learning **Devops, Web Development**
+- 🌱 I’m currently learning **Devops and Web Development**
 
 - 📫 How to reach me **guillermoteniasmoron@hotmail.com**
 
