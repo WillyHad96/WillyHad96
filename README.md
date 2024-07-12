@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Guillermo Tenías!</h1>
-<h3 align="center">Technical Customer Support with a Passion for Finances and Technology</h3>
+<h3 align="center">A Technical Customer Support with a Passion for Finances and Technology</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=willyhad96&label=Profile%20views&color=0e75b6&style=flat" alt="willyhad96" /> </p>
 
