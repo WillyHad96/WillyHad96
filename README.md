@@ -7,7 +7,7 @@
 
 <p align="center">
                                           - 🔭 I’m currently working on **Finance and Technology projects**<br>
-                                          - 🌱 I’m currently learning **DevOps and Web Development**<br>
+                                          - 🌱 I’m currently learning **Data Science and Web Development**<br>
                                           - 📫 Reach me at **guillermoteniasmoron@hotmail.com**<br>
                                           - 📄 Know about my Work Experience: <a href="https://www.guillermoteniasmoron.com/">www.guillermoteniasmoron.com</a><br>
                                           - 🌐 Connect with me in https://www.linkedin.com/in/guillermo-tenias-moron/
