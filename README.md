@@ -20,7 +20,7 @@
 
 <h2 align="center">Libraries</h2>
 <p align="center">
-<a href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer"><img src="https://www.vectorlogo.zone/logos/palletsprojects_flask/palletsprojects_flask-ar21~v2.svg" alt="flask" width="120" height="100"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.selenium.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/selenium/selenium-original.svg" alt="selenium" width="80" height="80"/</a>
+<a href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer"><img src="https://www.vectorlogo.zone/logos/palletsprojects_flask/palletsprojects_flask-ar21~v2.svg" alt="flask" width="120" height="100"/></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.selenium.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/selenium/selenium-original.svg" alt="selenium" width="80" height="80"/</a></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer"><img src="https://pandas.pydata.org/static/img/pandas.svg" alt="pandas" width="120" height="100"/></a>
 </p>
 
 <h2 align="center">DevOps Tools</h2>
