@@ -486,3 +486,124 @@ Comprobado que no contamina este estudio: dentro del universo final el precio m�
 Los filtros de capitalización lo bloquean. Pero cualquier estudio futuro que use
 `precio_post >= 1` como filtro de calidad sobre el panel completo **está dejando entrar
 justo lo que quería excluir**.
+
+---
+
+## 13. Nombres actuales, cara a cara con el perfil barato, y qué se puede esperar
+
+### Cuántas empresas hoy
+
+Sección transversal más reciente del panel (informes entre 2026-03 y 2026-08):
+
+| | Empresas |
+|---|---|
+| Universo (300 M$–5.000 M$, sector asignado, tickers limpios) | **682** |
+| **PERFIL estabilidad** (2 condiciones, sin Fin/RE) | **212** |
+| Perfil de 3 condiciones (añadiendo dilución < 2%) | 172 |
+
+212 nombres es una lista de trabajo, no una cartera. El test 4 dice que concentrarla al azar
+**empeora** el Sharpe, así que reducirla exige un criterio con señal — y la sección siguiente
+muestra que no lo hemos encontrado.
+
+### Cara a cara con el perfil del estudio anterior
+
+Distribución completa del retorno a 5 años relativo al SPY, misma construcción para los tres:
+
+| | n | **Acierto 5a** | Acierto 1a | p10 | p25 | **p50** | p75 | **p90** | p95 | %>+100pp | %desastre |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **PERFIL estabilidad** | 2.162 | **30,6%** | 41,5% | −61,1 | −34,3 | **+2,5** | **+49,5** | **+112,9** | +168,0 | **7,1%** | **9,5%** |
+| BARATO cíclico (estudio previo) | 1.338 | 27,5% | 41,4% | −60,5 | −37,7 | −9,7 | +33,5 | +91,8 | +158,1 | 5,8% | 10,2% |
+| Universo entero | 7.492 | 24,4% | 37,3% | −66,6 | −43,7 | −13,2 | +31,8 | +97,9 | +157,9 | 5,7% | 11,7% |
+
+**Sí, el perfil supera al del estudio anterior** — pero conviene ver *dónde*. La ventaja por
+percentil frente al barato cíclico:
+
+| Percentil | p10 | p25 | p50 | p75 | p90 | p95 |
+|---|---|---|---|---|---|---|
+| Ventaja del PERFIL | **−0,6** | +3,4 | **+12,2** | **+16,0** | **+21,1** | +9,9 |
+
+**El perfil no mejora la cola izquierda.** En el p10 ambos pierden ~60%: da igual el perfil,
+uno de cada diez es un desastre. Toda la ventaja está en el **cuerpo alto de la distribución
+(p50–p90)**. Traducción operativa: el perfil sirve para **evitar la mediocridad, no para
+evitar la ruina**. De la ruina solo protege la diversificación — lo que refuerza la
+conclusión del test 4 contra concentrar.
+
+### Qué porcentaje de acierto esperar
+
+Hay que distinguir dos cosas que se confunden todo el rato:
+
+| Medida | Valor |
+|---|---|
+| Posiciones individuales que baten al SPY a 5 años | **30,6%** |
+| Posiciones individuales que baten al SPY a 1 año | 41,5% |
+| Posiciones que hacen **más de +100 pp** sobre el SPY | 7,1% |
+| Posiciones que son desastre (< −50%) | 9,5% |
+| **Años en que la cartera bate al SPY** | **66,7%** |
+
+Que solo el 30,6% de las posiciones bata al índice **no es un fallo del perfil**: es la
+asimetría normal de las acciones. La mediana de una acción pierde contra el índice; el índice
+lo sostienen unas pocas. Por eso el perfil gana **como cartera** (66,7% de los años) mientras
+pierde en la mayoría de sus posiciones. Es un negocio de cola, como avisaba la regla 3.
+
+### ¿Se puede concentrar con filtros de calidad? NO se ha validado
+
+Ocho candidatos probados dentro del perfil, todos contra la banda de ruido de 5,77 pp:
+
+| Filtro adicional | Diferencia | ¿Supera el ruido? |
+|---|---|---|
+| Sector Tech o Health | +15,4 pp | sí |
+| Crecimiento alto | +7,7 pp | justo |
+| Reinversión alta | +5,9 pp | en el límite |
+| Margen operativo alto | +3,3 pp | no |
+| Margen bruto alto | +2,4 pp | no |
+| P/GP caro (mitad alta) | +1,9 pp | no |
+| Racha positiva | −0,6 pp | no |
+| Sorpresa positiva | −5,1 pp | no |
+
+El único candidato claro daba unos números espectaculares:
+
+| Cartera | n/año | CAGR | Vol. | Sharpe | Beta | Alfa | Peor año | % años > SPY |
+|---|---|---|---|---|---|---|---|---|
+| PERFIL estabilidad | 155 | 14,37% | 24,3% | 0,51 | 1,21 | +4,23% | −36,8% | 66,7% |
+| PERFIL + Tech/Health | 48 | 18,26% | 27,5% | 0,59 | 1,29 | +7,83% | −33,2% | 77,8% |
+| PERFIL + Tech/Health + crecimiento | 28 | **22,47%** | 28,7% | **0,71** | 1,32 | **+12,01%** | −32,4% | 88,9% |
+| SPY | — | 9,11% | 18,6% | 0,38 | 1,00 | — | −40,9% | — |
+
+**Y son falsos.** El filtro sectorial se eligió mirando toda la muestra. Repitiendo la
+selección solo con cohortes 2007–2011 y comprobando qué pasó después:
+
+| Ventana | Materiales | Healthcare | Cons. Cíclico | Technology | Industrials |
+|---|---|---|---|---|---|
+| Selección 2007–2011 | **+35,2%** | +32,2% | +25,0% | +22,9% | +14,9% |
+| Posterior 2012–2021 | **−5,1%** | +24,3% | **−17,5%** | +3,6% | +2,3% |
+
+Un analista situado en 2011 con estos datos habría elegido **Basic Materials** — el mejor de
+su ventana — y habría cosechado −5,1%. Consumer Cyclical pasa de +25,0 a −17,5. El orden
+sectorial **no es estable**, así que el alfa de +12% es selección con retrovisor, exactamente
+el error contra el que avisa la regla 5. **Descartado.**
+
+Solo Healthcare aguanta las dos ventanas (+32,2 → +24,3), pero es justo el sector donde el
+sesgo de supervivencia del panel muerde más fuerte: las biotecnológicas pequeñas que fracasan
+son las grandes ausentes del test 7. No es utilizable como filtro sin datos de delistings.
+
+### Respuesta a "¿superaríamos al S&P 500?"
+
+Con el perfil base, sin concentrar y sin filtros post-hoc:
+
+**CAGR 14,37% frente a 9,11% del SPY · Sharpe 0,51 vs 0,38 · alfa +4,23% · peor año −36,8%
+frente a −40,9% · bate al índice el 66,7% de los años.** Ventaja de 5,3 pp anuales con beta
+1,21 y 24,3% de volatilidad.
+
+Estos números son mejores que los de la sección 11 (CAGR 12,91%, Sharpe 0,46) por las dos
+correcciones de los tests 3 y 5: se usa la variante de **dos** condiciones (quitar el filtro
+de dilución no resta y duplica los nombres) y los costes bajan de 0,60% a **0,25%/año**, que
+es la rotación real medida.
+
+Tres avisos que no conviene olvidar al leer ese 14,37%:
+1. Los niveles absolutos están inflados por el sesgo de supervivencia del panel (test 7:
+   falta el 64% de las desaparecidas, sobre todo quiebras). La **ventaja relativa** aguanta
+   mejor que el nivel.
+2. Un alfa de +4,23% sobre 18 años anuales tiene un error estándar grande; es la magnitud
+   creíble, no una cifra de precisión.
+3. Con 212 candidatos y sin criterio validado para reducirlos, la implementación honesta es
+   **diversificar mucho**, no elegir los diez mejores.
