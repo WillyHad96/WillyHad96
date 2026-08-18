@@ -824,3 +824,112 @@ Para lo que **sí** sirve, y es relevante:
 
 Lo que IBKR **no** resuelve es el problema de los delistings: una vez muerto el contrato,
 no devuelve histórico.
+
+---
+
+## 20. Buscando un indicador adelantado (la crítica correcta)
+
+Crítica de partida, y es justa: lo construido hasta aquí es un **filtro de estado**
+("estable y sin diluir"), que es esencialmente el factor *quality* de la literatura. Que la
+previsibilidad pague no es un descubrimiento. Hace falta algo que **anticipe** un cambio.
+
+### 20.1 La dilución no se convierte en señal de inflexión — REFUTADO
+
+Hipótesis natural: si no diluir es lo que paga, **dejar de diluir** debería ser el punto de
+inflexión. Comparando el estado de dilución de hoy contra el de hace 4 trimestres:
+
+| Grupo | n | 4T | 12T | **20T** | Acierto 20T |
+|---|---|---|---|---|---|
+| Siempre limpia (estado) | 3.806 | −1,7% | −4,0% | **−6,9%** | 26,4% |
+| **Dejó de diluir (inflexión)** | 1.058 | −4,5% | −8,6% | **−17,6%** | 23,2% |
+| Empezó a diluir | 925 | −3,4% | −11,2% | −18,1% | 20,4% |
+| Siempre diluyendo | 1.745 | −5,8% | −18,4% | −24,9% | 18,5% |
+
+"Dejó de diluir" rinde **10,7 pp peor** que "nunca diluyó". La dilución es un **rasgo
+estructural, no un punto de inflexión**: cuando el cambio se observa, las acciones ya están
+emitidas y el daño hecho. Lo que importa es qué tipo de negocio es, no que haya girado.
+
+### 20.2 El error de horizonte: los adelantados viven a 1 trimestre
+
+Todo el estudio se midió a 5 años porque la tesis de Munger lo exigía. Los indicadores
+adelantados operan a 1–4 trimestres. Reejecutando en `fwd_1t/2t/4t_rel_spy` (quintil 5
+menos quintil 1, por año):
+
+| Señal | 1T | 2T | 4T |
+|---|---|---|---|
+| **sorpresa** | **+3,46 pp** | +2,71 | +2,84 |
+| **delta_margen_op** | **+2,40 pp** | +2,57 | +2,83 |
+| **aceleracion_pp** | +1,92 pp | +2,35 | +3,39 |
+| **acc_seq** (detector previo) | +1,78 pp | +2,45 | **+3,66** |
+| guia_implicita | +0,75 pp | −0,54 | −2,15 |
+| cambio de dilución | +0,21 pp | −0,02 | −0,38 |
+
+**La banda de ruido a 1 trimestre es de solo 0,48 pp** (p95, 300 permutaciones por ticker;
+máximo 0,75). Doce veces menor que la de 5 años. Con esa vara, sorpresa es **7,2×** la banda
+y ninguna permutación la alcanza; `delta_margen_op` es 5× y `acc_seq` 3,7×. En cambio
+`guia_implicita` queda en el máximo del nulo y el cambio de dilución por debajo de la
+mediana: ruido ambos, coherente con 20.1.
+
+### 20.3 El hallazgo: las señales solo funcionan DENTRO del perfil
+
+Contando cuántas de las tres señales (sorpresa, Δmargen operativo, acc_seq) están en su
+quintil superior:
+
+| Grupo | Señales | n | **1T** | Acierto 1T | 4T | Acierto 4T |
+|---|---|---|---|---|---|---|
+| resto | 0 | 18.382 | −1,31 | 46,0% | −4,17 | 42,2% |
+| resto | 1 | 10.803 | −0,47 | 48,6% | −3,69 | 42,8% |
+| resto | 2 | 3.078 | +0,94 | 52,3% | −1,82 | 44,1% |
+| resto | 3 | 269 | +0,69 | 51,7% | −3,71 | 37,2% |
+| PERFIL | 0 | 10.067 | −0,22 | 49,3% | −0,30 | 47,0% |
+| PERFIL | 1 | 2.405 | +0,49 | 51,4% | +0,92 | 48,3% |
+| **PERFIL** | **2** | **251** | **+3,44** | **61,0%** | **+5,33** | **54,2%** |
+| PERFIL | 3 | 18 | +6,41 | 66,7% | +0,20 | 44,4% |
+
+**No es aditivo, es una interacción.** Con dos señales, dentro del perfil se obtiene +3,44 pp
+a un trimestre y 61% de acierto; fuera del perfil, las mismas dos señales dan +0,94 pp y se
+desvanecen a 4T (−1,82). Tiene sentido económico: una inflexión en un negocio estable que no
+se financia emitiendo acciones es información; la misma inflexión en uno errático y que
+diluye es ruido.
+
+**Este es el primer resultado del estudio con forma de indicador adelantado**: el estado
+(perfil) dice *dónde mirar*, la señal dice *cuándo*.
+
+### 20.4 Validación: prometedor, NO establecido
+
+Banda de ruido para submuestras del mismo tamaño dentro del perfil: **2,89 pp** (p95, 300
+extracciones; máximo 4,53).
+
+| Ventana | n | Señal (2+) | Base (0) | Diferencia | Acierto señal | Acierto base |
+|---|---|---|---|---|---|---|
+| En muestra 2005–2016 | 87 | +2,75 | +0,93 | **+1,82** *(bajo la banda)* | 62,1% | 53,4% |
+| Fuera de muestra 2017–2025 | 182 | +6,09 | −1,58 | **+7,67** *(2,6× la banda)* | 61,0% | 45,9% |
+
+Lectura honesta: **falla dentro de muestra y pasa fuera** — lo contrario del sobreajuste,
+pero deja la evidencia apoyada en un solo periodo. Lo más sólido es que **la tasa de acierto
+del grupo con señal es estable (62,1% y 61,0%)** en ambas ventanas; lo que cambió fue el
+grupo base (53,4% → 45,9%). Es decir, la cohorte con señal se comporta igual siempre y la
+diferencia crece porque el resto empeoró.
+
+Con n = 87 y 182, esto es **la mejor pista del estudio, no un resultado validado**. Lo que
+falta antes de creérselo:
+
+1. Backtest de cartera con rebalanceo **trimestral** (todo lo anterior era anual) — con
+   rotación trimestral los costes se multiplican y hay que ver si el +3,44 pp sobrevive.
+2. Ampliar la muestra bajando el umbral de quintil 5 a cuartil 4, a cambio de menos señal.
+3. Añadir fuentes con contenido realmente anticipado que el panel no tiene: **compras de
+   insiders** y **revisiones de estimaciones de analistas** (ambas disponibles en FMP con el
+   plan actual: `insiderTrades` y `analyst`). Son las dos señales adelantadas mejor
+   documentadas de la literatura y ninguna está en el panel.
+
+### 20.5 Pendiente: el apalancamiento
+
+**No ejecutado en esta sesión.** Decisión consciente y conviene decirlo: el test de deuda
+produce **otra variable de estado**, exactamente la clase de hallazgo que la crítica de
+partida señala como insuficiente. Con el tiempo de esta sesión valía más perseguir la línea
+de inflexión, que es lo que faltaba.
+
+Sigue siendo necesario y está preparado: los balances de FMP funcionan con el plan actual
+(`totalDebt`, `netDebt`, `goodwill` verificados sobre TEVA). Arregla un agujero real —hoy un
+roll-up financiado con deuda puntúa como calidad— pero **no dará un indicador adelantado**.
+Es una corrección del filtro de estado, no un avance en la dirección que hace falta.
