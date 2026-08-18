@@ -335,3 +335,154 @@ en datos nuevos.
 
 Combinar el perfil con la lista ESCALABLE deja solo 3–11 nombres al año y el resultado se
 vuelve errático (+175% en 2008, −41% en 2021): **muestra insuficiente, no usable**.
+
+---
+
+## 12. Los siete tests de seguimiento
+
+Ejecutados en el orden propuesto. Banda de ruido de referencia: **5,77 pp** (sección 6).
+
+### Test 1 — Descomposición del retorno a 5 años
+
+`ln(P₂₀/P₀) = ln(Δmúltiplo) + ln(Δventas) − ln(Δacciones)`, medias de logaritmos
+(descomponen exactamente), retorno absoluto:
+
+| Grupo | Tercil P/GP | Total | por múltiplo | por ventas | **por acciones** |
+|---|---|---|---|---|---|
+| PERFIL | T1 barato | +61,7% | +33,2% | +25,9% | **−3,6%** |
+| PERFIL | T2 | +60,8% | +18,2% | +38,4% | **−1,7%** |
+| PERFIL | T3 caro | +70,0% | +8,7% | +58,9% | **−1,6%** |
+| RESTO | T1 barato | +51,0% | +35,7% | +26,6% | **−12,1%** |
+| RESTO | T2 | +31,7% | +2,2% | +47,6% | **−12,7%** |
+| RESTO | T3 caro | +22,8% | **−19,5%** | +86,6% | **−18,3%** |
+
+**Este es el mecanismo del estudio entero, y tiene tres piezas:**
+
+1. **La dilución es el asesino.** El resto pierde 12–18 pp de retorno a 5 años emitiendo
+   acciones; el perfil pierde 1,6–3,6 pp. Ahí está, casi entera, la diferencia entre ambos.
+2. **Por qué la valoración no importa en el perfil:** al pagar más, la aportación del
+   múltiplo cae (+33,2 → +8,7) pero el crecimiento de ventas sube (+25,9 → +58,9) y **se
+   compensan casi exactamente**. Pagas múltiplo más alto a cambio de más crecimiento: es
+   un intercambio justo.
+3. **Por qué sí importa en el resto:** el mediocre caro **crece las ventas más rápido que
+   el bueno caro** (+86,6% vs +58,9%) y aun así rinde un tercio. Ese crecimiento lo compra
+   emitiendo acciones (−18,3%) y el mercado se lo des-valora encima (−19,5%).
+
+El mediocre caro no fracasa por no crecer. Fracasa porque **paga su crecimiento con
+acciones y el múltiplo se desinfla**.
+
+### Test 2 — ¿Dónde está el techo de P/GP? No aparece
+
+Deciles de P/GP **dentro del perfil**:
+
+| Decil | P/GP mediano | P/S mediano | Mediana rel20 | Bate SPY | % desastre |
+|---|---|---|---|---|---|
+| 1 (más barato) | 1,10 | 0,31 | **+1,0%** | 50,9% | **21,1%** |
+| 2 | 1,91 | 0,58 | −3,5% | 48,0% | 17,7% |
+| 3 | 2,47 | 0,76 | −6,4% | 46,6% | 19,5% |
+| 4 | 2,91 | 0,83 | +8,5% | 54,7% | 14,5% |
+| 6 | 3,90 | 1,21 | +8,5% | 53,2% | 15,8% |
+| 8 | 5,37 | 1,69 | +7,6% | 55,1% | 13,2% |
+| 10 (más caro) | 10,33 | 3,69 | +5,4% | 55,6% | **12,3%** |
+
+**No hay techo hasta P/GP ≈ 10.** Los deciles 4–10 rinden todos entre +5 y +8,5% sin
+tendencia a empeorar. Lo que sí hay es un **suelo**: los deciles 1–3 (los más baratos) son
+los peores, y la tasa de desastre cae monótonamente con el precio, de **21,1% a 12,3%**.
+Dentro de la calidad, lo barato es trampa de valor.
+
+Matiz de rigor: las diferencias de retorno entre deciles (4,4 pp entre D1 y D10) están
+**dentro de la banda de ruido**. Lo robusto aquí es el gradiente de la tasa de desastre,
+no el de la mediana.
+
+### Test 3 — ¿Basta con la dilución sola? No, y sobra
+
+| Definición | Efecto 20T | t | Cohortes | En muestra | Fuera | Nombres/año |
+|---|---|---|---|---|---|---|
+| A. Dilución <2% sola | +13,18 pp | 4,59 | 14/15 | +11,09 | +17,37 | 270 |
+| **B. Estabilidad sola** (mb + crec.) | **+19,21 pp** | **9,29** | **15/15** | +20,76 | +16,13 | — |
+| C. PERFIL completo (3 cond.) | +18,96 pp | 10,22 | 15/15 | +19,22 | +18,45 | 110 |
+| D. PERFIL sin excluir Fin/RE | +15,84 pp | 7,69 | 15/15 | +17,45 | +12,63 | — |
+
+**La dilución sola no basta (+13,2) pero el filtro de dilución tampoco aporta:** B (sin él)
+da +19,21 y C (con él) +18,96. El motor es la **estabilidad** — margen bruto estable y
+crecimiento consistente. Añadir dilución cuesta la mitad de los nombres (270→110) a cambio
+de −0,25 pp. Excluir Financials/Real Estate aporta +3,12 pp, dentro del ruido.
+
+**Simplificación recomendada: quedarse con las dos condiciones de estabilidad.**
+
+### Test 4 — Concentración: no compensa, y explica el listón de 0,60
+
+400 carteras aleatorias de N nombres extraídas del perfil, 2007–2024:
+
+| N nombres | CAGR mediano | Vol. mediana | Sharpe p50 | p95 | p99 | máx. | **% que llega a 0,60** |
+|---|---|---|---|---|---|---|---|
+| 6 | 12,07% | 27,2% | **0,37** | 0,56 | 0,62 | 0,73 | **2,5%** |
+| 15 | 12,52% | 25,0% | 0,42 | 0,55 | 0,61 | 0,76 | 1,3% |
+| 30 | 12,75% | 24,2% | 0,44 | 0,55 | 0,59 | 0,63 | 0,5% |
+| 60 | 12,89% | 23,8% | **0,45** | 0,52 | 0,55 | 0,56 | 0,0% |
+
+Concentrar **empeora** el Sharpe mediano (0,45 → 0,37): añade riesgo idiosincrático sin
+retorno que lo compense. Solo ensancha la cola derecha.
+
+Y da la respuesta a la pregunta del listón: **el 2,5% de las carteras aleatorias de 6
+nombres alcanza Sharpe ≥ 0,60 por puro azar.** Un 0,60 sobre ~6 posiciones es una tirada de
+1 entre 40, no una evidencia de habilidad — y menos cuando el alfa asociado (+9,72%) no
+replica (+0,75%) con el mismo pipeline.
+
+### Test 5 — Persistencia y rotación
+
+| Definición | Sigue a 1 año | 2 años | 3 años | 5 años | Rotación anual |
+|---|---|---|---|---|---|
+| PERFIL 3 condiciones | 58,8% | 48,9% | 43,0% | 37,4% | ~41% |
+| Estabilidad 2 condiciones | **67,8%** | 55,7% | 49,0% | 42,6% | **~32%** |
+
+Con 41% de rotación y 0,30%/lado, el coste real es **0,25%/año**, no el 0,60% que cobré en
+el backtest: los CAGR reportados están **subestimados en ~0,35 pp**. La variante de dos
+condiciones rota menos, así que es mejor también por este lado.
+
+### Test 6 — Cruce con el detector de inflexión: no aporta, y son incompatibles
+
+| Grupo | acc_seq ≥ +0,05 | n | Mediana rel20 | % desastre |
+|---|---|---|---|---|
+| PERFIL | sí acelera | 46 | +4,4% | 8,7% |
+| PERFIL | no acelera | 1.656 | +3,1% | 15,0% |
+| resto | sí acelera | 778 | −15,3% | 22,6% |
+| resto | no acelera | 5.000 | −17,6% | 21,3% |
+
+A 5 años el detector **no aporta nada** (+1,3 pp en el perfil, +2,3 pp en el resto: ruido).
+Es coherente: es una señal de inflexión a un año, y a cinco se diluye.
+
+Más importante: **son casi mutuamente excluyentes.** Solo el 2,7% del perfil acelera, frente
+al 13,5% del resto — porque "crecimiento consistente" (baja desviación) excluye por
+construcción a las empresas que aceleran. **No se pueden tener las dos cosas:** el detector
+busca inflexión y el perfil busca lo contrario. Son dos estrategias, no una combinable.
+
+### Test 7 — Supervivencia contra datos externos: sesgo confirmado y cuantificado
+
+Muestra de 28 empresas reales que desaparecieron entre 2012 y 2020:
+
+| Tipo de salida | Total | En el panel | **Ausentes** |
+|---|---|---|---|
+| Quiebra | 12 | 4 | **8 (67%)** |
+| Adquisición | 15 | 6 | 9 (60%) |
+| **Total** | **28** | **10** | **18 (64%)** |
+
+**El 64% de las empresas que desaparecieron no está en el panel.** Las adquiridas que sí
+están (BRCM, LLTC, ATML, MSCC, ILG, WFM) tienen la serie terminada correctamente en el año
+de la operación, así que las salidas por compra —que suelen ser positivas, con prima— no
+faltan sistemáticamente. Las que faltan son sobre todo **quiebras**, es decir, los peores
+resultados. Confirma la dirección del sesgo: **infla los niveles absolutos y juega en
+contra de la conclusión**, no a favor.
+
+**Defecto 9 (nuevo):** las cuatro quiebras "presentes" lo están por **retroajuste de
+contrasplit**, no por tener historia real. SUNE llega a un `precio_post` de **10.278.000** y
+WLL de **17.494**. El ratio entre fechas se conserva, así que no falsea retornos, pero
+**inutiliza el filtro `precio_post >= 1`**: un penny stock que luego hace un contrasplit
+1:1000 aparece históricamente como una acción de miles de dólares y **entra** en universos
+que pretendían excluirlo.
+
+Comprobado que no contamina este estudio: dentro del universo final el precio máximo es
+618 $ (perfil) y el retorno máximo a 1 año +508%, con un solo evento por encima de +500%.
+Los filtros de capitalización lo bloquean. Pero cualquier estudio futuro que use
+`precio_post >= 1` como filtro de calidad sobre el panel completo **está dejando entrar
+justo lo que quería excluir**.
