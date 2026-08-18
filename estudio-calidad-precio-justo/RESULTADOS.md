@@ -607,3 +607,87 @@ Tres avisos que no conviene olvidar al leer ese 14,37%:
    creíble, no una cifra de precisión.
 3. Con 212 candidatos y sin criterio validado para reducirlos, la implementación honesta es
    **diversificar mucho**, no elegir los diez mejores.
+
+---
+
+## 14. Contra el NASDAQ: bate al S&P 500, no al QQQ
+
+El panel trae `fwd_4t_rel_qqq`, así que el NASDAQ 100 se despeja igual que el SPY
+(`qqq = fwd_4t − fwd_4t_rel_qqq`). Misma cartera anual, mismos costes (0,25%/año):
+
+| Cartera | CAGR | Volatilidad | Sharpe | Peor año | % años que baten |
+|---|---|---|---|---|---|
+| **PERFIL estabilidad** | 14,37% | 24,3% | 0,51 | −36,8% | — |
+| **QQQ (NASDAQ 100)** | **14,51%** | **21,9%** | **0,57** | **−30,9%** | — |
+| SPY | 9,11% | 18,6% | 0,38 | −40,9% | — |
+| PERFIL vs SPY | | | | | **66,7%** |
+| PERFIL vs QQQ | | | | | **44,4%** |
+
+**El QQQ gana en las cuatro dimensiones:** más CAGR, menos volatilidad, mejor Sharpe y mejor
+peor año. El alfa del perfil contra el QQQ es **+0,30%**, es decir, cero. Un dólar en 2007
+son **11,22 $** con el perfil y **11,47 $** con el QQQ (4,81 $ con el SPY).
+
+### ¿Estamos replicando el NASDAQ? No, pero da igual
+
+| Correlación | valor |
+|---|---|
+| PERFIL – SPY | 0,92 |
+| PERFIL – QQQ | 0,90 |
+| QQQ – SPY | 0,95 |
+
+El perfil se parece **más** al S&P que al NASDAQ. Y por composición es mucho más diversificado
+que el QQQ: 11 sectores frente a la concentración del índice en tecnología y comunicación,
+small caps de 300 M$–5.000 M$ en lugar de mega caps, y excluye Financials y Real Estate.
+Es una cartera genuinamente distinta que **acaba en el mismo sitio con más riesgo**.
+
+Mezclar tampoco resuelve nada: 25% perfil / 75% QQQ da Sharpe 0,57 — idéntico al QQQ solo.
+Con correlación 0,90 no hay diversificación real que extraer.
+
+### Lo único que sí aporta: gana en años distintos
+
+| Mejores años del perfil vs QQQ | | Peores | |
+|---|---|---|---|
+| 2022 | **+21,7 pp** | 2019 | −17,0 pp |
+| 2016 | +16,8 pp | 2023 | −15,2 pp |
+| 2012 | +10,4 pp | 2015 | −11,0 pp |
+| 2009 | +10,1 pp | 2007 | −6,7 pp |
+
+El perfil gana cuando la mega-cap tecnológica sufre —**2022, el shock de tipos: +4,4% frente
+al −17,5% del QQQ**— y pierde en los años en que el índice lo hace todo (2019, 2023). Es una
+cobertura contra un régimen concreto, no una estrategia superior.
+
+### Asimetría que agrava la comparación
+
+Los 14,37% del perfil están **inflados por el sesgo de supervivencia** del panel (test 7:
+falta el 64% de las empresas desaparecidas, sobre todo quiebras). Los 14,51% del QQQ son
+retorno **real e invertible**. La comparación honesta es, por tanto, **peor** para el perfil
+de lo que muestra la tabla.
+
+**Conclusión:** el perfil es una estrategia legítima que bate al S&P 500 con holgura
+(+5,3 pp anuales, mejor Sharpe, mejor peor año), pero **no bate al NASDAQ 100**, y quien
+quisiera ese retorno podía comprar QQQ sin hacer nada de esto. Su valor diferencial está en
+el comportamiento en 2022, no en el retorno agregado.
+
+## 15. Delistings: no se pueden obtener con el plan actual de FMP
+
+Intentado y **bloqueado**:
+
+- `company/delisted-companies` con `page` ≥ 1 → `ACCESS DENIED ... requires a higher plan`
+  (cuenta en plan **Starter**).
+- Los filtros `from_date`/`to_date` se **ignoran silenciosamente**: pedir 2015 devuelve los
+  mismos registros de agosto de 2026.
+- Resultado: solo son accesibles los ~100 delistings más recientes, todos de las últimas dos
+  semanas, y dominados por ETFs, OTC y bolsas extranjeras.
+
+No sirve para medir la supervivencia de 2007–2021, que es lo que hace falta. Alternativas,
+de menor a mayor coste:
+
+1. **Arreglarlo aguas arriba.** El sesgo no lo introduce este estudio, sino el pipeline que
+   construyó `hypergrowth_panel` a partir de un universo de tickers vivos. Si la fuente
+   original conserva las empresas muertas, es ahí donde hay que capturarlas.
+2. **Sharadar Core US Equities (Nasdaq Data Link)** — marca delistings y es de precio
+   asequible; es la opción práctica habitual para backtests.
+3. **Norgate Data** — pensado explícitamente para backtesting con valores delistados.
+4. **FMP Premium** — desbloquea la paginación del endpoint ya integrado, que es el camino de
+   menor fricción dado que el MCP ya está conectado.
+5. **CRSP** — el estándar académico, y el más caro.
