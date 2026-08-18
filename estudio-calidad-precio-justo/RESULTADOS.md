@@ -26,11 +26,13 @@ Pre-registro congelado en `PREREGISTRO.md` **antes** de calcular ningún contras
    barato (T1)" da +4,13 pp (t=0,85, 10/15 años) — dentro del ruido. La comparación
    pre-registrada enfrentaba el peor tercil de calidad contra el mejor de mediocre.
 
-4. **El control negativo (H5) FALLA**, y es el hallazgo más útil del estudio: la inicial
-   del ticker (A–M vs N–Z), que no debería aportar nada, produce −5,3 pp con
-   **p = 0,035**. Con 15 cohortes anuales correlacionadas se fabrican efectos de ~5 pp
-   con significación nominal. **Todo efecto por debajo de ~10 pp en este panel es ruido**,
-   lo que invalida la H3 pre-registrada y confirma la principal (19,9 pp, t=5,55, 15/15).
+4. **El control negativo (H5) avisa de un problema real de significación.** La inicial del
+   ticker (A–M vs N–Z), que no debería aportar nada, produce −5,3 pp. Un test de
+   permutación con 300 particiones aleatorias por ticker (sección 6) fija la banda de ruido
+   real en **5,77 pp al 95%**: el control quedó en el percentil 94, es decir, mala suerte y
+   no un fallo estructural, pero **todo efecto por debajo de ~5,8 pp en este panel es
+   indistinguible del ruido**. Eso invalida la H3 pre-registrada (+4,13 pp) y confirma la
+   principal (+19,9 pp, que **ninguna de las 300 permutaciones alcanza**, p < 0,0033).
 
 5. **El listón del estudio anterior no se replica.** Su perfil "barato y cíclico"
    (CAGR 18,15%, alfa +9,72%, Sharpe 0,60) se reconstruye aquí como CAGR 13,61%,
@@ -207,10 +209,27 @@ La inicial del ticker no debería predecir nada:
 | **A–M − N–Z (ruido puro)** | **−5,33 pp** | −1,82 | 3/15 | **0,0352** |
 
 Una variable sin contenido económico alcanza p<0,05. La causa es que 15 cohortes anuales
-solapadas y correlacionadas entre sí no son 15 observaciones independientes. **La lectura
-operativa:** en este panel, **nada por debajo de ~10 pp debe creerse**. Eso descarta la H3
-pre-registrada (+4,13) y Q1/Q2 como componentes, y deja en pie el efecto principal
-(+19,86 pp, 4× la banda de ruido) y E1/Q3/Q4/Q5.
+solapadas y correlacionadas entre sí no son 15 observaciones independientes. **La lectura operativa:** en este panel,
+**nada por debajo de ~5,8 pp debe creerse**. Eso descarta la H3 pre-registrada (+4,13) y
+Q1/Q2 como componentes, y deja en pie el efecto principal y E1/Q3/Q4/Q5.
+
+### Banda de ruido medida por permutación (300 particiones aleatorias por ticker)
+
+El test de signos asume independencia que estos datos no tienen. Repitiendo el contraste
+con 300 particiones aleatorias del universo **por ticker** (preserva el solapamiento y la
+correlación entre cohortes) se obtiene la distribución nula real:
+
+| Percentil del efecto espurio | pp |
+|---|---|
+| p50 | 1,99 |
+| p90 | 4,90 |
+| **p95** | **5,77** |
+| p99 | 7,31 |
+| máximo de 300 | 8,47 |
+
+- Efecto principal (19,86 pp): **0 de 300** permutaciones lo alcanzan → **p < 0,0033**.
+- Control A–M/N–Z (5,33 pp): lo superan el 6,3% → p ≈ 0,06. Estaba en el borde, no roto.
+- H3 pre-registrada (4,13 pp): lo supera el 16% → **ruido**, confirmado.
 
 ## 7. Backtest ciego
 
@@ -264,3 +283,55 @@ activarla sin políticas bloquearía todo acceso.
 2. Se añadió el filtro `margen_bruto ∈ [0,05, 0,95]` (defecto 7), imprescindible para que
    P/GP tenga sentido, y la verificación de distancia temporal (defecto 8).
 3. El periodo 1995–2004 se descarta por falta de datos, no por decisión de diseño.
+
+
+---
+
+## 11. El perfil operativo (añadido tras los resultados, con prueba ciega)
+
+La atribución por componentes dice que Q1 (rentable) y Q2 (margen op. mejorando) no aportan
+nada, y que los sectores donde el margen bruto no significa nada (Financial Services, Real
+Estate) rompen el efecto. El perfil que queda al quitar lo que no funciona:
+
+```
+PERFIL = dilucion_yoy < 2%
+       Y desviacion de margen_bruto en 8T por debajo de la mediana del anio
+       Y desviacion de crecimiento en 8T por debajo de la mediana del anio
+       Y sector NOT IN ('Financial Services','Real Estate')
+       (universo: 300 M$-5.000 M$, sector asignado, tickers limpios)
+```
+
+Es **más simple** que la definición pre-registrada (3 condiciones en vez de 5), da **más
+nombres** (~90–143 al año frente a 35–80) y es **más robusto**:
+
+| | Efecto 20T vs resto | Cohortes positivas |
+|---|---|---|
+| En muestra 2007–2016 | +19,25 pp | 10/10 |
+| **Fuera de muestra 2017–2021** | **+18,72 pp** | **5/5** |
+| Total | +19,07 pp (t=10,12) | **15/15** |
+
+**Degradación fuera de muestra: 3%.** La definición pre-registrada de 5 condiciones se
+degradaba un 42% (23,11 → 13,34 pp). Quitar los dos componentes que eran ruido no empeoró
+el resultado: lo estabilizó. El efecto es **3,3× la banda de ruido** de 5,77 pp.
+
+Como cartera anual equiponderada (2007–2024, neta de 0,60%/año):
+
+| Cartera | CAGR | Vol. | Sharpe | Beta | Alfa | Peor año | % años > SPY |
+|---|---|---|---|---|---|---|---|
+| **PERFIL** | **12,91%** | 23,5% | **0,46** | 1,16 | **+2,97%** | **−36,2%** | 61,1% |
+| CALIDAD 5/5 | 10,91% | 21,0% | 0,42 | 1,05 | +1,29% | −38,3% | 55,6% |
+| MEDIOCRE-T1 "barato" | 13,61% | 41,4% | 0,28 | 1,78 | +0,75% | −39,9% | 44,4% |
+| SPY | 9,13% | 18,7% | 0,38 | 1,00 | — | −41,1% | — |
+
+Es la mejor variante del estudio: bate al SPY en CAGR (12,91% vs 9,13%), en Sharpe
+(0,46 vs 0,38) y **en el peor año** (−36,2% vs −41,1%), con alfa +2,97%. Sigue **sin
+alcanzar el 0,60** del listón previo — pero aquel se midió sobre ~6 posiciones y este sobre
+~100, y el alfa de +9,72% de aquel no se replica en ninguna reconstrucción.
+
+**Aviso de sobreajuste:** este perfil se define *después* de ver la atribución de
+componentes, así que la prueba 2017–2021 es su única validación genuinamente ciega. Que
+apenas se degrade (3%) es la mejor señal disponible, pero no sustituye a una validación
+en datos nuevos.
+
+Combinar el perfil con la lista ESCALABLE deja solo 3–11 nombres al año y el resultado se
+vuelve errático (+175% en 2008, −41% en 2021): **muestra insuficiente, no usable**.
