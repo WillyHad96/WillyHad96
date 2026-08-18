@@ -691,3 +691,136 @@ de menor a mayor coste:
 4. **FMP Premium** — desbloquea la paginación del endpoint ya integrado, que es el camino de
    menor fricción dado que el MCP ya está conectado.
 5. **CRSP** — el estándar académico, y el más caro.
+
+---
+
+## 16. ¿Tenemos "lo mejor de los dos índices"? Un test lo responde
+
+La hipótesis: si tenemos diversificación tipo S&P con retornos tipo NASDAQ, estamos
+capturando la fuerza de ambos. Es una idea con fundamento y merece un contraste directo,
+no una opinión.
+
+**El motor del NASDAQ es fabricar gigantes:** su retorno viene de un puñado de empresas que
+pasaron de pequeñas a enormes. Si el perfil capturase esa fuerza, debería seleccionar
+—cuando aún eran pequeñas— a las que después se hicieron gigantes. Test: de las empresas que
+estuvieron en el tramo 300 M$–5.000 M$ entre 2007 y 2016, ¿qué porcentaje pasó el perfil,
+según en qué se convirtieron?
+
+| Destino hoy | Tickers | % que pasó el perfil | % de años dentro |
+|---|---|---|---|
+| Mega (> 50.000 M$) | 68 | **41,2%** | 30,4% |
+| Grande (20–50.000 M$) | 110 | 43,6% | 28,7% |
+| Media (5–20.000 M$) | 337 | 44,2% | 24,8% |
+| Siguió pequeña (< 5.000 M$) | 408 | **41,9%** | 22,4% |
+
+**Completamente plano.** El perfil no distingue en absoluto quién se convertirá en gigante:
+selecciona al 41–44% en los cuatro grupos por igual. **No tenemos el motor del NASDAQ.**
+
+Esto encaja con la sección 13: la ventaja del perfil está en los percentiles p50–p90 y es
+nula en las colas. Fabricar gigantes es un fenómeno de cola derecha extrema, exactamente
+donde el perfil no aporta nada.
+
+**Veredicto matizado.** La parte correcta de la hipótesis es que dos carteras con el mismo
+CAGR realizado **no son equivalentes** si una llegó por una apuesta concentrada que salió
+bien y la otra por una base diversificada: *ex ante*, la segunda es más robusta si uno no
+cree que el régimen de la mega-cap tecnológica se repita. Y el +21,7 pp de 2022 demuestra
+que el motor es genuinamente distinto, no una réplica.
+
+La parte incorrecta es "capturamos la fuerza de ambos". No la capturamos: **igualamos al QQQ
+en la mejor época del QQQ, con más volatilidad y peor drawdown, por una vía distinta** — y
+sin su capacidad de generar gigantes. Es un motor diferente que produjo un número parecido
+en esta ventana, no una síntesis superior. Súmese que el 14,37% del perfil está inflado por
+supervivencia y el 14,51% del QQQ no.
+
+## 17. Qué hizo caer a los que cayeron (versión ejecutable de la idea)
+
+No hacen falta las listas de índices: el propio panel permite definir a los caídos. Empresas
+que llegaron a valer **más de 10.000 M$** y hoy valen **menos del 40%** de su pico, frente a
+las que conservan el 90% o más. Se miden sus características en los **3 años anteriores al
+pico**, es decir, antes de la caída:
+
+| | **CAYÓ** (69 empresas) | **SE MANTUVO** (502) |
+|---|---|---|
+| **% de trimestres diluyendo ≥ 2%** | **48,7%** | **23,0%** |
+| Dilución mediana | 1,84% | **0,00%** |
+| Crecimiento mediano | 24,2% | 10,7% |
+| Desviación del crecimiento | 0,212 | **0,125** |
+| Desviación del margen bruto | 0,0304 | **0,0254** |
+| Reinversión | 0,190 | **0,129** |
+| Margen bruto | 48,4% | 45,4% |
+| Margen operativo | 14,4% | 15,8% |
+| P/GP | 9,30 | 8,61 |
+
+**Las tres señales del perfil apuntan todas en la dirección correcta, en una población
+completamente distinta**: grandes cayendo en vez de pequeñas subiendo. Diluían el doble de
+trimestres, crecían más rápido y de forma más errática, con margen menos estable y más
+reinversión. Es el mismo mecanismo del test 1 —comprar crecimiento con acciones— visto desde
+el otro extremo del ciclo de vida.
+
+Y el margen bruto y el múltiplo **no separan nada** (48,4 vs 45,4; 9,30 vs 8,61): ni la
+calidad aparente del negocio ni lo que pagabas por él avisaron de la caída. Lo que avisó fue
+cómo se financiaba el crecimiento.
+
+*Nota de rigor:* este contraste es descriptivo y no estaba pre-registrado; sirve como
+validación del mecanismo, no como evidencia independiente de la magnitud. La media de
+dilución (16,34% vs 45,17%) está contaminada por outliers y no debe usarse: valen la mediana
+y el porcentaje de trimestres.
+
+## 18. El agujero que esto destapa: la deuda
+
+El perfil premia **no diluir**. Pero una empresa puede evitar la dilución **endeudándose en
+lugar de emitir acciones** — y el perfil, tal y como está, puntuaría como "calidad" a un
+roll-up financiado con deuda. Es un fallo estructural, no un detalle.
+
+El caso de manual está en el propio panel: **TEVA** — deuda neta 13.826 M$, fondos propios
+7.910 M$, fondo de comercio 15.999 M$ y beneficios retenidos **−13.762 M$**. Crecimiento
+comprado con deuda y adquisiciones, sin dilución que lo delate.
+
+**Comprobado: los balances de FMP sí funcionan con el plan Starter** (a diferencia de
+`delisted-companies` y `indexes`, ambos bloqueados). El endpoint
+`statements/balance-sheet-statement` devuelve `totalDebt`, `netDebt`, `goodwill` y
+`totalStockholdersEquity`. La extensión natural del estudio es:
+
+1. Añadir **deuda neta / EBITDA** y **fondo de comercio / activos** al perfil.
+2. Contrastar la hipótesis gemela: *si no diluir predice, apalancarse debería predecir a la
+   inversa*. Si se confirma, el perfil pasa de "no emite acciones" a "no financia el
+   crecimiento con capital ajeno de nadie", que es una idea económicamente más completa.
+3. Coste realista: no hace falta el panel entero. Con los **69 caídos + una muestra de los
+   que se mantuvieron**, y con los **212 nombres actuales**, la pregunta queda resuelta con
+   unos cientos de llamadas.
+
+### Causas de caída conocidas, y cuáles son testables aquí
+
+| Causa | ¿Se puede medir con el panel? |
+|---|---|
+| Crecimiento comprado con acciones | **Sí** — `dilucion_yoy`, ya validado |
+| Crecimiento comprado con deuda | **Sí, añadiendo balances de FMP** ← la extensión |
+| Roll-up de adquisiciones | **Sí** — fondo de comercio / activos (FMP) |
+| Erosión secular del negocio | Parcial — caída sostenida del margen bruto |
+| Ciclo de materias primas | Parcial — vía sector |
+| Concentración en un producto / caída de patente | **No** — no hay datos de producto |
+| Fraude contable o reformulación | **No** |
+| Dependencia de un cliente o plataforma | **No** |
+
+Las tres primeras cubren la mayoría de las caídas documentadas y **dos ya están al alcance**.
+Las otras exigen datos que no están en el panel ni en el plan actual de FMP.
+
+## 19. Interactive Brokers: no sirve para el backtest, sí para otra cosa
+
+El MCP de IBKR **no tiene motor de backtesting**. Lo que ofrece es `get_price_history`
+(limitado a periodos de hasta cinco años por contrato), `get_price_snapshot`,
+`search_contracts`, watchlists y datos de cuenta. Reconstruir 18 años y miles de tickers
+exigiría una llamada por contrato: no es la herramienta.
+
+Para lo que **sí** sirve, y es relevante:
+
+1. **Comprobar que los 212 nombres son operables.** El campo `avg_90d_usd_volume` de
+   `get_price_snapshot` da el volumen medio en dólares a 90 días. El backtest asume
+   entrada y salida al precio del cierre con 0,30%/lado, y en small caps de 300 M$ eso es
+   una suposición, no un hecho. **Es el hueco de implementación más grande que queda.**
+2. **Validar los precios del panel** contra una fuente independiente — útil sabiendo lo del
+   retroajuste de contrasplits (defecto 9).
+3. **Materializar la lista** como watchlist con `create_watchlist`.
+
+Lo que IBKR **no** resuelve es el problema de los delistings: una vez muerto el contrato,
+no devuelve histórico.
