@@ -98,3 +98,56 @@ En la primera versión del test 2 los quintiles salían de tamaños distintos (2
 mezclaba los valores más altos con los nulos, y al filtrarlos después quedaba un quintil
 parcial. Corregido calculando `ntile` solo sobre filas no nulas. Las cifras de arriba son las
 de la versión corregida.
+
+---
+
+## 3. El momentum por tamaño: el efecto es de las pequeñas
+
+**Aclaración previa:** los dos estudios anteriores ya usaban el panel **completo**, sin filtro
+de capitalización — a diferencia del estudio de calidad, que sí estaba acotado a 300 M$–5.000 M$.
+Aun así, el agregado escondía una diferencia grande por tamaño.
+
+Momentum a 12 meses, rentabilidad futura a 4 trimestres relativa al SPY, quintiles calculados
+**dentro de cada tramo de capitalización** y por año:
+
+| Tamaño | n | Tickers | Q1 (perdedoras) | Q3 | Q5 (ganadoras) | Spread Q5−Q1 | % bate SPY |
+|---|---|---|---|---|---|---|---|
+| micro < 300 M$ | 1.345 | 369 | +1,57% | +1,94% | **+9,41%** | **+7,84 pp** | 55,3% |
+| small 300 M–2.000 M$ | 6.427 | 1.055 | −4,27% | −4,55% | −0,45% | **+3,82 pp** | 46,3% |
+| mid 2.000–10.000 M$ | 7.169 | 1.158 | −5,63% | −4,44% | −2,96% | **+2,67 pp** | 44,2% |
+| large 10.000–50.000 M$ | 4.031 | 638 | −8,08% | −4,31% | −6,17% | +1,91 pp | 40,9% |
+| mega > 50.000 M$ | 1.432 | 210 | −4,48% | −6,15% | −2,36% | +2,12 pp | 41,4% |
+
+Banda de ruido a 4 trimestres: **1,37 pp**.
+
+### Lectura
+
+**El momentum decae monótonamente con el tamaño**: +7,84 → +3,82 → +2,67 → +1,91 → +2,12.
+En micro, small y mid es inequívoco (5,7× / 2,8× / 1,9× la banda). En large y mega queda en
+1,4–1,5× la banda, al borde.
+
+**Y en los tramos grandes ni siquiera es monótono**, que es lo que decide el asunto:
+
+- large: Q1 −8,08 → **Q3 −4,31** → Q5 −6,17. El del medio es el mejor.
+- mega: Q1 −4,48 → **Q3 −6,15** → Q5 −2,36. El del medio es el peor.
+
+Sin progresión ordenada, un spread entre extremos de ~2 pp no es una señal: es ruido en las
+puntas. En el agregado la progresión sí era monótona en los cinco quintiles, pero ese orden
+lo aportaban las pequeñas.
+
+### Consecuencia práctica
+
+**La regla "deja correr lo que sube, no promedies a la baja" está sostenida por datos en
+micro, small y mid. En large y mega, este panel no la sostiene.**
+
+Quien opere mayoritariamente en compañías grandes no debería aplicar la regla como si
+estuviera demostrada: en ese tramo el comportamiento pasado a 12 meses no ordena el futuro.
+
+### Alcance del "universo completo"
+
+Conviene ser preciso con qué significa aquí "todo el universo". El panel tiene 6.967 tickers,
+de los cuales en este contraste aparecen 210 mega caps y 638 large caps. Es cobertura
+suficiente para medir, pero **no es el mercado estadounidense entero**: el panel se construyó
+alrededor de un cribado de crecimiento, así que sobrerrepresenta compañías en crecimiento e
+infrarrepresenta las maduras y de valor. Para large y mega, además, se suma el problema ya
+conocido de supervivencia.
