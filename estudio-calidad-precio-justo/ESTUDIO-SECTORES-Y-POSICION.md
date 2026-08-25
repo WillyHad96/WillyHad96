@@ -266,3 +266,73 @@ meses aporta, no que se pueda extraer un 22% anual.
 - **La regla de los 2 años** (recortar ganadores extremos): medida sobre el universo, no sobre
   el perfil, y con un spread por debajo de la banda de ruido. Es disciplina de cartera
   razonable, no un hallazgo.
+
+---
+
+## 5. Las dos pruebas que sí se podían hacer: ambas a favor
+
+### Test A — Permutación: ¿es suerte por llevar pocos nombres?
+
+500 carteras de **15 nombres elegidos al azar** dentro del perfil, mismo periodo (2007–2024),
+mismos costes (0,90%/año), misma construcción anual equiponderada:
+
+| | CAGR | Sharpe |
+|---|---|---|
+| Mediana de las 500 aleatorias | 12,70% | 0,42 |
+| p90 | 15,61% | — |
+| p99 | 18,73% | 0,65 |
+| **Máximo de las 500** | **19,81%** | **0,72** |
+| **Momentum top 10% (real)** | **21,64%** | **0,75** |
+| % de aleatorias que lo igualan | **0,00%** | **0,00%** |
+
+**Ninguna de las 500 llega.** La objeción "con 15 nombres cualquier cosa parece buena" queda
+respondida: el azar con 15 nombres tocaba techo en 19,81% de CAGR y 0,72 de Sharpe, y
+seleccionar por momentum lo supera. Probabilidad por debajo de 1/500.
+
+### Test B — Ensanchar: ¿aguanta con más nombres?
+
+| Top % por momentum | n/año | CAGR | Vol. | Sharpe | Beta | Alfa | Peor año | 2007–15 | 2016–24 |
+|---|---|---|---|---|---|---|---|---|---|
+| top 10% | 15 | 21,64% | 26,1% | 0,75 | 1,13 | +12,83% | −36,1% | 12,32% | 31,74% |
+| top 15% | 22 | 17,96% | 23,9% | 0,67 | 1,04 | +9,45% | −34,6% | 10,72% | 25,68% |
+| top 20% | 29 | 17,63% | 24,5% | 0,64 | 1,10 | +8,71% | −36,2% | 11,37% | 24,25% |
+| top 30% | 43 | 14,88% | 22,1% | 0,58 | 1,04 | +6,12% | −37,8% | 8,22% | 21,96% |
+| top 50% | 72 | 13,17% | 20,1% | 0,55 | 0,98 | +4,55% | −34,8% | 8,32% | 18,25% |
+| SPY | — | 8,98% | 18,5% | 0,38 | 1,00 | — | −41,0% | 4,10% | 14,09% |
+
+**Decae de forma perfectamente ordenada**: CAGR 21,64 → 17,96 → 17,63 → 14,88 → 13,17;
+Sharpe 0,75 → 0,67 → 0,64 → 0,58 → 0,55; alfa 12,83 → 9,45 → 8,71 → 6,12 → 4,55.
+
+Esa respuesta gradual es **mejor evidencia que el resultado puntual**. Si el efecto fuera
+suerte concentrada en tres nombres, al ensanchar se desplomaría de golpe; aquí baja poco a
+poco, que es lo que hace una señal real cuando se diluye. Y **todas las anchuras baten al SPY
+en las dos ventanas**, incluida la de 72 nombres (8,32% vs 4,10% y 18,25% vs 14,09%).
+
+Esto **corrige el diagnóstico de "umbral y no gradiente"** de la sección 4: a nivel de mediana
+por decil parecía un umbral, pero a nivel de cartera la respuesta es un gradiente limpio. La
+diferencia es que la cartera usa medias, y el decil superior concentra la cola derecha que la
+mediana no ve.
+
+### Qué queda en pie y qué no, tras estas dos pruebas
+
+**Objeciones respondidas:**
+- *"Es suerte por llevar 15 nombres"* → refutada por el test A.
+- *"Es un umbral frágil que depende de un decil"* → refutada por el test B: hay dosis-respuesta.
+- *"Solo funciona en la ventana reciente"* → **parcialmente** refutada. El top 10% bate al SPY
+  por +8,2 pp en 2007–2015 y por +17,7 pp en 2016–2024. Es mejor recientemente, pero la
+  ventaja existe en ambas.
+
+**Objeciones que siguen intactas, y no se pueden tocar con estos datos:**
+1. **Supervivencia.** Falta el 64% de las empresas desaparecidas, y una estrategia que compra
+   lo que más ha subido es precisamente la que más se beneficia de que las burbujas que
+   reventaron no estén en la muestra. Sigue siendo el problema número uno.
+2. **El panel está sesgado a crecimiento**, y el momentum funciona especialmente bien ahí.
+   Posible circularidad.
+3. **El alfa de +12,83% del top 10% sigue siendo implausible** por sí solo. La regla 5 del
+   estudio dice tratar cualquier alfa por encima del 15% como un error hasta prueba en
+   contra; 12,83% está lo bastante cerca como para no celebrarlo.
+
+**Uso defendible tras las dos pruebas: top 20–30% (29–43 nombres), con Sharpe 0,64–0,58 y alfa
+entre +6% y +9%.** Conserva la mayor parte del efecto, con suficientes nombres para que el
+azar no mande y sin apoyarse en la cola extrema. El top 10% es real pero su magnitud no debe
+usarse como expectativa.
