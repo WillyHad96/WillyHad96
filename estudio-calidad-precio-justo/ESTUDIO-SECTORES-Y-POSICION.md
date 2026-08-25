@@ -336,3 +336,33 @@ mediana no ve.
 entre +6% y +9%.** Conserva la mayor parte del efecto, con suficientes nombres para que el
 azar no mande y sin apoyarse en la cola extrema. El top 10% es real pero su magnitud no debe
 usarse como expectativa.
+
+### Test C — Permutación a la anchura recomendada (29 y 43 nombres)
+
+El test A se hizo con 15 nombres, pero la recomendación práctica era 20–30%. El listón del azar
+cambia con el número de nombres —cuantos más coges al azar, mejor sale el azar— así que había
+que rehacerlo a la anchura que se usaría de verdad. 500 carteras aleatorias del perfil en cada
+caso, mismo periodo y costes:
+
+| Anchura | Nombres | Real | Mediana azar | Máx. de 500 | % de aleatorias que igualan CAGR | ...que igualan Sharpe |
+|---|---|---|---|---|---|---|
+| top 10% | 15 | 21,64% · 0,75 | 12,70% · 0,42 | 19,81% · 0,72 | **0,00%** | **0,00%** |
+| **top 20%** | 29 | 17,63% · 0,64 | 12,89% · 0,45 | 17,75% · 0,63 | **0,20%** | **0,00%** |
+| top 30% | 43 | 14,88% · 0,58 | 12,91% · 0,46 | 16,25% · 0,62 | **4,60%** | 1,00% |
+
+**Esto corrige la recomendación de "top 20–30%".** No son equivalentes:
+
+- **Top 20% (29 nombres): sólido.** Una de 500 carteras aleatorias iguala su CAGR y **ninguna**
+  su Sharpe. Es tan concluyente como el top 10% pero con el doble de nombres, que es
+  justamente lo que se quería para no depender del azar.
+- **Top 30% (43 nombres): marginal.** El 4,6% de las aleatorias iguala su CAGR. Eso es
+  exactamente el borde de lo que se considera significativo, y con todas las dudas
+  estructurales pendientes (supervivencia, sesgo del panel) no es margen suficiente.
+
+El motivo es doble y actúa en la misma dirección: al ensanchar se diluye la señal **y** mejora
+el resultado del azar. Por eso la ventaja se estrecha rápido a partir del 20%.
+
+**Recomendación revisada: top 15–20% del perfil, es decir 22–29 nombres.** El top 15% da
+17,96% de CAGR y 0,67 de Sharpe con 22 nombres, entre los dos casos verificados. Por debajo
+del 15% se gana rentabilidad pero se depende de muy pocos nombres; por encima del 20% la
+ventaja sobre elegir al azar deja de ser demostrable.
