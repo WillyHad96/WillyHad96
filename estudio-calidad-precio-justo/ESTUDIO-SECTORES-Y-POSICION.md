@@ -444,3 +444,74 @@ Lo que sí conviene entender es **qué se está comprando de verdad**: no una ca
 compañías excelentes, sino **small caps de comportamiento fundamental ordenado que acaban de
 tener un año muy bueno en bolsa**. El momentum domina el carácter de la lista. Llamarla
 "cartera de calidad" sería engañarse.
+
+---
+
+## 7. Horizonte y regla de venta: lo que nunca se había explicitado
+
+### La regla que se ha probado (y la que no)
+
+**Regla de compra probada:** una vez al año, tomar el perfil (margen bruto estable +
+crecimiento consistente, 300 M$–5.000 M$, sin Financials ni Real Estate), ordenar por subida
+de los últimos 12 meses y quedarse con el **top 20%** (~29 nombres). Equiponderar.
+
+**Regla de venta probada: vender a los 12 meses, siempre.** No hay otra. Todo el backtest
+consiste en comprar en la fecha del evento y vender exactamente un año después. No se ha
+probado ningún stop de pérdidas, ningún disparador por valoración, ninguno por deterioro
+fundamental. Conviene decirlo con claridad porque es fácil suponer que había una regla de
+salida elaborada detrás, y no la hay.
+
+### ¿Cuánto dura la ventaja? Dos años
+
+Retorno acumulado relativo al SPY del grupo seleccionado, y aportación de cada año por separado:
+
+| Grupo | 1 año | 2 años | 3 años | → Año 1 | Año 2 | **Año 3** |
+|---|---|---|---|---|---|---|
+| **Cíclicas** | +3,34% | **+7,26%** | +5,68% | +3,34 | **+3,79** | **−1,47** |
+| No cíclicas | +3,96% | +3,47% | +6,51% | +3,96 | −0,47 | +2,94 |
+| **Todas** | +3,48% | +6,65% | +5,93% | +3,48 | +3,06 | **−0,68** |
+
+**La ventaja no muere al año: se mantiene durante el segundo y se apaga en el tercero.**
+
+**Y en cíclicas el segundo año es el mejor** (+3,79% frente a +3,34% del primero). Confirma la
+intuición: cuando una cíclica encadena un año de comportamiento fundamental ordenado, la mejora
+suele durar más de doce meses. El tercer año es el que se da la vuelta (−1,47%).
+
+Las no cíclicas se comportan de forma errática (año 2 negativo, año 3 positivo) con n de
+211–252: eso parece ruido más que estructura.
+
+**Aviso sobre la tasa de acierto:** cae del 50,0% al año al 46,3% a los dos. Es decir, la
+mediana mejora en el segundo año pero **aciertas menos veces**: la ganancia del año 2 viene de
+una cola derecha más gorda, no de más aciertos. Eso hace el segundo año más irregular aunque
+sea rentable de media.
+
+### Consecuencia práctica
+
+**Horizonte: 2 años, no 1.** Y tiene un beneficio doble que no aparece en la tabla: mantener
+dos años **reduce la rotación a la mitad**, y con ella los costes — de ~0,60%/año a ~0,30%.
+En una estrategia cuya ventaja medida es de 3 puntos anuales, eso no es un detalle.
+
+**Regla de venta razonable con lo que sabemos:** vender a los 24 meses. No por señal, sino por
+tiempo — porque no hemos encontrado ninguna señal de salida que bata al reloj, sencillamente
+porque no se han probado.
+
+**IMPORTANTE — esto es un hallazgo nuevo y sin validar.** Sale de un solo contraste, sin
+prueba ciega ni permutación, y con el aviso de la tasa de acierto. Antes de adoptar el
+horizonte de dos años habría que: (a) rehacer el backtest de cartera con tenencia de 24 meses
+y costes reducidos, (b) partirlo en dos ventanas, (c) pasarle el test de permutación. Hasta
+entonces es una hipótesis bien fundada, no una regla verificada.
+
+### Lo que sigue sin existir: reglas de salida por señal
+
+No se ha probado nada de esto, y son las candidatas naturales:
+
+1. **Salir cuando el momentum se da la vuelta** (cae del top 20% al cuartil inferior).
+2. **Salir cuando el fundamental se rompe** — la desviación del margen bruto o del crecimiento
+   sube por encima de la mediana, es decir, la empresa deja de cumplir el perfil.
+3. **Salir por valoración** — cuando el P/GP supera cierto umbral. Ojo: el estudio ya mostró
+   que dentro de la calidad el precio no predice (sección 12), así que esta es la menos
+   prometedora.
+4. **Stop de pérdidas.** Fácil de probar y casi siempre destruye retorno en carteras
+   diversificadas; merece medirse antes de descartarlo por prejuicio.
+
+La 1 y la 2 son las que yo probaría, en ese orden.
