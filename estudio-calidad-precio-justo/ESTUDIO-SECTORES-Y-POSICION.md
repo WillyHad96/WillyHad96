@@ -151,3 +151,36 @@ suficiente para medir, pero **no es el mercado estadounidense entero**: el panel
 alrededor de un cribado de crecimiento, así que sobrerrepresenta compañías en crecimiento e
 infrarrepresenta las maduras y de valor. Para large y mega, además, se suma el problema ya
 conocido de supervivencia.
+
+### Aviso sobre el tramo micro: es el número menos fiable de la tabla, no el mejor
+
+El +7,84 pp de las micro caps es el resultado más llamativo y **el que menos hay que creerse**.
+Tres indicios, todos en la misma dirección:
+
+| Tamaño | Tickers | % "muere" en 3 años | Mediana vs SPY | % bate SPY | Ingresos medianos |
+|---|---|---|---|---|---|
+| micro < 300 M$ | **480** | **8,69%** | **+4,30%** | **55,1%** | 168 M$ |
+| small | 1.205 | 19,80% | −2,12% | 47,0% | 551 M$ |
+| mid | 1.273 | 23,97% | −3,96% | 43,9% | 2.011 M$ |
+| large | 710 | 24,98% | −5,07% | 41,3% | 7.913 M$ |
+| mega | 246 | 28,17% | −4,27% | 42,0% | 35.854 M$ |
+
+1. **Es el único tramo que bate al índice** (+4,30% de mediana, 55,1% de acierto). Las micro
+   caps como clase **no** baten al S&P 500. Un tramo entero por encima del índice es firma de
+   selección, no un hallazgo.
+2. **Solo 480 tickers para 6.389 eventos.** Un universo micro real tiene miles de compañías con
+   rotación altísima. Aquí son 480 empresas que se mantuvieron cotizando años por debajo de
+   300 M$ y que siguen en un panel construido desde el universo de tickers vivos hoy. Las que
+   murieron no están.
+3. **La "mortalidad" va al revés**: 8,69% en micro frente a 28,17% en mega. Es imposible como
+   mortalidad real — las grandes sobreviven más, no menos. Lo que mide en realidad es dónde se
+   acaba la cobertura del panel para cada ticker, y confirma que el segmento micro es un
+   conjunto curado de supervivientes.
+
+A eso se suma lo obvio: con precio mediano de 8,86 $ y capitalización por debajo de 300 M$, el
+supuesto de entrar y salir a 0,30% por lado no se sostiene. Aunque el efecto fuera real, no
+sería capturable.
+
+**Conclusión: el gradiente por tamaño (el momentum decae al crecer la compañía) se sostiene,
+pero la magnitud concreta del tramo micro no debe usarse como estimación de nada.** El tramo
+donde el efecto es a la vez creíble y operable es small–mid: +3,82 y +2,67 pp.
