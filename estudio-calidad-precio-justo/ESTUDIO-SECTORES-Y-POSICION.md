@@ -366,3 +366,81 @@ el resultado del azar. Por eso la ventaja se estrecha rápido a partir del 20%.
 17,96% de CAGR y 0,67 de Sharpe con 22 nombres, entre los dos casos verificados. Por debajo
 del 15% se gana rentabilidad pero se depende de muy pocos nombres; por encima del 20% la
 ventaja sobre elegir al azar deja de ser demostrable.
+
+---
+
+## 6. Qué empresas salen en realidad, y por qué no se puede filtrar más
+
+### La lista de hoy no es lo que su nombre sugiere
+
+Aplicando la receta completa a la sección transversal actual (43 nombres, top 20% del perfil
+por momentum), el reparto sectorial es **amplio, no concentrado en calidad**: Tecnología 11,
+Industriales 10, Consumo cíclico 7, Salud 6, Energía 3, Consumo defensivo 3, Materiales 2,
+Comunicación 1.
+
+**No se descartan cíclicas en absoluto.** Entran energía (TTI, OII, PUMP), materiales (RYAM,
+CPAC), industriales pesados (NWPX tubería, GRC bombas, CTOS grúas) y **NMM, que es Navios
+Maritime Partners — naviera pura**, con margen operativo del 35,2% y P/GP de 2,28: el retrato
+de una cíclica en pico de ciclo.
+
+Y entran compañías que ningún criterio de calidad admitiría:
+
+| | Margen bruto | Margen op. | Crecimiento | Dilución |
+|---|---|---|---|---|
+| RYAM | 6,1% | −1,9% | 10,6% | 1,0% |
+| PUMP | 9,3% | −1,6% | −6,2% | **18,1%** |
+| DDD | 35,8% | −11,3% | −0,3% | **15,6%** |
+| RSI | 35,5% | 11,7% | 46,3% | **22,0%** |
+| MYE | 36,4% | 17,4% | −14,5% | 0,8% |
+
+Seis de 43 tienen margen operativo negativo; seis diluyen más del 5%.
+
+**El motivo es que "estabilidad" es un filtro relativo**, no absoluto: exige estar por debajo
+de la mediana de volatilidad del año. Una empresa cuyos márgenes se deterioran de forma
+*ordenada* lo pasa sin problema.
+
+### El intento de filtrar más: todo empeora
+
+Probadas sobre el conjunto ya seleccionado (top 20% de momentum dentro del perfil):
+
+| Variante | n | Media | Mediana vs SPY | Bate SPY |
+|---|---|---|---|---|
+| A. Tal cual | 542 | 21,82% | **+4,31%** | 55,2% |
+| B. + dilución < 2% | 356 | 19,38% | +3,58% | 54,5% |
+| C. + margen operativo > 0 | 480 | 21,80% | +4,67% | 56,0% |
+| D. + ambas | 332 | 18,55% | **+2,46%** | 53,9% |
+| **E. Las excluidas por dilución** | 186 | **26,50%** | **+8,25%** | 56,5% |
+
+**Las que diluyen rinden MEJOR, no peor** (+8,25% frente a +3,58%). El filtro de rentabilidad
+no cambia nada (+4,67 vs +4,31, dentro del ruido). Y aplicar ambos **destruye casi la mitad
+del efecto** (+2,46 frente a +4,31).
+
+### Por qué esto no contradice el hallazgo central del estudio
+
+Parece una contradicción con el mecanismo de la sección 12 —la dilución destruye el retorno—
+pero no lo es: **son horizontes distintos**.
+
+- **A 5 años**, emitir acciones destruye valor: el resto pierde 12–18 pp por dilución frente a
+  1,6–3,6 pp del perfil. Eso sigue en pie.
+- **A 1 año, entre compañías que acaban de subir mucho**, diluir es otra cosa: normalmente
+  significa que la empresa aprovecha su cotización alta para captar capital tras una subida.
+  A corto plazo eso acompaña al impulso, no lo mata.
+
+La lección de fondo es que **se estaban mezclando dos estrategias con horizontes distintos**.
+Las intuiciones de calidad (no diluir, ser rentable) pertenecen al horizonte de 5 años.
+Superpuestas a una señal de momentum a 12 meses, no ayudan: estorban.
+
+*Cautela:* el grupo E tiene n=186 y es un subgrupo dentro de un subgrupo, con el consiguiente
+riesgo de comparaciones múltiples. La conclusión robusta no es "diluir es bueno", sino
+**"filtrar por dilución aquí no mejora nada y probablemente resta"**.
+
+### Respuesta a "¿podemos filtrar un poco más?"
+
+**No.** Los tres filtros con contenido económico que quedaban —dilución, rentabilidad, y ambos—
+empeoran o no aportan. Sumados a los ocho de `RESULTADOS.md` sección 13 y al sectorial, son
+once filtros probados sobre esta lista sin que ninguno mejore el resultado.
+
+Lo que sí conviene entender es **qué se está comprando de verdad**: no una cartera de
+compañías excelentes, sino **small caps de comportamiento fundamental ordenado que acaban de
+tener un año muy bueno en bolsa**. El momentum domina el carácter de la lista. Llamarla
+"cartera de calidad" sería engañarse.
