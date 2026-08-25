@@ -933,3 +933,58 @@ Sigue siendo necesario y está preparado: los balances de FMP funcionan con el p
 (`totalDebt`, `netDebt`, `goodwill` verificados sobre TEVA). Arregla un agujero real —hoy un
 roll-up financiado con deuda puntúa como calidad— pero **no dará un indicador adelantado**.
 Es una corrección del filtro de estado, no un avance en la dirección que hace falta.
+
+---
+
+## 21. Sesión interrumpida: Supabase no responde
+
+Los tres tests previstos —backtest trimestral, ampliación de muestra e incorporación de
+insiders y revisiones de analistas— **no se han podido ejecutar**. La base de datos dejó de
+responder a mitad de sesión: hasta un `select count(*)` simple agota el tiempo de conexión.
+
+```
+Failed to run sql query: Connection terminated due to connection timeout
+```
+
+Cinco intentos con consultas progresivamente más ligeras (CTEs materializadas, umbrales
+precalculados por `group by` en lugar de `percent_rank`, rangos de fechas recortados) y un
+`select count(*)` de control: todos con el mismo error. No es la complejidad de las
+consultas; es el servidor. **No hay resultados que reportar para los tests 1 y 2.**
+
+### Lo que sí quedó establecido: viabilidad de las fuentes adelantadas
+
+Verificado contra FMP con el plan Starter actual, y es la parte importante para la próxima
+sesión:
+
+| Fuente | Estado | Granularidad | Profundidad |
+|---|---|---|---|
+| `insiderTrades / insider-trade-statistics` | **funciona** | **trimestral** | **desde 1997** |
+| `analyst / historical-grades` | **funciona** | mensual | por confirmar |
+| `company / delisted-companies` | bloqueado (plan) | — | — |
+| `indexes / historical-*` | bloqueado (plan) | — | — |
+| `statements / balance-sheet-statement` | funciona | anual | ~10 años |
+
+`insider-trade-statistics` es mejor noticia de lo esperado: devuelve por trimestre
+`acquiredTransactions`, `disposedTransactions`, `acquiredDisposedRatio`, `totalAcquired`,
+`totalDisposed`, `totalPurchases` y `totalSales`, **con la misma granularidad trimestral que
+el panel y cubriendo todo su histórico**. Es decir, es unible a `hypergrowth_panel` por
+`ticker + trimestre` y **backtesteable de verdad**, no solo consultable para la foto actual.
+
+Restricción práctica: una llamada por símbolo, y la respuesta de un solo ticker con 90
+trimestres ocupa unos 6.000 tokens. Cubrir el universo entero no es realista de una sentada;
+el enfoque correcto es una muestra de 100–150 tickers, o limitar el estudio a los ~212
+nombres del perfil actual y sus años previos.
+
+### Estado de los tres tests pendientes
+
+| Test | Estado | Bloqueo |
+|---|---|---|
+| 1. Backtest con rebalanceo trimestral | **no ejecutado** | Supabase caído |
+| 2. Ampliar muestra (cuartil en vez de quintil) | **no ejecutado** | Supabase caído |
+| 3. Insiders y revisiones de analistas | **viabilidad confirmada, no ejecutado** | necesita el panel para unir y validar |
+
+Nota sobre el test 1: antes de la caída se detectó un problema de diseño que conviene tener
+presente al retomarlo. Los 251 eventos de la celda "PERFIL + 2 señales" repartidos entre unos
+76 trimestres dan **~3 nombres por trimestre**, que no es una cartera. El test 2 (ampliar el
+umbral de quintil a cuartil) no es por tanto un refinamiento opcional sino **un requisito
+previo** para que el test 1 tenga sentido. Están acoplados y hay que ejecutarlos juntos.
