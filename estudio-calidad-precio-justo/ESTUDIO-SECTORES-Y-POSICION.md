@@ -515,3 +515,89 @@ No se ha probado nada de esto, y son las candidatas naturales:
    diversificadas; merece medirse antes de descartarlo por prejuicio.
 
 La 1 y la 2 son las que yo probaría, en ese orden.
+
+---
+
+## 8. Las reglas de venta: se compra por precio y se vende por fundamental
+
+Probadas las cuatro candidatas. El diseño mide **qué decidir al cumplirse el primer año**:
+de las posiciones compradas en t, ¿cuáles conviene llevarse al año 2 y cuáles soltar? La
+variable medida es el retorno del **año 2 aislado**, relativo al SPY.
+
+| Regla | Estado al año 1 | n | Retorno año 2 | Acierto año 2 |
+|---|---|---|---|---|
+| **B. ¿Sigue en el top 20% de momentum?** | **sí** | 54 | **−3,89%** | 44,4% |
+| | no | 246 | −0,08% | 49,6% |
+| **C. ¿Sigue cumpliendo el perfil?** | **sí** | 220 | **+2,08%** | **52,3%** |
+| | **no** | 80 | **−4,20%** | **38,8%** |
+| **D. Stop: año 1 peor de −20% vs SPY** | **saltó el stop** | 58 | **+3,56%** | 55,2% |
+| | no saltó | 242 | −1,37% | 47,1% |
+| A. Por quintil de resultado del año 1 | Q1 −26,8% → Q5 +39,3% | 53–67 | −3,25 / +9,31 / −0,24 / −3,72 / +0,53 | sin patrón |
+
+### Tres de las cuatro van al revés de la intuición
+
+**B — Mantener las que siguen fuertes DESTRUYE valor.** Las que continúan en el top 20% de
+momentum rinden **−3,89%** el segundo año, peor que las que ya no están (−0,08%). Es coherente
+con la sección 2: los ganadores extremos tras dos años se agotan. Doblar la apuesta en lo que
+más ha subido dos años seguidos es exactamente lo que no hay que hacer.
+
+**D — El stop de pérdidas es contraproducente.** Las que cayeron más de un 20% frente al SPY
+en el año 1 rinden **+3,56%** en el año 2 con un 55,2% de acierto, mejor que el resto.
+Venderlas por stop sería vender justo lo que va a rebotar.
+
+**A — El resultado del año 1 no ordena nada.** Sin progresión: −3,25 / +9,31 / −0,24 / −3,72 /
++0,53. El único cubo que destaca (Q2, n=65) no tiene estructura alrededor. Ruido.
+
+### C — La que sí funciona, y valida fuera de muestra
+
+| Ventana | Mantener (sigue en perfil) | Vender (perfil roto) | Diferencia |
+|---|---|---|---|
+| En muestra 2007–2014 | +1,11% · acierto 52,4% | −6,24% · acierto 34,4% | **+7,35 pp** |
+| **Fuera de muestra 2015–2023** | +3,27% · acierto 52,2% | −3,76% · acierto 41,7% | **+7,03 pp** |
+| Total | +2,08% · 52,3% | −4,20% · 38,8% | +6,28 pp |
+
+**Se sostiene casi idéntica en las dos ventanas** (+7,35 y +7,03 pp), y la tasa de acierto
+separa igual de bien (52% frente a 35–42%). Es la regla de salida más sólida encontrada.
+
+### El principio que resume las cuatro
+
+**Se compra por precio y se vende por fundamental. Nunca al revés.**
+
+- La **entrada** funciona con momentum (una señal de precio) y no mejora con filtros
+  fundamentales — sección 6: dilución y rentabilidad empeoraban el resultado.
+- La **salida** funciona con el fundamental (¿sigue siendo una empresa estable?) y **empeora**
+  con señales de precio — tanto el momentum (B) como el stop (D) van en contra.
+
+Es justo lo contrario de lo que hace la mayoría, que compra por la historia del negocio y
+vende cuando el precio le asusta.
+
+### Impacto estimado, y qué falta
+
+Aplicar la regla C implica soltar ~27% de las posiciones al cumplir el año (80 de 300) y
+renovarlas con nuevas entradas del cribado. Estimación aproximada: las vendidas habrían hecho
+−4,20% y se sustituyen por entradas nuevas que históricamente hacen +3,48% en su primer año,
+lo que da del orden de **+2 puntos anuales** sobre mantener a ciegas. Es una estimación de
+servilleta, **no un backtest**: falta rehacer la simulación de cartera completa con la regla
+de salida incorporada, con sus costes y su rotación real.
+
+*Cautelas:* n=80 en el grupo de venta, y las comparaciones A–D son cuatro contrastes sobre la
+misma muestra. La C es la única que se ha validado partiendo en ventanas, y por eso es la
+única que recomendaría adoptar.
+
+### La receta completa, tal como queda
+
+```
+COMPRA (revisión anual)
+  universo: 300 M$ – 5.000 M$, sector asignado, sin Financials ni Real Estate
+  perfil:   desviación del margen bruto Y del crecimiento por debajo de la mediana del año
+  orden:    subida de los últimos 12 meses
+  selección: top 20% (~29 nombres), equiponderado
+
+MANTENIMIENTO (revisión anual de cada posición)
+  ¿sigue cumpliendo el perfil?  -> se mantiene
+  ¿ha dejado de cumplirlo?      -> se vende y se sustituye
+  el precio NO decide la venta: ni la subida, ni la caída, ni un stop
+
+HORIZONTE
+  la ventaja vive en los años 1 y 2 y se apaga en el 3
+```
