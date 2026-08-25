@@ -184,3 +184,85 @@ sería capturable.
 **Conclusión: el gradiente por tamaño (el momentum decae al crecer la compañía) se sostiene,
 pero la magnitud concreta del tramo micro no debe usarse como estimación de nada.** El tramo
 donde el efecto es a la vez creíble y operable es small–mid: +3,82 y +2,67 pp.
+
+---
+
+## 4. Aplicar el momentum al perfil: el primer filtro de concentración que sobrevive
+
+El perfil opera en 300 M$–5.000 M$, justo el tramo small/mid donde el momentum es creíble
+(+3,82 y +2,67 pp). La pregunta: ¿sirve para ordenar los ~212 nombres del perfil, que es
+exactamente lo que no se había conseguido?
+
+**Procedencia, que es lo que distingue esto del fracaso de Tech/Health:** el momentum no se
+eligió de un menú mirando resultados sobre el perfil. Salió de un contraste independiente
+sobre el universo completo, y es una de las anomalías mejor documentadas de la literatura.
+Tech/Health se eligió al revés — mirando cuál de ocho candidatos puntuaba mejor — y por eso
+se desmoronó al rehacer la selección con datos anteriores.
+
+### A nivel de evento (deciles de momentum a 12 meses dentro del perfil)
+
+| Decil | n | Mediana vs SPY | Acierto | En muestra ≤2015 | Fuera ≥2016 |
+|---|---|---|---|---|---|
+| 1–7 | 2.012 | −0,79% | 49,0% | +2,27 | **−3,71** |
+| 8 | 279 | +1,17% | 51,3% | +1,22 | +1,17 |
+| 9 | 276 | +1,31% | 52,5% | +1,93 | +0,61 |
+| **10** | 275 | **+7,49%** | **57,8%** | **+7,10** | **+8,71** |
+
+No es monótono: los deciles 1–7 están planos y **cambian de signo** entre periodos. Lo que
+distingue a los tres deciles altos es que **mantienen el signo en ambas ventanas**, y el
+decil 10 lo hace con una estabilidad notable (+7,10 → +8,71). Contra la banda de ruido para
+submuestras de ese tamaño dentro del perfil (**2,89 pp**), el decil 10 es **2,6×**.
+
+### A nivel de cartera (anual, neta de costes)
+
+| Cartera | n/año | CAGR | Vol. | Sharpe | Beta | Alfa | Peor año | % años > SPY |
+|---|---|---|---|---|---|---|---|---|
+| PERFIL completo | 151 | 13,59% | 23,5% | 0,49 | 1,18 | +3,74% | −36,9% | 66,7% |
+| **PERFIL + top 30% momentum** | 44 | 15,37% | 22,2% | **0,60** | 1,04 | +6,66% | −37,9% | 72,2% |
+| **PERFIL + top 10% momentum** | 15 | **22,12%** | 26,2% | **0,77** | 1,11 | **+13,38%** | −33,4% | 77,8% |
+| SPY | — | 8,98% | 18,5% | 0,38 | 1,00 | — | −41,0% | — |
+
+Costes: 0,25%/año el perfil (rotación medida del 41%), 0,60% el top 30% y **0,90% el top 10%**
+— este último equivale a 150% de rotación anual, deliberadamente conservador.
+
+### Prueba ciega
+
+| | PERFIL | top 30% | top 10% | SPY |
+|---|---|---|---|---|
+| 2007–2015 | 8,73% | **8,60%** | **12,65%** | 4,10% |
+| 2016–2024 | 18,67% | 22,56% | **32,38%** | 14,09% |
+
+**El top 10% bate al perfil en las dos ventanas; el top 30% solo en la reciente** (en la
+primera queda igualado, 8,60 frente a 8,73). Eso es coherente con lo que se ve a nivel de
+evento: la señal está concentrada en el decil 10, y diluirla con los deciles 8 y 9 —que solo
+aportan ~+1,2 pp— la debilita.
+
+### Veredicto, con los descuentos aplicados
+
+**Es el primer filtro de concentración del estudio que sobrevive a la prueba ciega.** Todos
+los anteriores (ocho candidatos, incluido Tech/Health con su alfa de +12%) fallaban al
+rehacer la selección o al cambiar de ventana. Este no.
+
+Pero el 22,12% de CAGR y el alfa de +13,38% **no deben tomarse como expectativa**:
+
+1. **La ventana reciente hace casi todo el trabajo**: +3,9 pp sobre el perfil en 2007–2015
+   frente a +13,7 pp en 2016–2024. La segunda mitad fue excepcionalmente favorable al
+   momentum en compañías de crecimiento.
+2. **15 nombres al año es poco.** El test 4 de `RESULTADOS.md` mostró que con carteras
+   pequeñas la dispersión de resultados se dispara. Parte de ese 0,77 de Sharpe es
+   concentración, no habilidad.
+3. **El efecto es de umbral, no de gradiente.** Depende de un decil concreto, lo que es
+   intrínsecamente más frágil que una señal que ordena toda la distribución.
+
+**Uso recomendado: sobreponderar el decil superior dentro del perfil, no construir una cartera
+de 15 nombres con él.** El resultado defendible es que ordenar el perfil por momentum a 12
+meses aporta, no que se pueda extraer un 22% anual.
+
+### Lo que NO se puede usar del trabajo de hoy
+
+- **El gradiente sectorial**: ya se sabía que no persiste. Concentrar en 4–5 sectores no
+  cuesta retorno, pero elegir *cuáles* no tiene apoyo empírico. Sirve como regla de
+  construcción (no forzar 9 sectores), no como criterio de selección.
+- **La regla de los 2 años** (recortar ganadores extremos): medida sobre el universo, no sobre
+  el perfil, y con un spread por debajo de la banda de ruido. Es disciplina de cartera
+  razonable, no un hallazgo.
