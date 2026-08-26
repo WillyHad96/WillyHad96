@@ -735,3 +735,63 @@ concentración infla los resultados de las simulaciones.
 del grupo, como aquí, y no por el valor del momentum, que dispararía los pesos de los
 extremos). La equiponderada sigue siendo la referencia conservadora y la que menos supuestos
 introduce.
+
+---
+
+## 11. Horizonte de tenencia: 12 meses gana, y no es solo por los costes
+
+El panel es trimestral, así que se pueden probar tenencias de 3, 6 y 12 meses. Cada
+estrategia se encadena sobre todo el periodo **promediando los distintos trimestres de
+arranque posibles** (2 para la semestral, 4 para la anual), de modo que el resultado no
+dependa de en qué trimestre se empiece. Coste: 0,60% por rebalanceo (rotación completa).
+
+| Estrategia | CAGR neto | Vol. | Coste/año | CAGR bruto |
+|---|---|---|---|---|
+| Equiponderada, 3 meses | 12,45% | 20,1% | 2,66% | 15,11% |
+| Equiponderada, 6 meses | 14,95% | 21,3% | 1,31% | 16,25% |
+| **Equiponderada, 12 meses** | **18,48%** | 22,1% | 0,61% | **19,09%** |
+| Por momentum, 3 meses | 13,03% | 21,3% | 2,67% | 15,70% |
+| Por momentum, 6 meses | 16,65% | 23,1% | 1,32% | 17,96% |
+| **Por momentum, 12 meses** | **20,53%** | 23,5% | 0,61% | **21,14%** |
+| SPY | 10,04% | 18,9% | — | — |
+
+**Acortar el horizonte pierde dinero, de forma monótona y con las dos ponderaciones.**
+
+### Lo importante: dos tercios de la pérdida NO son costes
+
+Descomponiendo la brecha entre 12 y 3 meses en la versión equiponderada (6,02 pp netos):
+
+- **3,98 pp son señal** — la diferencia ya existe **antes** de aplicar ningún coste.
+- **2,05 pp son costes** de rotar cuatro veces al año en lugar de una.
+
+Es decir: aunque operar fuera gratis, mantener doce meses seguiría siendo mejor que rotar cada
+trimestre. La intuición de "si opero por momentum, mejor horizonte corto" es razonable pero
+**los datos dicen lo contrario**: la ventaja de estas compañías **se acumula a lo largo del
+año**, no se agota en el primer trimestre. Quien rota cada tres meses vende justo cuando la
+posición está empezando a trabajar.
+
+Encaja con lo visto en la sección 2: el momentum a 3 y a 12 meses funcionaba de forma parecida
+como **señal de entrada** (+2,64 y +2,36 pp), pero eso no significa que convenga **salir**
+antes: son cosas distintas y aquí se separan con claridad.
+
+### Cautela sobre el Sharpe entre horizontes
+
+Los Sharpe de la tabla **no son comparables limpiamente entre frecuencias distintas**: anualizar
+la volatilidad trimestral multiplicando por √4 presupone independencia entre trimestres, y los
+retornos tienen autocorrelación. Se ve en el propio SPY, que sale con Sharpe 0,57 medido
+trimestralmente y 0,43 medido anualmente siendo la misma serie. **La comparación válida entre
+horizontes es la del CAGR**, que sí es limpia, y esa favorece a los 12 meses sin ambigüedad.
+
+### Conclusión sobre el diseño operativo
+
+```
+HORIZONTE: 12 meses. Confirmado.
+  · 3 meses cuesta 6,0 pp de CAGR frente a 12 meses
+  · 6 meses cuesta 3,5 pp
+  · y dos tercios de esa pérdida ocurrirían igualmente sin costes
+```
+
+Junto con la sección 9 (vender todo al año bate a cualquier regla de salida) y la sección 10
+(ponderar por momentum bate a equiponderar y a ponderar por capitalización), el diseño queda
+cerrado: **comprar una vez al año el top 20% del perfil por momentum, ponderar por el orden de
+momentum, y vender todo doce meses después.**
