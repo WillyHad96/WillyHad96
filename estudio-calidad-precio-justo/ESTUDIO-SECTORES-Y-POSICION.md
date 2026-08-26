@@ -601,3 +601,78 @@ MANTENIMIENTO (revisión anual de cada posición)
 HORIZONTE
   la ventaja vive en los años 1 y 2 y se apaga en el 3
 ```
+
+---
+
+## 9. El backtest completo refuta la regla de salida
+
+Simulación de cartera año a año con la regla incorporada:
+**cartera(T) = entradas nuevas(T) ∪ posiciones del año anterior que siguen cumpliendo el perfil**.
+Tamaño resultante: 23–83 nombres (media 46), rotación real del 69% anual frente al 100% de la
+versión sin retención. Costes aplicados proporcionalmente a la rotación de cada variante.
+
+| Cartera (neta de costes) | CAGR | Vol. | Sharpe | Beta | Alfa | Peor año | % años > SPY | 2008–16 | 2017–24 |
+|---|---|---|---|---|---|---|---|---|---|
+| Con regla de salida (2 años) | **17,45%** | 22,4% | 0,69 | 1,06 | +7,42% | −39,5% | 76,5% | 13,95% | 21,52% |
+| **Solo 1 año (renovación total)** | **17,87%** | 23,8% | 0,67 | 1,01 | **+8,62%** | −39,5% | 76,5% | 13,70% | 22,74% |
+| SPY | 10,00% | 18,8% | 0,42 | 1,00 | — | −41,2% | — | 7,55% | 12,83% |
+
+**La regla de salida no mejora la cartera: la empeora.** Pierde 0,42 pp de CAGR y 1,2 pp de
+alfa, y solo bate a la alternativa en **6 de 17 años**. Lo único que aporta es algo menos de
+volatilidad (22,4% frente a 23,8%), que se traduce en un Sharpe marginalmente mejor
+(0,69 vs 0,67) — diferencia demasiado pequeña para sostener nada.
+
+### Por qué el análisis por evento decía lo contrario
+
+El contraste de la sección 8 comparaba, **entre las posiciones que se llevan a un segundo año**,
+las que siguen cumpliendo el perfil (+2,08%) frente a las que lo rompen (−4,20%). Esa
+comparación es correcta pero **responde a la pregunta equivocada**.
+
+La alternativa real no es "mantener la buena o mantener la mala". Es **"mantener la buena o
+venderla y comprar un nombre nuevo del cribado"**. Y una entrada nueva rinde ~+3,5% relativo en
+su primer año, **más que el +2,08% de una posición retenida**.
+
+Es decir: retener a las que siguen cumpliendo el perfil es mejor que retener a las que lo
+rompen, pero **peor que renovar la cartera entera**. El coste de oportunidad de no rotar se
+come la ventaja.
+
+### Lo que esto enseña sobre el método
+
+Un análisis por evento puede ser correcto en su propio marco y aun así llevar a la decisión
+equivocada, porque **el marco no incluye la alternativa que realmente existe**. Solo la
+simulación de cartera obliga a poner todas las opciones sobre la mesa a la vez.
+
+Esto también debilita el hallazgo del horizonte de dos años de la sección 7: mantener dos años
+es peor que volver a cribar cada año, porque el nuevo cribado trae momentum fresco.
+
+### La receta, corregida
+
+```
+COMPRA (revisión anual)
+  universo: 300 M$ – 5.000 M$, sector asignado, sin Financials ni Real Estate
+  perfil:   desviación del margen bruto Y del crecimiento por debajo de la mediana del año
+  orden:    subida de los últimos 12 meses
+  selección: top 20% (~29 nombres), equiponderado
+
+VENTA
+  a los 12 meses, TODO. Se vuelve a cribar desde cero.
+  No hay salida por fundamental (probada y peor)
+  No hay salida por momentum (probada y peor)
+  No hay stop de pérdidas (probado y peor)
+```
+
+**Resultado de la receta completa: CAGR 17,87%, Sharpe 0,67, alfa +8,62%, beta 1,01,
+peor año −39,5%, bate al SPY el 76,5% de los años** — frente al 10,00% y 0,42 del índice.
+Con las cautelas de siempre: panel sin quiebras, sesgo de crecimiento y alfa demasiado alto
+para tomárselo al pie de la letra.
+
+### Reglas de venta probadas y descartadas: cuatro de cuatro
+
+| Regla | Veredicto |
+|---|---|
+| Mantener si sigue en el top de momentum | peor (−3,89% el año 2) |
+| Stop de pérdidas al −20% frente al SPY | peor (las castigadas rebotan, +3,56%) |
+| Salir según el resultado del año 1 | sin patrón |
+| Mantener si sigue cumpliendo el perfil | mejor por evento, **peor en cartera** |
+
+Ninguna bate a la regla más simple que existe: **vender todo al año y volver a cribar**.
