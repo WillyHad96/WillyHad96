@@ -676,3 +676,62 @@ para tomárselo al pie de la letra.
 | Mantener si sigue cumpliendo el perfil | mejor por evento, **peor en cartera** |
 
 Ninguna bate a la regla más simple que existe: **vender todo al año y volver a cribar**.
+
+---
+
+## 10. Ponderación: la de capitalización pierde, la de momentum gana
+
+Misma cartera (top 20% del perfil por momentum, renovación anual completa), cambiando solo
+cómo se reparte el dinero entre los nombres. Neta de costes.
+
+| Ponderación | CAGR | Vol. | Sharpe | Beta | Alfa | Peor año | % años > SPY | 2008–16 | 2017–24 |
+|---|---|---|---|---|---|---|---|---|---|
+| Equiponderada | 17,87% | 23,8% | 0,67 | 1,01 | +8,62% | −39,5% | 76,5% | 13,70% | 22,74% |
+| **Por capitalización** | **16,78%** | 25,4% | **0,58** | 1,02 | +7,81% | −40,6% | 76,5% | 13,26% | 20,86% |
+| Inversa a la capitalización | 18,90% | 24,7% | 0,68 | 1,05 | +9,43% | −38,8% | 70,6% | 14,56% | 23,98% |
+| **Por momentum** | **20,72%** | 24,4% | **0,77** | 1,00 | **+11,62%** | **−36,1%** | 76,5% | 15,07% | 27,42% |
+| SPY | 10,00% | 18,8% | 0,42 | 1,00 | — | −41,2% | — | 7,55% | 12,83% |
+
+Frente a la equiponderada: por capitalización **−0,77 pp/año** (gana 6/17 años), inversa a la
+capitalización +1,15 pp (11/17) y **por momentum +2,91 pp (15/17)**.
+
+### Por qué la ponderación por capitalización falla aquí
+
+La intuición de partida —"el S&P y el NASDAQ están ponderados por capitalización y funcionan
+muy bien"— es cierta para esos índices y **no traslada a esta cartera**, por una razón de
+rango:
+
+- El S&P 500 abarca desde ~5.000 M$ hasta varios billones: un rango de **600×**. Ponderar por
+  tamaño concentra de verdad en un puñado de compañías que compusieron durante décadas.
+- Esta cartera vive entre 300 M$ y 5.000 M$: un rango de **16×**. Ponderar por tamaño no
+  concentra en grandes compañías: solo inclina hacia el extremo alto de las pequeñas.
+
+Y ya sabíamos (sección 3) que **el momentum decae al crecer la compañía**. Inclinarse al extremo
+alto de la banda es inclinarse justo donde la señal es más débil. El resultado de la
+ponderación inversa lo confirma desde el otro lado: inclinar hacia las más pequeñas mejora.
+
+*Nota histórica que conviene tener presente:* el S&P equiponderado ha batido al ponderado por
+capitalización en varios periodos largos. Que el ponderado domine desde 2015 es un fenómeno de
+la mega-cap tecnológica, no una regularidad permanente.
+
+### La ponderación por momentum no es una fuente nueva de alfa
+
+Gana con notable consistencia (15/17 años, mejor Sharpe y **mejor peor año**, −36,1%), y aporta
+información: confirma que **el gradiente del momentum sigue vivo dentro del propio top 20%** —
+las más fuertes del grupo seleccionado siguen batiendo a las menos fuertes. Encaja con el
+análisis por deciles de la sección 4, donde el decil 10 destacaba muy por encima del 8 y el 9.
+
+Pero conviene ser preciso sobre qué es: **no es un hallazgo independiente, es la misma apuesta
+aplicada con más intensidad.** Se selecciona por momentum y después se pondera por momentum;
+es amplificación de una señal que ya estaba, no una segunda señal. Por tanto hereda todas sus
+cautelas, y su alfa de **+11,62% vuelve a entrar en el terreno de lo demasiado bonito** que la
+regla 5 del estudio manda tratar como error hasta prueba en contra.
+
+Además concentra: los pesos dejan de ser iguales, así que el número efectivo de posiciones cae
+por debajo de los 29 nominales. Parte de la mejora es concentración, y ya sabemos que la
+concentración infla los resultados de las simulaciones.
+
+**Uso recomendado:** ponderar por momentum de forma **suave** (por ejemplo por el orden dentro
+del grupo, como aquí, y no por el valor del momentum, que dispararía los pesos de los
+extremos). La equiponderada sigue siendo la referencia conservadora y la que menos supuestos
+introduce.
