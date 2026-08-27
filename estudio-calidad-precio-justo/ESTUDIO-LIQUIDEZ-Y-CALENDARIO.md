@@ -125,6 +125,78 @@ peaje es que multiplica por cuatro las operaciones, y a 10.000 € eso cuesta un
 comisiones — más de lo que aporta. **Los tramos son la configuración correcta a partir de
 ~50.000 €; por debajo, no compensan.**
 
+### Los cuatro tramos: corrección y matices
+
+**Corrección.** Escribí antes que los tramos "rinden algo menos". Es engañoso:
+
+| | CAGR |
+|---|---|
+| Media aritmética de los 4 meses por separado | 16,74% |
+| **CAGR real de la mezcla** | **17,28%** |
+
+La mezcla gana **+0,53 pp sobre la media de sus propias partes**, por reducción de varianza.
+Sólo pierde contra febrero, que es el mejor de cuatro por casualidad. Contra una expectativa
+honesta, la mezcla rinde *más*.
+
+**Qué significa operativamente:** 25% del capital en febrero, 25% en mayo, 25% en agosto, 25%
+en noviembre, cada sobre mantenido 12 meses. Cuatro carteras solapadas rotando.
+
+**El −21,7% está exagerado.** Viene de un solo tramo:
+
+| Entrada 2008 | Retorno a 12 meses |
+|---|---|
+| Febrero | −36,11% |
+| Mayo | −35,68% |
+| Agosto | −26,19% |
+| **Noviembre** | **+10,99%** |
+| Mezcla | −21,75% |
+
+El tramo de noviembre de 2008 compró en el suelo. Como los cubos de año natural empiezan en
+momentos distintos para cada tramo, no son comparables sin más. Encadenando la crisis entera
+(entradas de 2007 + 2008):
+
+| | Caída acumulada 2007+2008 |
+|---|---|
+| Febrero | −36,9% |
+| Mayo | −35,8% |
+| Agosto | −36,1% |
+| Noviembre | −32,0% |
+| **Mezcla** | **−32,2%** |
+
+**El ahorro real son ~4,7 pp, no 14.** Escalonar elimina la lotería de la fecha concreta
+(noviembre de 2007 entró en el pico: −38,8%), no protege de una crisis global.
+
+---
+
+## 2 bis. El NASDAQ
+
+**2007–2024, sólo precio:**
+
+| | CAGR | SPY | **QQQ** | vs SPY | **vs QQQ** | Gana al QQQ |
+|---|---|---|---|---|---|---|
+| Febrero | 19,17% | 8,63% | 14,22% | +10,54 | **+4,95** | 11/18 |
+| Mayo | 15,26% | 8,32% | 14,12% | +6,94 | +1,14 | 9/18 |
+| Agosto | 17,51% | 9,42% | 14,95% | +8,09 | +2,56 | 12/18 |
+| Noviembre | 15,03% | 9,22% | 13,35% | +5,81 | +1,68 | 12/18 |
+| **4 tramos** | 17,28% | 9,34% | 14,83% | +7,94 | **+2,44** | 12/18 |
+
+La ventaja se reduce de ~8–10 pp (contra el S&P) a **~2,5–5 pp** contra el NASDAQ-100.
+
+Aquí el ajuste por dividendos juega **a favor**: el QQQ reparte ~0,6% anual y nuestras pequeñas
+~1,0–1,3%, así que en retorno total la ventaja sube a **≈+2,9 pp** para la versión de tramos.
+
+Pero la significancia es floja:
+
+| | Diferencia media anual vs QQQ | Bootstrap P(ventaja ≤ 0) |
+|---|---|---|
+| Febrero | +5,34 pp | 0,029 |
+| 4 tramos | +3,07 pp | **0,053** |
+
+**Batir al S&P 500 está sólido; batir al NASDAQ está al filo.** Lo que sí es claro es que le
+ganas con un perfil muy distinto — 29 pequeñas industriales y de consumo en ocho sectores, no
+siete megacaps tecnológicas. Si el liderazgo del mercado rota fuera de la tecnología, esa
+diferencia pesa más que los 2,4 puntos.
+
 ---
 
 ## 3. Frog-in-the-pan (consistencia del momentum) — REFUTADO
@@ -256,7 +328,8 @@ corregir el sesgo de supervivencia, que es el que falta y el que más puede dole
 | ¿Cuál es el límite real a 10.000 €? | **La comisión mínima**, 0,80% anual. Mínimo sensible ≈8.500 € |
 | ¿Depende de febrero? | **No.** Funciona los 4 meses (5,8 a 10,5 pp) |
 | ¿Febrero está inflado? | **Sí.** Es el mejor de 4 y salió por accidente. Descontar a ≈7,8 pp |
-| ¿Mejoran los 4 tramos? | **En riesgo sí** (peor año −21,7% vs −36,1%). En coste no, por debajo de 50.000 € |
+| ¿Mejoran los 4 tramos? | **Sí, y más de lo que dije**: +0,53 pp sobre la media de sus partes. Pero el −21,7% exagera: la caída real 2007+2008 es −32,2% vs −36,9% |
+| ¿Batimos al NASDAQ? | **Sí, pero al filo**: +2,44 pp (p≈0,053). Contra el S&P está sólido; contra el QQQ no |
 | ¿Consistencia del momentum? | **No aporta nada.** El gradiente era momentum disfrazado |
 | ¿Banda por percentiles? | **Empeora 3 pp.** El techo en dólares era una virtud |
 | ¿Dividendos? | **Resuelto.** Comparación limpia; descontar 0,8 pp para retorno total |
