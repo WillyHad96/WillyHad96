@@ -1,3 +1,9 @@
+> **⚠ AVISO (revisión posterior): las cifras absolutas de este documento están infladas.**
+> El filtro `sector is not null` que se usa en todo el estudio elimina el 99,7% de las empresas
+> que desaparecieron, y es look-ahead. La ventaja real sobre el S&P 500 es de **≈+4,4 pp**, no de
+> +10,1 pp. Ver `ESTUDIO-DELISTINGS.md`. Las comparaciones **relativas** entre variantes siguen
+> siendo válidas porque todas comparten el mismo sesgo.
+
 # RESULTADOS — ¿Calidad a precio justo bate a barato y aburrido?
 
 Estudio ejecutado el 2026-08-17 sobre `hypergrowth_panel` (Tryding AI).
