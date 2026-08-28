@@ -139,3 +139,61 @@ y los dos avisos de arriba son exactamente el tipo de cosa que ya nos ha engaña
 - **Sí desplaza la mediana**, y mucho.
 - Los datos que faltaban existen y son baratos de traer: el cuello de botella era saber pedirlos,
   no el plan.
+
+---
+
+## 6. Control por sector (añadido): el efecto no es tecnología, pero tampoco es cíclicas
+
+Sectores obtenidos del panel para 33 de los 46 tickers; los 13 restantes (delistados) los completé
+yo, y va marcado en `sectores.csv`.
+
+### Composición de los extremos
+
+| Sector | T1 (poca deuda) | T3 (mucha deuda) |
+|---|---|---|
+| Technology | **9** | 5 |
+| Industrials | 5 | 6 |
+| Consumer Cyclical | 4 | 5 |
+| **Communication Services** | **0** | **5** |
+| Consumer Defensive | 2 | 1 |
+| Energy / Healthcare | 2 | 0 |
+
+T1 es un 41% tecnología frente al 23% de T3 — el sesgo que sospechaba existe.
+
+### Y aun así el efecto sobrevive… salvo donde más importaba
+
+| Submuestra | n | T1 vs NASDAQ | T3 vs NASDAQ | Diferencia | p |
+|---|---|---|---|---|---|
+| Muestra completa | 68 | +10,5 | −14,7 | **+25,3 pp** | **0,0091** |
+| **Sin Technology** | 50 | +14,6 | −13,2 | **+27,8 pp** | **0,0100** |
+| **Sólo cíclicas e industriales** | 38 | −4,3 | −10,0 | **+5,7 pp** | **0,27** |
+
+**No es un efecto tecnología**: quitando el sector entero, la diferencia *sube* a +27,8 pp y el p
+se mantiene en 0,010. Eso descarta el confundido que yo temía.
+
+**Pero se evapora dentro del núcleo cíclico-industrial**, que es el 53% de nuestra cartera y
+justamente donde yo predije que el apalancamiento sería decisivo. Ahí quedan +5,7 pp con p=0,27:
+nada.
+
+Mirando la tabla de composición se ve de dónde sale: **los cinco Communication Services del T3**
+(CCOI, CNK, DLX, MAX, LNW) son medios, cable y juego muy endeudados que lo hicieron mal, y no hay
+ninguno en T1. Buena parte de los +25 pp es ese puñado de nombres.
+
+### Lectura honesta
+
+Es la tercera vez que un hallazgo sobrevive al primer control y se cae en el segundo. El efecto
+de la deuda es real en la muestra amplia, pero **no funciona donde lo necesitábamos** y descansa
+en un grupo pequeño y sectorialmente concreto. Como filtro general sigue teniendo interés; como
+protección de la cartera cíclica que tenemos, no está demostrado.
+
+---
+
+## 7. La descarga completa está bloqueada en esta sesión
+
+El proxy de egreso de esta sesión no permite `financialmodelingprep.com`: devuelve **403
+Forbidden**. El README del proxy es explícito — un 403 significa que el destino no está en la
+política de la organización, y que no hay que reintentar ni rodearlo.
+
+La herramienta MCP de FMP sí funciona porque va por otra ruta, pero `bajar_deuda.py` no puede
+ejecutarse aquí. El script está escrito, probado de sintaxis y commiteado: **funciona si se
+ejecuta fuera de esta sesión**, con `FMP_KEY=... python3 bajar_deuda.py`.

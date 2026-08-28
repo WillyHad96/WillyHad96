@@ -1,0 +1,47 @@
+ticker,sector,fuente
+AAT,Real Estate,panel
+ALKS,Healthcare,panel
+BALL,Consumer Cyclical,panel
+BCC,Basic Materials,panel
+BDC,Technology,panel
+BWA,Consumer Cyclical,panel
+CBRE,Real Estate,panel
+CCOI,Communication Services,panel
+CCS,Consumer Cyclical,panel
+CNK,Communication Services,panel
+CTRE,Real Estate,panel
+CVLT,Technology,panel
+DCOM,Financial Services,panel
+DIOD,Technology,panel
+DLX,Communication Services,panel
+EPAC,Industrials,panel
+EXLS,Technology,panel
+FMC,Basic Materials,panel
+FORM,Technology,panel
+FWRD,Industrials,panel
+GLOB,Technology,panel
+GNTX,Consumer Cyclical,panel
+GOLF,Consumer Cyclical,panel
+GRBK,Consumer Cyclical,panel
+HEI,Industrials,panel
+HIMX,Technology,panel
+HUBG,Industrials,panel
+HURN,Industrials,panel
+INSP,Healthcare,panel
+KFRC,Industrials,panel
+KNX,Industrials,panel
+MAX,Communication Services,panel
+MELI,Consumer Cyclical,panel
+AIMC,Industrials,conocimiento
+ATGE,Consumer Defensive,conocimiento
+AXL,Consumer Cyclical,conocimiento
+CATM,Technology,conocimiento
+CIR,Industrials,conocimiento
+DRQ,Energy,conocimiento
+EVBG,Technology,conocimiento
+GMS,Industrials,conocimiento
+IRBT,Consumer Cyclical,conocimiento
+LDL,Industrials,conocimiento
+LNW,Consumer Cyclical,conocimiento
+LSI,Real Estate,conocimiento
+MED,Consumer Defensive,conocimiento
