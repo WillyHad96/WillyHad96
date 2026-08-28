@@ -197,3 +197,46 @@ política de la organización, y que no hay que reintentar ni rodearlo.
 La herramienta MCP de FMP sí funciona porque va por otra ruta, pero `bajar_deuda.py` no puede
 ejecutarse aquí. El script está escrito, probado de sintaxis y commiteado: **funciona si se
 ejecuta fuera de esta sesión**, con `FMP_KEY=... python3 bajar_deuda.py`.
+
+---
+
+## 8. Lectura intermedia sobre cíclicas e industriales (n=75)
+
+Descargados 37 eventos nuevos de empresas cíclicas e industriales (2 lotes de 10), que sumados a
+los 38 del piloto **doblan la muestra** en el subgrupo donde el efecto había fallado.
+
+| Tercil | n | Rango DN/ventas | Ret. medio | Ret. mediana | vs NASDAQ |
+|---|---|---|---|---|---|
+| T1 poca deuda | 25 | −0,36 a 0,08 | +4,4% | **−5,0%** | **−0,6** |
+| **T2 media** | 25 | 0,08 a 0,22 | **+14,1%** | **+17,4%** | **+4,2** |
+| T3 mucha deuda | 25 | 0,23 a 2,59 | +5,6% | +6,1% | −7,7 |
+
+**T1 − T3 = +7,1 pp, permutación p = 0,182** (con n=38 era +5,7 pp, p = 0,27).
+
+Dos señales, y la segunda pesa más que la primera:
+
+1. **Doblar la muestra apenas movió el p** (0,27 → 0,18). Si el efecto tuviera el tamaño que
+   sugería el piloto, debería haberse acercado mucho más a la significancia.
+2. **La relación no es monótona: gana el tercil del medio.** T2 hace +17,4% de mediana y +4,2 pp
+   sobre el NASDAQ; T1, el de poca deuda, hace **−5,0% de mediana**. Eso no es "menos deuda es
+   mejor", es una joroba — y una joroba con 25 observaciones por tercil es la forma habitual del
+   ruido, no la de un mecanismo.
+
+Encaja con lo ya sabido: el +25 pp del piloto venía de comparar tecnología con caja neta contra
+medios y cable muy endeudados. **Dentro del núcleo cíclico-industrial, que es el 53% de la
+cartera, el efecto no aparece.**
+
+### Estado de la descarga
+
+37 de 194 eventos nuevos. Quedan 8 lotes. Recomendación: **parar aquí** — la forma de los datos
+ya apunta a un nulo, y terminar la descarga son muchas vueltas para confirmarlo.
+
+El mismo esfuerzo rinde más en **ROIC y flujo de caja libre**, que están en `key-metrics`, no
+dependen del apalancamiento, y son las otras dos hipótesis de `AUDITORIA-DATOS.md`.
+
+### Ficheros
+
+- `ciclicas_eventos.txt` — los 194 eventos cíclicos/industriales con año, ventas, retorno y QQQ
+- `ciclicas_limites.txt` — los 129 tickers con los años de histórico que necesita cada uno
+- `deuda_cic.csv` — deuda y caja descargadas hasta ahora (37 eventos)
+- `interim.py` — el contraste de esta sección
