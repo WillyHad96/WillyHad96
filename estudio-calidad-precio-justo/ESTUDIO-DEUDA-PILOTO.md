@@ -238,5 +238,114 @@ dependen del apalancamiento, y son las otras dos hipótesis de `AUDITORIA-DATOS.
 
 - `ciclicas_eventos.txt` — los 194 eventos cíclicos/industriales con año, ventas, retorno y QQQ
 - `ciclicas_limites.txt` — los 129 tickers con los años de histórico que necesita cada uno
-- `deuda_cic.csv` — deuda y caja descargadas hasta ahora (37 eventos)
+- `deuda_cic.csv` — deuda y caja descargadas (190 eventos; ver seccion 9)
 - `interim.py` — el contraste de esta sección
+
+---
+
+# 9. RESULTADO FINAL: el efecto deuda no existe (n = 190 cíclicas, 263 en conjunto)
+
+La descarga está terminada. 190 de los 194 eventos cíclicos e industriales tienen ya
+deuda y caja reales de FMP (los 4 que faltan se excluyeron a propósito: DCH duplica a
+AXL, y SGI y UGP tienen datos contaminados — ver `NOTA-TICKERS-REUSADOS.md`).
+
+**El efecto que parecía haber en n=75 se ha evaporado, y además cambió de signo.**
+
+## 9.1 El contraste principal
+
+Retorno en exceso sobre el QQQ, en puntos porcentuales, por terciles de deuda neta / ventas:
+
+| Corte | n | T1 (poca deuda) | T3 (mucha deuda) | T1 − T3 | p (permutación) |
+|---|---|---|---|---|---|
+| Terciles globales | 190 | +3.60 | +6.47 | **−2.87** | 0.65 |
+| Terciles dentro de cada año | 190 | +2.44 | +6.56 | **−4.12** | 0.53 |
+| Terciles dentro de cada sector | 156 | — | — | **−3.06** | 0.63 |
+
+Las tres versiones dan el **signo contrario** al esperado: las empresas más endeudadas
+rindieron algo *mejor*. Y las tres son indistinguibles de cero.
+
+Correlación de rangos entre deuda neta/ventas y exceso de retorno: **Spearman = +0.009**
+sobre 190 eventos. Eso no es un efecto débil; es la ausencia de efecto.
+
+## 9.2 De dónde venía el +7.1 pp de la lectura intermedia
+
+Al juntar el piloto original (73 eventos con retorno válido) con las cíclicas (190):
+
+| Muestra | n | T1 | T3 | T1 − T3 | p |
+|---|---|---|---|---|---|
+| Conjunto | 263 | +6.58 | −1.35 | +7.93 | 0.149 |
+| **Solo piloto** | 73 | +15.09 | −15.25 | **+30.34** | **0.003** |
+| **Solo cíclicas** | 190 | +3.60 | +6.47 | **−2.87** | 0.652 |
+
+El efecto vive **entero** en la muestra donde lo encontré, y desaparece en la muestra
+que sirvió para comprobarlo. El piloto no era una muestra independiente: fue donde
+apareció la hipótesis. Las cíclicas sí son el test fuera de muestra, y lo suspende.
+
+Un p de 0.003 en 73 observaciones que se convierte en 0.65 en 190 no es "ruido que se
+promedia": es la firma de un hallazgo espurio.
+
+## 9.3 Los deciles tampoco dicen nada
+
+Exceso medio sobre QQQ por decil de deuda neta / ventas (conjunto, n=263):
+
+| D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 | D10 |
+|---|---|---|---|---|---|---|---|---|---|
+| +17.7 | −8.5 | +9.0 | −4.0 | +6.2 | +1.9 | +16.1 | −3.3 | +0.8 | −8.5 |
+
+Sin monotonía, sin umbral, sin forma. D2 (caja neta pequeña) pierde y D7 (deuda
+media-alta) gana +16.
+
+## 9.4 La cola izquierda tampoco la explica la deuda
+
+Los 15 peores eventos de las cíclicas tienen una deuda neta/ventas mediana de **0.121**,
+frente a **0.100** de la muestra completa. Prácticamente la misma. Entre los cinco peores
+hay dos con **caja neta** (MLI 2017 con −0.06, y KWR 2019 con −0.08 en el top 10).
+
+Esto **confirma** lo que ya había encontrado antes en el panel completo y que reporté como
+refutado: el apalancamiento no protege de la cola izquierda.
+
+## 9.5 Lo único que queda en pie, y es débil
+
+Con deuda neta por encima de **1x ventas** (19 eventos de 263):
+- exceso medio −2.3 vs +3.1 del resto → −5.4 pp, **p = 0.51**
+- tasa de desastres (exceso < −30 pp): **26% vs 15%**
+
+La diferencia de tasa de desastres es la única señal con forma sensata, pero con n=19
+no se puede afirmar nada. Sirve como regla de prudencia, no como factor.
+
+## 9.6 Qué significa esto para la estrategia
+
+**No añadir un filtro de deuda al modelo.** No hay nada que añadir. El filtro que sí
+funcionó (regla40 + capitalización, escenario C4 de `ESTUDIO-ALFA-POST-DELISTINGS.md`)
+sigue siendo el único que ha sobrevivido a un control fuera de muestra.
+
+Y una advertencia sobre el método, que ya es la cuarta vez en este estudio:
+
+> `sector`, `desaceleracion_guia`, el efecto deuda al 75, y ahora el efecto deuda al 263.
+> Un hallazgo sobrevive al primer control y muere en el segundo.
+
+En la sección 8 recomendé parar en n=75 porque el efecto no era monótono y p valía 0.182.
+La recomendación era correcta por el motivo equivocado: no era que hiciera falta más
+potencia estadística, es que no había nada que medir. Terminar la descarga fue lo
+adecuado — es lo que ha permitido cerrarlo en lugar de dejarlo como duda.
+
+## 9.7 Ficheros
+
+- `deuda_cic.csv` — 190 eventos con deuda y caja reales
+- `NOTA-TICKERS-REUSADOS.md` — SGI, TEN, UGP y DCH: por qué se excluyen o se marcan
+- `anal_deuda.py` — el contraste sobre las cíclicas
+- `anal_pool.py` — el contraste conjunto y la descomposición piloto/cíclicas
+
+## 9.8 Regla de fecha usada (y su límite)
+
+Para cada evento del año Y la entrada es el 1 de febrero de Y, y se usa **el último año
+fiscal que cierra en o antes del 15 de enero de Y**. El corte en el 15 de enero, en vez
+del 1 de febrero, evita que a un minorista con cierre el 29 de enero se le asigne un
+balance que todavía no era público, y a la vez no penaliza a los cierres de 52/53 semanas
+que caen en los primeros días de enero.
+
+Límite conocido: para los minoristas con cierre a finales de enero (DDS, ROST, BURL, PVH,
+URBN, ULTA, OXM, GIII, SHOO, MOV, LZB) el balance disponible tiene ~12 meses de antigüedad
+en el momento de la entrada. Es el tratamiento honesto — el 10-K se publica en marzo o
+abril — pero significa que para esas 11 empresas el apalancamiento está medido con más
+retraso que para el resto. Con un efecto de tamaño cero, esto no cambia la conclusión.
