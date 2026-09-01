@@ -1,5 +1,10 @@
 # Buscando beta descorrelacionada: no está en las cíclicas, está en las defensivas
 
+> **Revisado en `ESTUDIO-DESCORRELACION.md`.** Este documento ordena por *beta*, que mezcla
+> correlación y volatilidad. Con el criterio de descorrelación pura las conclusiones cambian:
+> "ConsDef+Utilities" (beta 0,45) tiene correlación 0,79 y queda descartada, y la ventaja de
+> "cíclicos + value" resulta ser beta replicable comprando más Nasdaq.
+
 Pregunta: dentro de lo ya probado, ¿qué compartimento aporta rentabilidad parecida al
 Nasdaq con la menor correlación posible? Se acepta más volatilidad; **beta y rentabilidad
 son los criterios**.
