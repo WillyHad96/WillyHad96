@@ -1,0 +1,123 @@
+ticker,sector,industria,ipo,activo,nombre
+ABCM,Healthcare,Biotechnology,2020-10-22,false,Abcam plc
+ABCO,Healthcare,Medical - Equipment & Services,2000-03-27,false,Advisory Board Co
+ABMD,Healthcare,Medical - Devices,1987-07-29,false,Abiomed
+ABST,Technology,Software - Application,2009-09-08,false,Absolute Software
+AMED,Healthcare,Medical - Care Facilities,1994-08-17,false,Amedisys
+AMWD,Consumer Cyclical,Furnishings Fixtures & Appliances,1986-07-18,false,American Woodmark
+ANSS,Technology,Software - Application,1996-06-20,false,ANSYS
+ASGN,Technology,Information Technology Services,1992-09-22,false,ASGN Inc
+ATCO,Financial Services,Asset Management,2005-08-09,false,Atlas Corp
+ATGE,Consumer Defensive,Education & Training Services,1991-06-21,false,Adtalem Global Education
+ATNI,Communication Services,Telecommunications Services,1991-11-14,true,ATN International
+ATSG,Industrials,Airlines Airports & Air Services,2003-07-23,false,Air Transport Services Group
+LNCE,Consumer Defensive,Packaged Foods,1972-06-01,false,Snyder's-Lance
+AXL,Consumer Cyclical,Auto - Parts,1999-01-29,false,American Axle
+AYX,Technology,Software - Application,2017-03-24,false,Alteryx
+BBBY,Consumer Cyclical,Specialty Retail,1992-06-01,false,Bed Bath & Beyond
+BECN,Industrials,Construction,2004-09-23,false,Beacon Roofing Supply
+BERY,Consumer Cyclical,Packaging & Containers,2012-10-04,false,Berry Global
+BGS,Consumer Defensive,Packaged Foods,2007-05-23,true,B&G Foods
+BLD,Industrials,Engineering & Construction,2015-06-17,false,TopBuild
+BRCC,Consumer Defensive,Packaged Foods,2022-02-10,true,BRC Inc
+BRKL,Financial Services,Banks - Regional,1998-03-25,false,Brookline Bancorp
+BRKS,Technology,Semiconductors,1995-02-02,false,Brooks Automation
+BZUN,Consumer Cyclical,Specialty Retail,2015-05-20,true,Baozun
+CATM,Industrials,Business Equipment & Supplies,2007-12-11,false,Cardtronics
+CCMP,Technology,Semiconductors,2000-04-04,false,CMC Materials
+CCRN,Industrials,Staffing & Employment Services,2001-10-25,false,Cross Country Healthcare
+CFXA,Industrials,Industrial - Machinery,2019-01-09,false,Colfax
+CIR,Industrials,Industrial - Machinery,1999-10-18,false,CIRCOR International
+CLFD,Technology,Communication Equipment,1986-08-06,true,Clearfield
+CMBM,Technology,Communication Equipment,2019-06-26,false,Cambium Networks
+CPRX,Healthcare,Biotechnology,2006-11-08,false,Catalyst Pharmaceuticals
+CRMT,Consumer Cyclical,Auto - Dealerships,1987-03-13,true,America's Car-Mart
+CSOD,Technology,Software - Application,2011-03-17,false,Cornerstone OnDemand
+CSU,Healthcare,Medical - Care Facilities,1997-10-31,false,Capital Senior Living
+CSWI,Industrials,Industrial - Machinery,2015-09-30,false,CSW Industrials
+CYH,Healthcare,Medical - Care Facilities,2000-06-09,true,Community Health Systems
+DBI,Consumer Cyclical,Apparel - Footwear & Accessories,2005-06-29,true,Designer Brands
+DENN,Consumer Cyclical,Restaurants,1998-01-08,false,Denny's
+DRQ,Energy,Oil & Gas Equipment & Services,1997-10-23,false,Dril-Quip
+EBIX,Technology,Software - Application,1987-07-01,false,Ebix
+ECOL,Industrials,Waste Management,2011-04-19,false,US Ecology
+EDMCQ,Consumer Defensive,Education & Training Services,2009-10-05,true,Education Management
+ENDPQ,Healthcare,Drug Manufacturers - Specialty & Generic,2000-07-18,false,Endo International
+ENV,Technology,Software - Application,2010-07-29,false,Envestnet
+EVBG,Technology,Software - Application,2016-09-16,false,Everbridge
+FLWS,Consumer Cyclical,Specialty Retail,1999-08-03,true,1-800-FLOWERS
+GCO,Consumer Cyclical,Apparel - Retail,1973-02-21,true,Genesco
+GES,Consumer Cyclical,Apparel - Retail,1996-08-08,false,Guess
+GMS,Industrials,Construction,2016-05-26,false,GMS Inc
+GTLS,Industrials,Industrial - Machinery,2006-07-26,false,Chart Industries
+HI,Industrials,Industrial - Machinery,2008-03-28,false,Hillenbrand
+HOME,Consumer Cyclical,Specialty Retail,2016-08-04,false,At Home Group
+HSKA,Healthcare,Medical - Devices,1997-07-01,false,Heska
+IAC,Communication Services,Internet Content & Information,1993-01-19,false,IAC Inc
+IIVI,Technology,Hardware Equipment & Parts,2020-07-02,false,II-VI Incorporated
+ILG,Consumer Cyclical,Leisure,2008-08-12,false,ILG Inc
+INGN,Healthcare,Medical - Devices,2014-02-14,true,Inogen
+IRBT,Consumer Cyclical,Furnishings Fixtures & Appliances,2005-11-09,false,iRobot
+IRBTQ,Consumer Cyclical,Furnishings Fixtures & Appliances,2005-11-09,false,iRobot (mismo CIK que IRBT)
+JBT,Industrials,Industrial - Machinery,2008-07-22,false,JBT Marel
+JCOM,Technology,Software - Infrastructure,1982-09-16,false,Ziff Davis (ex J2 Global)
+KRA,Basic Materials,Chemicals - Specialty,2009-12-17,false,Kraton
+LAB,Healthcare,Medical - Specialties,2011-02-10,true,Standard BioTools (ex Fluidigm)
+LBTYA,Communication Services,Telecommunications Services,2004-06-03,true,Liberty Global
+LNW,Consumer Cyclical,Gambling Resorts & Casinos,1984-08-23,false,Light & Wonder
+LNWO,Consumer Cyclical,Gambling Resorts & Casinos,1984-08-23,true,Light & Wonder (mismo CIK que LNW)
+LOVE,Consumer Cyclical,Furnishings Fixtures & Appliances,2018-06-27,true,Lovesac
+LSI,Real Estate,REIT - Industrial,1995-06-21,false,Life Storage
+LTRPA,Communication Services,Internet Content & Information,2014-08-27,false,Liberty TripAdvisor
+MANT,Technology,Software - Application,2002-02-07,false,ManTech International
+MASI,Healthcare,Medical - Devices,2007-08-08,false,Masimo
+LDL,NO_RESUELTO,NO_RESUELTO,,false,Lydall Inc (profile-symbol sin datos)
+MED,Consumer Cyclical,Personal Products & Services,1993-12-30,true,Medifast
+MGI,Financial Services,Financial - Credit Services,2004-06-30,false,MoneyGram International
+MGPI,Consumer Defensive,Beverages - Wineries & Distilleries,1988-10-21,true,MGP Ingredients
+MIME,Technology,Software - Infrastructure,2015-11-19,false,Mimecast
+NUVA,Healthcare,Medical - Devices,2004-05-13,false,NuVasive
+OA,Industrials,Aerospace & Defense,1990-10-03,false,Orbital ATK
+OFIX,Healthcare,Medical - Devices,1992-04-24,true,Orthofix Medical
+PERI,Communication Services,Internet Content & Information,2006-01-31,true,Perion Network
+PFPT,Technology,Software - Infrastructure,2012-01-03,false,Proofpoint
+PGTI,Industrials,Construction,2006-06-28,false,PGT Innovations
+PLAY,Consumer Cyclical,Leisure,2014-10-10,true,Dave & Buster's
+PMC,Healthcare,Medical - Equipment & Services,2007-08-01,false,PharMerica
+PRFT,Technology,Information Technology Services,1999-07-29,false,Perficient
+PRPL,Consumer Cyclical,Furnishings Fixtures & Appliances,2015-10-29,true,Purple Innovation
+QTS,Real Estate,REIT - Industrial,2013-10-09,false,QTS Realty Trust
+RAD,Healthcare,Medical - Pharmaceuticals,1980-03-17,false,Rite Aid
+RCII,Industrials,Rental & Leasing Services,1983-11-21,false,Rent-A-Center
+REV,Consumer Defensive,Household & Personal Products,2008-09-16,false,Revlon
+REVRQ,Consumer Defensive,Household & Personal Products,1996-02-29,false,Revlon (mismo CIK que REV)
+ROIC,Real Estate,REIT - Retail,2009-11-03,false,Retail Opportunity Investments
+ROLL,Industrials,Manufacturing - Tools & Accessories,2005-08-10,false,RBC Bearings
+RRD,Industrials,Specialty Business Services,1992-05-01,false,R.R. Donnelley
+RUSHB,Consumer Cyclical,Auto - Dealerships,1996-06-07,true,Rush Enterprises
+SCHN,Basic Materials,Steel,1993-11-16,false,Schnitzer Steel
+SCS,Industrials,Business Equipment & Supplies,1998-02-18,false,Steelcase
+SFIX,Consumer Cyclical,Apparel - Retail,2017-11-17,true,Stitch Fix
+SGH,Technology,Semiconductors,2017-05-24,false,SMART Global Holdings
+SGMS,Consumer Cyclical,Gambling Resorts & Casinos,1984-08-23,false,Scientific Games (mismo CIK que LNW/LNWO)
+SILK,Healthcare,Medical - Devices,2019-04-04,false,Silk Road Medical
+SKX,Consumer Cyclical,Apparel - Footwear & Accessories,1999-06-09,false,Skechers
+SPNC,Healthcare,Medical - Equipment & Services,1992-01-21,false,Spectranetics
+SPTN,Consumer Defensive,Food Distribution,2000-08-02,false,SpartanNash
+SSTK,Communication Services,Internet Content & Information,2012-10-11,true,Shutterstock
+SYKE,Technology,Information Technology Services,1996-04-30,false,Sykes Enterprises
+SYNH,Healthcare,Medical - Diagnostics & Research,2014-11-07,false,Syneos Health
+TBI,Industrials,Staffing & Employment Services,1994-04-04,true,TrueBlue
+THR,Industrials,Electrical Equipment & Parts,2011-05-05,false,Thermon Group
+TLND,Technology,Software - Infrastructure,2016-07-29,false,Talend
+TMHC,Consumer Cyclical,Residential Construction,2013-04-10,false,Taylor Morrison Home
+TPX,Consumer Cyclical,Furnishings Fixtures & Appliances,2003-12-18,false,Tempur Sealy
+TRHC,Healthcare,Medical - Healthcare Information Services,2016-09-29,false,Tabula Rasa HealthCare
+TTGT,Communication Services,Internet Content & Information,2007-05-17,true,TechTarget
+TWI,Industrials,Agricultural - Machinery,1993-05-20,true,Titan International
+UEIC,Technology,Consumer Electronics,1993-02-12,true,Universal Electronics
+USNA,Consumer Defensive,Household & Personal Products,1994-04-04,true,USANA Health Sciences
+VRTV,Industrials,Conglomerates,2014-06-18,false,Veritiv
+WNS,Technology,Information Technology Services,2006-07-26,false,WNS Holdings
+ZEN,Technology,Software - Application,2014-05-15,false,Zendesk
+ZNGA,Technology,Electronic Gaming & Multimedia,2011-12-15,false,Zynga
