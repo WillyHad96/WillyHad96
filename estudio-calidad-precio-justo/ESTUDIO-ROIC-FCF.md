@@ -102,6 +102,10 @@ sobrevivido a un control fuera de muestra.** No se añade filtro de ROIC ni de c
   Es correcto según la regla de fecha, pero desigual respecto al resto.
 - `sector` viene del perfil actual de FMP, con el problema de tickers reutilizados
   documentado en `NOTA-TICKERS-REUSADOS.md`.
-- Los alfas de referencia siguen calculados con el filtro `sector`, que los infla ~5.7 pp.
-  Eso afecta al nivel de C4, no a estos contrastes, que son diferencias entre grupos de
+- El 15,42% de C4 **ya está calculado sin el filtro `sector`**, o sea que no arrastra ese
+  sesgo. Lo que sigue pendiente de rehacer sin `sector` son los cinco documentos
+  anteriores a `ESTUDIO-ALFA-POST-DELISTINGS.md`, no la cifra de C4.
+- Lo que sí sigue afectando al nivel de C4: supervivencia del universo, umbrales del año
+  en curso, y sobre todo el precio de salida de las ~15 que mueren dentro del año. Nada
+  de eso afecta a los contrastes de este documento, que son diferencias entre grupos de
   la misma muestra.
