@@ -97,3 +97,11 @@ operaciones simultáneas para ser estadística en vez de lotería.
 ## Ficheros
 
 - `correlacion.py` — correlaciones, betas, mezclas y tabla de concentración.
+
+## 5. Corrección posterior: C4 no es "las cíclicas"
+
+La medición de arriba es sobre **C4 completo**. La etiqueta "cíclicas" usada en la
+conversación corresponde a un **subconjunto** de C4 (194 eventos en cuatro sectores) que se
+recortó para los estudios de deuda y ROIC/FCF. Partiendo C4 por sector, las dos mitades
+correlacionan solo +0,68 entre sí, y la mitad cíclica se desacopla del Nasdaq en 2021–2022.
+Detalle y tablas en `NOTA-C4-NO-ES-CICLICAS.md`.
