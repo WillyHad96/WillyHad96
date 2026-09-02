@@ -154,6 +154,12 @@ aleatorias del mismo tamaño; B8 añade que hay que comparar contra ventanas alt
 mismo largo.** Sin eso, cualquier número medido sobre 17 años —incluido el −0,14 de C7, que
 el 29% de las ventanas supera— está sin respaldo, aunque no esté refutado.
 
+**B9. La diferencia de medias miente en distribuciones con cola; el AUC no.** El momento medio
+del decil superior cíclico es **30,59%** frente al **17,29%** del resto — parece una señal
+enorme. Su **AUC es 0,482**: ninguna capacidad de distinguir. La diferencia de medias la
+producen los mismos valores extremos que se intentan predecir. Con asimetría 3,46, **toda
+comparación de medias entre grupos hay que acompañarla del AUC**, y manda el AUC.
+
 ---
 
 ## C. Sobre la estrategia
@@ -237,6 +243,29 @@ usable.** Predicción declarada por adelantado: si fuera sesgo, debería encoger
 justo donde el sesgo sería máximo. Aun así falla la confirmación (p = 0,126, CAGR 14,78%
 frente al 19,68% del Nasdaq) y lo dominan dos años: 2020 (+42,6 pp) y 2022 (+18,9 pp).
 **Pendiente y barato: probarlo sobre el universo completo, no solo cíclicas.**
+
+**C15. Todo el retorno del pool está en su cola, y la cola cíclica es más gorda y menos
+correlacionada.** Distribución de 3.924 eventos cíclicos: p50 = 7,4%, **p90 = 69,9%,
+p95 = 99,5%, p99 = 205,9%**, asimetría 3,46. La cola cíclica supera a la no cíclica en todos
+los percentiles altos (+9,1 pp en p95) y **correlaciona menos con el Nasdaq cuanto más
+arriba: 0,855 en la mediana, 0,825 en p95, 0,715 en p99**, y menos que la cola no cíclica
+(0,814 en p99). El p90 cíclico bate al Nasdaq **17 años de 17** (+47,6 pp de media) y en 2022
+lo batió por 69,8 pp con el índice en −16,1%. **Quitar el decil superior deja el pool en
+1,49% de CAGR en vez de 11,83%: el 87% del retorno está en el 10% de los nombres.**
+
+**C16. Ninguna variable del panel ve la cola.** AUC del perfil **previo** para predecir quién
+acaba en el decil superior (0,5 = nada): **momento 0,482** (peor que una moneda), regla 40
+**0,500** exacto, sd crecimiento 0,527, capitalización 0,439, **sd margen 0,569** — el único
+con algo, y es justo el que usamos para **excluir**. El corte por deciles de momento lo
+confirma: D1 10,7%, D6 8,2%, D10 12,4%, plano y sin orden. **El momento no ordena retornos en
+el pool cíclico.** Ver `ESTUDIO-COLAS.md`.
+
+**C17. Concentrar no sube la rentabilidad esperada: compra lotería.** Si la cola vale el 87%
+del retorno y no es predecible, el tamaño decide. Carteras aleatorias del pool cíclico:
+con **5 nombres** la mediana es 10,05% y bate al Nasdaq el **19%** de las veces; con **15**,
+11,19% y **16%**; con **200**, 11,83% y **0%**. Nasdaq: 14,05%. **Concentrar sube la
+dispersión, no la esperanza**, y el panel no registra las muertes (A1), así que la cola
+izquierda real es peor que la medida: la lotería es peor de lo que sale.
 
 ---
 
