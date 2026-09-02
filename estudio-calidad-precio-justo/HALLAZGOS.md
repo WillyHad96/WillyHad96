@@ -37,6 +37,15 @@ rellenaron un campo de metadatos.** Es la firma del sesgo de supervivencia.
 Light & Wonder entra tres veces, 15% de la cartera de ese año), IRBT/IRBTQ, REV/REVRQ,
 UPBD/RCII, CSWI/CSW, BRKS/AZTA, CSU/SNDA, AXL/DCH. Deduplicar vale **+0,71 pp** de CAGR.
 
+**A6. Los precios del panel están planos antes de 2007.** El 91,7% de los tickers tienen
+`mom12` **exactamente 0** en 2004 (88,7% en 2005, 83,6% en 2006): el precio de hace cuatro
+trimestres es idéntico al actual. Antes de 2007 el panel no tiene precios, tiene un
+forward-fill. **Es un defecto distinto y anterior al de A1**, que hablaba solo de muertes.
+El arranque en 2007 de `c4_base.sql` no era conservadurismo, era el primer año utilizable.
+Queda un **~8% residual entre 2007 y 2020** que sí afecta a producción: `mom12` es la
+variable de selección, así que ese 8% del universo está **excluido en silencio del top 20%**
+por un defecto de datos. Sin medir si rinde distinto. Ver `NOTA-PRECIOS-PLANOS-PRE-2007.md`.
+
 ---
 
 ## B. Sobre el método (reglas que hemos pagado por aprender)
@@ -76,6 +85,21 @@ sobre la medida interna.**
 **B5. A frecuencia anual, cualquier cesta de acciones USA correlaciona 0,8–0,95 con
 cualquier índice USA.** El S&P y el Nasdaq dan 0,94 entre sí. La correlación anual mide
 "¿es bolsa de EE.UU.?", no "¿es distinto?".
+
+**B6. La correlación es medible con n=17; la rentabilidad no.** Un oráculo que esquivara
+**solo 2008** con información perfecta subiría el CAGR de 14,16% a 18,07% (**+3,91 pp**) y
+bajaría la correlación solo de 0,918 a 0,861 (**−0,058**). Acertar **una** observación mueve
+la rentabilidad 3,9 pp y la correlación 0,06. La rentabilidad de 17 años es un juego de una o
+dos observaciones; la correlación es un estadístico de las diecisiete. **Cualquier resultado
+de rentabilidad de esta serie está a un año de distancia de cambiar de signo** — incluidos
+los que salieron a favor.
+
+**B7. En el eje temporal, el null no es "siempre invertido": es permutar la exposición.**
+El 70% de los overlays **aleatorios** que salen del mercado 5 de 17 años bajan la correlación
+por debajo de 0,80, y el 8,3% cumplen a la vez correlación < 0,80 y CAGR > Nasdaq. Probar 15
+variantes y quedarse con la mejor da éxito aparente con probabilidad **~73% sin señal
+alguna**. Permutar el vector de exposición fija *cuántas* veces se sale y aísla la única
+pregunta que importa: si acierta *cuándo*.
 
 ---
 
@@ -121,6 +145,16 @@ control; su descorrelación sí.
 documentado. Nasdaq 13,82%. Palancas medidas: precio de salida **−0,05 pp**, umbrales del
 año anterior **+0,07 pp**, sector **+0,31 pp**, duplicados **+0,71 pp**.
 
+**C10. El eje temporal descorrelaciona de verdad, pero no llega en rentabilidad.** Regla
+pre-registrada sin parámetros libres (dentro si el Nasdaq subió los 12 meses previos):
+correlación **0,918 → 0,549**, descorrelación real **−0,221** (p = 0,013 contra el null de
+permutación), peor año **−42,5% → −7,3%**. **Es el mejor resultado de descorrelación de toda
+la serie** — frente al −0,14 de C7, y con contraste que lo respalda, que C7 no tenía. Pero el
+CAGR cae a 12,01% (Nasdaq 13,89%) y **el signo del efecto sobre la rentabilidad cambia al
+quitar un solo año**: −6,48 pp sin 2008, +0,54 pp sin 2023. El alfa interno pareado es
+−3,71 pp con t = −0,79: no distinguible de cero. **La descorrelación queda establecida; la
+rentabilidad queda indeterminada.** Ver `ESTUDIO-EJE-TEMPORAL.md`.
+
 ---
 
 ## D. La conclusión que ordena todo lo demás
@@ -130,16 +164,18 @@ que hay dentro correlaciona 0,8–0,9 con todo lo demás.** Buscar descorrelaci�
 subconjuntos de ese universo es buscar un color distinto dentro de un bote de pintura azul:
 salen tonos, no colores.
 
-Quedan dos caminos, y son los dos que no hemos explorado:
+De los dos caminos que quedaban, **el primero ya está explorado** (C10) y el resultado parte
+la pregunta en dos mitades con respuestas distintas:
 
-1. **El eje temporal en vez del transversal.** Todo lo probado son reglas de *sección
-   cruzada* (qué comprar). Una regla de *serie temporal* (cuánto estar expuesto, según el
-   régimen) sí puede descorrelacionar de verdad: es como funciona el seguimiento de
-   tendencia. Es lo único prometedor que queda **dentro** de estos datos.
-2. **Datos de fuera.** Universo point-in-time (Sharadar, Norgate, CRSP vía WRDS) y
-   exposiciones estructuralmente distintas: tendencia, value no-USA, arbitraje de fusiones.
-
----
+1. **El eje temporal SÍ descorrelaciona** — 0,918 → 0,549, robusto, significativo. Es lo
+   único de toda la serie que lo consigue. **Pero no se puede saber si mantiene la
+   rentabilidad**, y no por falta de ideas: por aritmética (B6). Con 17 observaciones anuales
+   la pregunta no se cierra.
+2. **Datos de fuera**, que ahora es el cuello de botella real. Por orden:
+   - **Precios mensuales del índice.** Barato, no exige tocar el panel, y lleva la señal de
+     17 a ~200 observaciones. Es lo que más desbloquea, con diferencia.
+   - Historia pre-2007 con precios que se muevan (A6), que añadiría 2000–2002.
+   - Universo point-in-time (Sharadar, Norgate, CRSP), que resuelve A1–A4 de raíz.
 
 ## E. Aviso de seguridad pendiente
 
