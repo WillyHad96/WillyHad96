@@ -101,6 +101,16 @@ variantes y quedarse con la mejor da éxito aparente con probabilidad **~73% sin
 alguna**. Permutar el vector de exposición fija *cuántas* veces se sale y aísla la única
 pregunta que importa: si acierta *cuándo*.
 
+**B8. Una ventana de 17 años fabrica descorrelación por sí sola, igual que un tamaño de
+cartera pequeño.** Misma regla, 38 ventanas solapadas de 17 años: la descorrelación real va
+de **−0,403 a +0,096**, con mediana −0,065, y solo el 26% de las ventanas alcanza p < 0,05 —
+cuando sobre los 54 años la regla **no descorrelaciona** (−0,081, p = 0,154). Y el ΔCAGR va
+de **−5,80 a +4,50 pp** entre ventanas, un rango de 10 pp que confirma empíricamente el
+±11,5 pp que la aritmética predecía (B6). **B2 decía que hay que comparar contra carteras
+aleatorias del mismo tamaño; B8 añade que hay que comparar contra ventanas alternativas del
+mismo largo.** Sin eso, cualquier número medido sobre 17 años —incluido el −0,14 de C7, que
+el 29% de las ventanas supera— está sin respaldo, aunque no esté refutado.
+
 ---
 
 ## C. Sobre la estrategia
@@ -145,15 +155,21 @@ control; su descorrelación sí.
 documentado. Nasdaq 13,82%. Palancas medidas: precio de salida **−0,05 pp**, umbrales del
 año anterior **+0,07 pp**, sector **+0,31 pp**, duplicados **+0,71 pp**.
 
-**C10. El eje temporal descorrelaciona de verdad, pero no llega en rentabilidad.** Regla
-pre-registrada sin parámetros libres (dentro si el Nasdaq subió los 12 meses previos):
-correlación **0,918 → 0,549**, descorrelación real **−0,221** (p = 0,013 contra el null de
-permutación), peor año **−42,5% → −7,3%**. **Es el mejor resultado de descorrelación de toda
-la serie** — frente al −0,14 de C7, y con contraste que lo respalda, que C7 no tenía. Pero el
-CAGR cae a 12,01% (Nasdaq 13,89%) y **el signo del efecto sobre la rentabilidad cambia al
-quitar un solo año**: −6,48 pp sin 2008, +0,54 pp sin 2023. El alfa interno pareado es
-−3,71 pp con t = −0,79: no distinguible de cero. **La descorrelación queda establecida; la
-rentabilidad queda indeterminada.** Ver `ESTUDIO-EJE-TEMPORAL.md`.
+**C10. El eje temporal descorrelaciona en la ventana, no en la regla.** Regla pre-registrada
+sin parámetros libres (dentro si el Nasdaq subió los 12 meses previos). Sobre 2007–2023
+parecía el mejor resultado de la serie: correlación 0,918 → 0,549, descorrelación real
+−0,221 (p = 0,013). **Sobre 54 decisiones (1972–2025) se cae a −0,081 con p = 0,154.** La
+señal larga está validada: reproduce 17/17 las decisiones del panel en 2007–2023.
+En ΔCAGR: −1,31 pp anuales con t = −1,10 (−0,60 pp con efectivo al 5%, más realista para
+1972–1990). **La descorrelación queda revocada; el coste en rentabilidad queda confirmado
+como real y pequeño.** Ver `ESTUDIO-EJE-TEMPORAL-LARGO.md`.
+
+**C11. La regla de tendencia solo se paga en ventanas con un bajista sostenido.** Fuera en
+1974, 1975, 1982, 1984, 1988, 2001, 2002, 2003, 2008, 2009, 2016 y 2023. Las ventanas de 17
+años que la favorecen son exactamente las que contienen 2000–2002 y 2008; en 1983–2002 la
+descorrelación real es **positiva** (+0,10), es decir, empeoraba la diversificación. Paga
+prima casi todos los años y cobra dos veces por siglo. **Con una sola cartera y horizonte de
+años, no hay forma de saber si te toca la ventana que cobra.**
 
 ---
 
@@ -164,18 +180,19 @@ que hay dentro correlaciona 0,8–0,9 con todo lo demás.** Buscar descorrelaci�
 subconjuntos de ese universo es buscar un color distinto dentro de un bote de pintura azul:
 salen tonos, no colores.
 
-De los dos caminos que quedaban, **el primero ya está explorado** (C10) y el resultado parte
-la pregunta en dos mitades con respuestas distintas:
+**Los dos caminos que quedaban están ahora explorados, y ninguno lleva a donde queríamos.**
 
-1. **El eje temporal SÍ descorrelaciona** — 0,918 → 0,549, robusto, significativo. Es lo
-   único de toda la serie que lo consigue. **Pero no se puede saber si mantiene la
-   rentabilidad**, y no por falta de ideas: por aritmética (B6). Con 17 observaciones anuales
-   la pregunta no se cierra.
-2. **Datos de fuera**, que ahora es el cuello de botella real. Por orden:
-   - **Precios mensuales del índice.** Barato, no exige tocar el panel, y lleva la señal de
-     17 a ~200 observaciones. Es lo que más desbloquea, con diferencia.
-   - Historia pre-2007 con precios que se muevan (A6), que añadiría 2000–2002.
-   - Universo point-in-time (Sharadar, Norgate, CRSP), que resuelve A1–A4 de raíz.
+1. **El eje temporal (C10, C11).** Descorrelaciona en 2007–2023 y no descorrelaciona en
+   1972–2025. Lo que medimos era la ventana, no la regla. Y cuesta 1–3 pp anuales de forma
+   consistente.
+2. **Datos de fuera**, que es ya el único camino. Pero la petición ha cambiado: no son
+   precios mensuales —el problema nunca fue la frecuencia de la señal, sino **el número de
+   mercados bajistas observados**, y a frecuencia mensual seguirían siendo dos—. Es
+   **historia larga con universo point-in-time** (CRSP vía WRDS, Sharadar, Norgate).
+
+**Y hay una tarea nueva, barata y anterior a todo eso:** aplicar el test de ventanas de B8 a
+todo lo que se midió sobre 17 años, empezando por C7. Se puede hacer hoy, solo con el índice,
+sin comprar nada.
 
 ## E. Aviso de seguridad pendiente
 
