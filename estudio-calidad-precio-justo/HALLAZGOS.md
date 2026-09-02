@@ -1,5 +1,47 @@
 # Hallazgos que sobreviven
 
+## ESTADO ACTUAL — dónde estamos, en dos cifras
+
+**Alfa: cero, y probablemente negativo.**
+
+| medida | valor | t | qué es |
+|---|---|---|---|
+| **C4 vs Nasdaq (2007–2023)** | **+0,27 pp de CAGR** | **0,05** | **la que cuenta**: lo que batiría a un ETF del Nasdaq |
+| Pasar el filtro vs no pasarlo | +2,98 pp | 1,86 | el filtro elige bien *dentro del universo*; no es cobrable fuera |
+| Overlay de tendencia | −1,31 pp | −1,10 | lo que cuesta añadir la regla de régimen |
+
+Y el +0,27 pp está medido sobre un panel al que le faltan las muertes. A4 midió esa
+contaminación en −9 a −12,6 pp. No sabemos cuánto infla el CAGR, pero sabemos el signo:
+**hacia abajo**. La mejor estimación honesta es que la estrategia rinde igual o menos que
+el índice.
+
+**Correlación: 0,918, sin ninguna forma establecida de bajarla.**
+
+| vía | correlación | descorrelación real | estado |
+|---|---|---|---|
+| C4 tal cual | 0,918 | — | punto de partida |
+| 7 variantes cíclicas | ~0,90 | ±0,03 | nada (C5) |
+| Defensivos + momento | 0,62 | −0,14 | sin respaldo: 29% de ventanas lo dan por azar (B8) |
+| Overlay de tendencia | 0,78 | −0,081 (p=0,15) | no significativo (C10) |
+
+La distinción que lo ordena todo: **la correlación bruta sí baja, la descorrelación real no.**
+Estar fuera del mercado el 22% de los años baja la correlación sola, se elijan los años que
+se elijan — el efectivo no correlaciona con nada. Bajar la correlación es gratis y trivial:
+basta con tener menos dinero invertido. **Lo que no hay evidencia de que nadie pueda hacer es
+bajarla eligiendo el momento.**
+
+**Consecuencia práctica:** con lo que sabemos hoy, este compartimento no se justifica frente
+a comprar más Nasdaq. No aporta rentabilidad ni diversificación, y cuesta trabajo, comisiones
+e impuestos que el ETF no cuesta. Eso no prueba que la estrategia sea mala: prueba que **con
+17 años de un panel roto no se puede demostrar que sea buena**, y el listón para meter dinero
+propio es demostrarlo.
+
+**Lo siguiente, y es barato:** pasar el test de ventanas (B8) a todo lo medido sobre 17 años,
+empezando por C7. Se hace hoy, solo con el índice. Lo que sobreviva a eso será lo primero de
+la serie con derecho a llevar dinero encima.
+
+---
+
 Resumen de lo que hemos establecido en esta serie de estudios, separando lo que aguanta un
 control de lo que no. Ordenado por importancia práctica.
 
