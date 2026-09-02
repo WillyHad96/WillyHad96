@@ -28,7 +28,7 @@ Verificado empíricamente contra el panel y contra FMP (plan Starter), 2026-08.
 
 | Qué | Detalle |
 |---|---|
-| `period=quarter` en `statements` | **el bloqueo importante**: los fundamentales son solo anuales |
+| ~~`period=quarter` en `statements`~~ | **CORREGIDO 2026-09-02: ya NO está bloqueado.** La cuenta está en plan Premium y los trimestrales funcionan. Verificado con NUE: 80 trimestres continuos hasta 2006-09-30, cubre entera la ventana 2007-2023. Ver `DISEÑO-PANEL-CICLICAS.md` |
 | `company/delisted-companies` con `page>=1` | impide corregir la supervivencia |
 | `indexes/historical-*` | sin constituyentes históricos de S&P 500 / NASDAQ |
 
