@@ -7,9 +7,16 @@ las reglas ya puestas, sin repetir los errores que hemos pagado en esta.
 
 ```
 Soy inversor cuantitativo particular. Trabajo sobre la tabla `hypergrowth_panel` del
-proyecto Supabase `mlcpuqlawehpznidumvi`. El repo es WillyHad96/WillyHad96, rama
-`claude/hypergrowth-analysis-pricing-0z51v1`, y todo el trabajo previo está en
-`estudio-calidad-precio-justo/`. Habla en español.
+proyecto Supabase `mlcpuqlawehpznidumvi`. Habla en español.
+
+ANTES DE NADA, ejecuta esto: la rama `main` de este repo está vacía (solo README.md) y
+todo el trabajo previo vive en otra rama.
+
+    git fetch origin claude/hypergrowth-analysis-pricing-0z51v1
+    git checkout claude/hypergrowth-analysis-pricing-0z51v1
+    ls estudio-calidad-precio-justo/
+
+Si `ls` no muestra ~78 ficheros, para y dímelo antes de seguir.
 
 LEE PRIMERO `estudio-calidad-precio-justo/HALLAZGOS.md`. Resume lo establecido en la serie
 anterior. No repitas nada de lo que ya está descartado ahí.
@@ -83,7 +90,7 @@ Si concluyes que con estos datos no se puede, dímelo pronto y dime qué datos h
 ## Formato de trabajo
 
 Documenta cada estudio en un .md en `estudio-calidad-precio-justo/`, con el script que lo
-reproduce, y haz commit y push a la rama. Ficheros de datos y scripts en ese directorio,
+reproduce, y haz commit y push a la rama `claude/hypergrowth-analysis-pricing-0z51v1`. Ficheros de datos y scripts en ese directorio,
 no en la raíz.
 ```
 
