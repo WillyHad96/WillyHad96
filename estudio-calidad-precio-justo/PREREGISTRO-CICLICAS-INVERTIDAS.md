@@ -83,3 +83,52 @@ R-A y R-C seleccionan el cuartil más pequeño de la banda (≈300–700 M$). **
 aplicado un filtro de liquidez** (`METODOLOGIA-Y-PENDIENTES.md`, Factor 8). Con ~500 €/posición
 el impacto de mercado es probablemente irrelevante, pero **no está medido**, y no debe darse
 por bueno sin medirlo.
+
+---
+
+# ADENDA — R-A estaba mal especificada. Pre-registro de la versión fiel.
+
+**Escrito tras ver la confirmación de R-A/R-B/R-C, y ANTES de calcular R-A2.** 2026-09-02.
+
+## 9. El error
+
+El hallazgo del cribado fue **`mcap <= p25` a secas**: 46 nombres/año, equiponderado, sin
+filtro de momento, CAGR 16,16%. Al escribir R-A le añadí estabilidad, regla 40 y top 20% de
+momento, y eso la dejó en **2 nombres al año**. R-A no probó el hallazgo: probó otra cosa.
+
+Su resultado (CAGR 22,34% y 33,96%, descorrelación real **+0,117** y **+0,304**) confirma
+que 2 nombres no son una cartera: correlacionan **más** que dos nombres al azar, porque
+están sistemáticamente elegidos. No sirve.
+
+## 10. R-A2, la versión fiel — cerrada antes de calcularla
+
+Universo cíclico, banda 300 M$–5.000 M$, guardas intactas.
+
+- **R-A2**: `pr_mc <= 0,25` (el cuartil más pequeño). **Sin ningún otro filtro.**
+  Equiponderada. Venta a 12 meses.
+
+Es literalmente el hallazgo del cribado, sin adornos. La configuración exacta **no se ha
+calculado nunca sobre los años impares.**
+
+## 11. Criterio, declarado por adelantado
+
+Sobre los impares, R-A2 sobrevive solo si:
+
+1. `p(CAGR) < 0,05` contra carteras aleatorias del mismo tamaño y pool.
+2. CAGR ≥ el del Nasdaq en esos años (19,68%).
+
+**No se le exige descorrelación**: el cribado ya mostró que el efecto tamaño no
+descorrelaciona (real −0,055, dentro del ruido). Se prueba como fuente de **rentabilidad**,
+que es lo que prometía.
+
+## 12. El diagnóstico que hay que hacerle sí o sí
+
+**El efecto tamaño es exactamente donde más muerde el sesgo de supervivencia.** Las
+pequeñas son las que más mueren, y A1 establece que el panel **no registra muertes antes de
+2015** y solo es realista en **2021–2023**.
+
+Predicción declarada por adelantado: **si el efecto es sesgo, debe encogerse en 2021–2023**,
+que es el único tramo donde las bajas están registradas. Si se mantiene ahí, es más creíble.
+
+Se reporta el CAGR del cuartil pequeño menos el del resto, por tramos:
+`2007–2014` (sin muertes), `2015–2020` (parcial), `2021–2023` (realista).
