@@ -21,6 +21,7 @@ el índice.
 |---|---|---|---|
 | C4 tal cual | 0,918 | — | punto de partida |
 | 7 variantes cíclicas | ~0,90 | ±0,03 | nada (C5) |
+| Cíclicas con filtros invertidos | 0,29–0,78 | −0,34 a +0,30 | fallan las 4 en confirmación (C13) |
 | Defensivos + momento | 0,62 | −0,14 | sin respaldo: 29% de ventanas lo dan por azar (B8) |
 | Overlay de tendencia | 0,78 | −0,081 (p=0,15) | no significativo (C10) |
 
@@ -212,6 +213,30 @@ años que la favorecen son exactamente las que contienen 2000–2002 y 2008; en 
 descorrelación real es **positiva** (+0,10), es decir, empeoraba la diversificación. Paga
 prima casi todos los años y cobra dos veces por siglo. **Con una sola cartera y horizonte de
 años, no hay forma de saber si te toca la ventana que cobra.**
+
+**C12. El universo cíclico entero rinde menos que el Nasdaq.** Las 231 cíclicas de cada año,
+equiponderadas y **sin ninguno de nuestros filtros**: **11,83% frente al 14,33% del Nasdaq
+(−2,50 pp), con correlación 0,862.** El techo del compartimento cíclico está por debajo del
+índice, así que ningún ajuste de filtros dentro de ese pool puede dar rentabilidad y
+descorrelación a la vez. **El problema nunca fueron los filtros: es el charco.** Y entre
+mitades el dato se columpia +2,38 pp (pares) / −7,09 pp (impares), 9,5 pp de diferencia.
+
+**C13. Las dos palancas que funcionan se anulan entre sí.** Medido y replicado en las dos
+mitades: invertir el filtro de **estabilidad** compra descorrelación real (−0,071 y −0,339)
+y paga con la rentabilidad (**3,83% con el Nasdaq al 19,68%**); invertir el de
+**capitalización** compra rentabilidad sobre el azar (16,16 vs 10,88; 14,78 vs 12,41) y no
+descorrelaciona nada (−0,055, ruido). **Juntarlas da lo peor de las dos: −8,41%.** La
+estabilidad es lo que hace que el compartimento rinda. Refuta la hipótesis de que meter
+volatilidad suba la rentabilidad, y encaja con C6: volatilidad extra es beta, y la beta es
+gratis. Ver `ESTUDIO-CICLICAS-INVERTIDAS.md`.
+
+**C14. El efecto tamaño dentro de cíclicas no es sesgo de supervivencia, pero tampoco es
+usable.** Predicción declarada por adelantado: si fuera sesgo, debería encogerse en
+2021–2023, el único tramo con muertes registradas (A1). **Salió al revés**: +0,25 pp en
+2007–2014 (sin muertes registradas), +11,75 pp en 2015–2020, +6,88 pp en 2021–2023. Es cero
+justo donde el sesgo sería máximo. Aun así falla la confirmación (p = 0,126, CAGR 14,78%
+frente al 19,68% del Nasdaq) y lo dominan dos años: 2020 (+42,6 pp) y 2022 (+18,9 pp).
+**Pendiente y barato: probarlo sobre el universo completo, no solo cíclicas.**
 
 ---
 
