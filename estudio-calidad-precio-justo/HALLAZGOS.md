@@ -9,7 +9,8 @@
 | C4 vs Nasdaq (2007–2023) | +0,27 pp de CAGR | 0,05 | la estrategia original: nada |
 | Pasar el filtro vs no pasarlo | +2,98 pp | 1,86 | el filtro elige bien dentro del universo |
 | Barato en Industrials+Materials (C21) | +6,76 pp vs su pool | +2,38 | pasa los cinco controles, **pero beta 1,46 y alfa Jensen solo +0,87%** |
-| **Barato en INDUSTRIALS solo (C23)** | **alfa Jensen +1,71%** | — | **el único alfa Jensen positivo; beta 1,11; cae menos que el índice en años malos** |
+| **Barato en INDUSTRIALS, alfa INTERNO (C23)** | **+6,73 pp** | **+2,31** | **lo único con \|t\|>2: elige bien dentro del sector** |
+| Barato en Industrials vs Nasdaq (C24) | alfa Jensen +2,86% | **+0,48** | **no establecido; Sharpe 0,423 vs 0,512 — pierde ajustado por riesgo** |
 | Overlay de tendencia | −1,31 pp | −1,10 | cuesta |
 
 **C21 es lo único de la serie con |t| > 2**, replicado en ambas mitades, monótono entre
@@ -339,6 +340,19 @@ todo el estudio (20,99%) y es la peor idea** — beta **2,38**, volatilidad **73
 (alfa −5,62%) y en **Energy no replica** (+6,4 pares, −3,1 impares). **Regla que queda: la
 métrica de selección es alfa Jensen con beta ≤ 1,2, nunca CAGR bruto.** Ver
 `ESTUDIO-ALFA-VS-BETA.md`.
+
+**C24. Industrials baratas no bate al Nasdaq: el alfa interno es sólido, el externo no.**
+Chequeo de rigor sobre C23. CAGR 15,40% vs 13,26%, pero el **alfa Jensen es +2,86% con
+SE 5,97%: t = +0,48**, IC95% **[−8,85%, +14,56%]**. Volatilidad **31,7% vs 22,0%**, peor año
+**−45,8% vs −32,9%**, y **Sharpe 0,423 frente a 0,512 del Nasdaq: ajustando por riesgo,
+pierde.** Bate al índice 9/17 años. El *leave-one-out* **cambia de signo al quitar 2022**
+(−3,39%), y el contrafactual aleatorio da p = 0,0638. **Lo que sí queda establecido es el alfa
+INTERNO: +6,73 pp con t = +2,31** (baratas vs su propia familia Industrials), lo único de la
+serie con |t| > 2. La diferencia entre t=2,31 y t=0,48 es B4 en acción: la comparación interna
+es pareada y cancela el ruido de mercado; la externa carga con 31,7% de volatilidad. **Sirve
+para elegir qué Industriales comprar, no para decidir comprar Industriales en vez de Nasdaq.**
+Criterio declarado para que sea alternativa de cartera y no solo selector: **alfa Jensen con
+t ≥ 2 y Sharpe ≥ 0,512**. Ver `NOTA-INDUSTRIALS-NO-BATE-AL-NASDAQ.md`.
 
 ---
 
