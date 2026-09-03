@@ -2,18 +2,17 @@
 
 ## ESTADO ACTUAL — dónde estamos, en dos cifras
 
-**Alfa: cero, y probablemente negativo.**
+**Alfa: cero en la estrategia original — pero C21 encontró uno que sí sobrevive.**
 
 | medida | valor | t | qué es |
 |---|---|---|---|
-| **C4 vs Nasdaq (2007–2023)** | **+0,27 pp de CAGR** | **0,05** | **la que cuenta**: lo que batiría a un ETF del Nasdaq |
-| Pasar el filtro vs no pasarlo | +2,98 pp | 1,86 | el filtro elige bien *dentro del universo*; no es cobrable fuera |
-| Overlay de tendencia | −1,31 pp | −1,10 | lo que cuesta añadir la regla de régimen |
+| C4 vs Nasdaq (2007–2023) | +0,27 pp de CAGR | 0,05 | la estrategia original: nada |
+| Pasar el filtro vs no pasarlo | +2,98 pp | 1,86 | el filtro elige bien dentro del universo |
+| **Barato en Industrials+Materials (C21)** | **+6,76 pp** | **+2,38** | **el único que pasa los cinco controles** |
+| Overlay de tendencia | −1,31 pp | −1,10 | cuesta |
 
-Y el +0,27 pp está medido sobre un panel al que le faltan las muertes. A4 midió esa
-contaminación en −9 a −12,6 pp. No sabemos cuánto infla el CAGR, pero sabemos el signo:
-**hacia abajo**. La mejor estimación honesta es que la estrategia rinde igual o menos que
-el índice.
+**C21 es lo único de la serie con |t| > 2**, replicado en ambas mitades, monótono entre
+cuartiles y estable al quitar cualquier año. **Pero no descorrelaciona** (0,785).
 
 **Correlación: 0,918, sin ninguna forma establecida de bajarla.**
 
@@ -302,6 +301,25 @@ hundidas y apalancadas —lo que propone el bloque B del diseño— tendría una
 **Regla: el estudio de supervivencia se ejecuta cuando exista una cartera candidata concreta,
 y se mide dentro de ella.** Medirlo en el universo es promediar algo que solo importa en la
 cola.
+
+**C20. Las cíclicas son cuatro animales, y separarlos revela la señal.** Consumer Cyclical
+CAGR 15,64% y correlación 0,925; Industrials 10,95% / 0,849; Basic Materials 10,00% / 0,764;
+**Energy 5,71% / 0,529**. Energía y Consumo Cíclico correlacionan **0,617 entre sí**.
+Promediarlas mezclaba un CAGR de 15,6% con uno de 5,7% y una correlación de 0,93 con una de
+0,53. **El AUC del P/S pasa de 0,449/0,463 en el saco a 0,412/0,424 (Industrials) y
+0,430/0,386 (Basic Materials)** al separar.
+
+**C21. LO PRIMERO QUE SOBREVIVE A TODOS LOS CONTROLES: barato dentro de Industrials +
+Materials.** El cuartil más barato por P/S rinde **17,79%** frente al **11,03%** de su propio
+pool y al 13,71% del Nasdaq. Monótono (caras 5,54%). Pasa los cinco controles que mataron
+todo lo demás: replica en pares (+7,2) e impares (+6,5); bate al azar de igual tamaño en
+**+6,93 pp**; el alfa interno inmune a supervivencia (B4) es **+6,76 pp de CAGR** con
+diferencia pareada **+10,15 pp y t = +2,38** —**el primer |t| > 2 de la serie**—, batiendo a
+su pool **12 de 17 años**; el *leave-one-year-out* deja el alfa en **[+4,84, +8,27] pp sin
+cambiar de signo**; y la trampa de valor, medida sobre el universo CON muertos, resta solo
+~0,7 pp de los 21,6 pp de diferencial. **Pero no descorrelaciona** (0,785, real −0,031) y en
+2008 hizo −43,6% frente al −30,1% del Nasdaq. Es la prima de valor, documentada desde
+Fama-French: robusta, pero no es un descubrimiento nuestro. Ver `ESTUDIO-SUBTIPOS-CICLICOS.md`.
 
 ---
 
