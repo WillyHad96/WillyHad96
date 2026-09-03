@@ -1,0 +1,428 @@
+<title>Compras Insider por Tramos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#F5F7F9; --surface:#FFFFFF; --surface-2:#EDF1F5;
+    --ink:#16202B; --ink-2:#39485A; --muted:#61707E; --rule:#D8E0E8;
+    --accent:#9A6E1C; --accent-soft:#F0E3C8;
+    --pos:#136B52; --neg:#A83F36; --flat:#7B8896;
+    --shadow:0 1px 2px rgba(22,32,43,.06);
+  }
+  :root:not([data-theme="light"]){ @media (prefers-color-scheme: dark){} }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0F151C; --surface:#171F29; --surface-2:#1E2833;
+      --ink:#E3EAF2; --ink-2:#BCC8D4; --muted:#8B9CAC; --rule:#28323E;
+      --accent:#D6A544; --accent-soft:#3A3018;
+      --pos:#49A98C; --neg:#E0796F; --flat:#8B9CAC;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0F151C; --surface:#171F29; --surface-2:#1E2833;
+    --ink:#E3EAF2; --ink-2:#BCC8D4; --muted:#8B9CAC; --rule:#28323E;
+    --accent:#D6A544; --accent-soft:#3A3018;
+    --pos:#49A98C; --neg:#E0796F; --flat:#8B9CAC;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px; line-height:1.65; margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:56px 24px 96px;}
+  .col{max-width:68ch;}
+
+  h1{
+    font-family:Spectral,Georgia,serif; font-weight:600;
+    font-size:clamp(2rem,4.4vw,2.9rem); line-height:1.12; letter-spacing:-.012em;
+    margin:0 0 14px; text-wrap:balance;
+  }
+  h2{
+    font-family:Spectral,Georgia,serif; font-weight:600;
+    font-size:1.5rem; line-height:1.25; letter-spacing:-.008em;
+    margin:56px 0 14px; text-wrap:balance;
+  }
+  h3{font-size:.95rem; font-weight:600; margin:32px 0 10px; letter-spacing:-.003em;}
+  p{margin:0 0 16px; color:var(--ink-2);}
+  strong{color:var(--ink); font-weight:600;}
+  a{color:var(--accent);}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:500;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--muted);
+    margin:0 0 18px;
+  }
+  .standfirst{font-size:1.09rem; color:var(--ink-2); margin-bottom:28px;}
+  .meta{
+    font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--muted);
+    border-top:1px solid var(--rule); padding-top:12px; margin-top:28px;
+    display:flex; flex-wrap:wrap; gap:6px 20px;
+  }
+
+  /* verdict */
+  .verdict{
+    background:var(--surface); border:1px solid var(--rule);
+    border-left:3px solid var(--accent);
+    padding:22px 24px; margin:36px 0 8px; box-shadow:var(--shadow);
+  }
+  .verdict p:last-child{margin-bottom:0;}
+  .verdict .lead{font-size:1.05rem; color:var(--ink); font-weight:500;}
+
+  .figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1px;
+        background:var(--rule); border:1px solid var(--rule); margin:28px 0 8px;}
+  .fig{background:var(--surface); padding:16px 18px;}
+  .fig .n{font-family:"IBM Plex Mono",monospace; font-size:1.55rem; font-weight:600;
+          letter-spacing:-.02em; display:block; line-height:1.15;}
+  .fig .k{font-size:.78rem; color:var(--muted); margin-top:5px; display:block; line-height:1.4;}
+  .neg{color:var(--neg)} .pos{color:var(--pos)} .flat{color:var(--flat)}
+
+  /* tables */
+  .scroll{overflow-x:auto; margin:18px 0 8px; border:1px solid var(--rule); background:var(--surface);}
+  table{border-collapse:collapse; width:100%; min-width:640px; font-size:.85rem;}
+  caption{
+    text-align:left; font-family:"IBM Plex Mono",monospace; font-size:.72rem;
+    letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+    padding:13px 16px 11px; border-bottom:1px solid var(--rule); background:var(--surface-2);
+  }
+  th,td{padding:9px 12px; text-align:right; border-bottom:1px solid var(--rule);}
+  th{font-size:.72rem; font-weight:600; color:var(--muted); letter-spacing:.02em;
+     text-transform:uppercase; white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left; white-space:nowrap;}
+  td{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--ink-2);}
+  td:first-child{font-family:"IBM Plex Sans",sans-serif; color:var(--ink); font-weight:500;}
+  tbody tr:last-child td{border-bottom:none;}
+  tr.hi td{background:var(--accent-soft);}
+  tr.hi td:first-child{font-weight:600;}
+  .note{font-size:.8rem; color:var(--muted); margin:8px 0 0;}
+
+  /* chart */
+  figure{margin:22px 0 8px;}
+  .chart{width:100%; height:auto; display:block;
+         border:1px solid var(--rule); background:var(--surface); padding:6px 0;}
+  .c-bar-neg{fill:var(--neg)} .c-bar-pos{fill:var(--pos)}
+  .c-axis{stroke:var(--rule); stroke-width:1}
+  .c-zero{stroke:var(--muted); stroke-width:1.25}
+  .c-lab{fill:var(--ink); font-family:"IBM Plex Sans",sans-serif; font-size:12.5px}
+  .c-val{fill:var(--ink-2); font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:500}
+  .c-tick{fill:var(--muted); font-family:"IBM Plex Mono",monospace; font-size:11px}
+  figcaption{font-size:.8rem; color:var(--muted); margin-top:9px;}
+
+  ul{margin:0 0 16px; padding-left:20px; color:var(--ink-2);}
+  li{margin-bottom:8px;}
+  li::marker{color:var(--muted);}
+  code{font-family:"IBM Plex Mono",monospace; font-size:.86em;
+       background:var(--surface-2); padding:1px 5px; border-radius:2px; color:var(--ink);}
+  hr{border:none; border-top:1px solid var(--rule); margin:52px 0;}
+  .kicker{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.11em;
+          text-transform:uppercase; color:var(--accent); margin:0 0 6px;}
+</style>
+
+<div class="wrap">
+<div class="col">
+  <p class="eyebrow">Investigación FMP · Formularios 4 SEC · 2014–2025</p>
+  <h1>Compras insider por tramos de capital</h1>
+  <p class="standfirst">
+    Tu hipótesis: los directivos compran cantidades ridículas sólo para que salte la señal,
+    y la señal de verdad está en los que compran un porcentaje serio del capital.
+    Backtesteé 1.762 eventos de compra en 116 empresas. La primera mitad de la hipótesis
+    es correcta. La segunda no.
+  </p>
+</div>
+
+<div class="col">
+  <div class="verdict">
+    <p class="kicker">Resultado</p>
+    <p class="lead">
+      Ordenar por “porcentaje del capital comprado” <strong>no produce un edge fiable</strong>,
+      y el tramo más grande (&gt;0,50 % de la capitalización) es el <strong>peor</strong> de todos:
+      mediana −7,8 % a 12 meses y sólo 42 % de aciertos.
+    </p>
+    <p>
+      Sí aparece un punto dulce estrecho en <strong>0,15–0,50 %</strong> (mediana +11,4 %, único tramo
+      que bate al Russell 2000), pero no sobrevive al contraste estadístico ni al año 2020:
+      fuera del rebote del COVID, la estrategia se queda en <strong>6,6 % anual</strong> frente al
+      30 % que aparenta con 2020 dentro.
+    </p>
+  </div>
+</div>
+
+<div class="figs">
+  <div class="fig"><span class="n">67.656 $</span><span class="k">Compra mediana de un directivo</span></div>
+  <div class="fig"><span class="n">0,012 %</span><span class="k">Mediana como % del capital (1,2 pb)</span></div>
+  <div class="fig"><span class="n neg">80 %</span><span class="k">De las compras &gt;2 M$ las hacen fondos (10 % owners), no directivos</span></div>
+</div>
+
+<div class="col">
+  <h2>Lo que sí confirma tu intuición</h2>
+  <p>
+    La compra mediana de un consejero o directivo es de <strong>67.656 $</strong> — el
+    <strong>0,012 % del capital</strong> de su empresa, es decir <strong>1,2 puntos básicos</strong>.
+    El cuartil inferior está en 14.438 $. Son cifras simbólicas: un consejero que compra 5.000 $
+    de una empresa de 300 M$ no está expresando una convicción, está rellenando un expediente.
+    Un cuarto de todos los eventos del estudio son compras de menos de 10.000 $.
+  </p>
+  <p>
+    Y hay una segunda trampa que no esperaba encontrar y que conviene que sepas antes de
+    filtrar por tamaño: <strong>el 80 % de las compras superiores a 2 M$ no las hacen directivos</strong>,
+    las hacen tenedores del 10 % — fondos, family offices, vehículos de control. En los datos de Form 4
+    aparecen mezcladas con las de los ejecutivos. Si filtras “compras grandes” sin separar,
+    lo que estás comprando no es convicción directiva: son ampliaciones y colocaciones privadas.
+    Todo lo que sigue usa <strong>sólo compras de directivos y consejeros</strong>.
+  </p>
+
+  <h2>Rentabilidad por tramo</h2>
+  <p>
+    Cada evento es un mes-empresa: se suman todas las compras de directivos de esa empresa en
+    ese mes y se compara con la capitalización de ese día. Entrada al cierre del día en que
+    se publica el Form 4 (no el día de la compra — eso sería mirar el futuro).
+  </p>
+</div>
+
+<div class="scroll">
+  <table>
+    <caption>Retorno a 12 meses según tamaño de la compra como % de la capitalización</caption>
+    <thead><tr>
+      <th>Tramo (% del capital)</th><th>n</th><th>Cap. mediana</th><th>Compra mediana</th>
+      <th>Mediana</th><th>Media</th><th>Aciertos</th><th>vs Nasdaq</th><th>vs Russell</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>&lt; 0,01 %</td><td>683</td><td>3.323 M$</td><td>21 k$</td><td>+8,2 %</td><td>+9,1 %</td><td>63 %</td><td class="neg">−10,7</td><td class="neg">−2,6</td></tr>
+      <tr><td>0,01 – 0,05 %</td><td>344</td><td>403 M$</td><td>91 k$</td><td>+5,5 %</td><td>+20,7 %</td><td>56 %</td><td class="neg">−13,4</td><td class="neg">−7,8</td></tr>
+      <tr><td>0,05 – 0,15 %</td><td>182</td><td>136 M$</td><td>122 k$</td><td>+4,8 %</td><td>+23,4 %</td><td>55 %</td><td class="neg">−17,3</td><td class="neg">−6,1</td></tr>
+      <tr class="hi"><td>0,15 – 0,50 %</td><td>137</td><td>99 M$</td><td>265 k$</td><td>+11,4 %</td><td>+34,6 %</td><td>55 %</td><td class="neg">−10,7</td><td class="pos">+2,7</td></tr>
+      <tr><td>&gt; 0,50 %</td><td>64</td><td>86 M$</td><td>1.262 k$</td><td class="neg">−7,8 %</td><td>+6,3 %</td><td>42 %</td><td class="neg">−29,2</td><td class="neg">−22,1</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="note col">
+  Retornos totales (dividendos reinvertidos). “vs Nasdaq / vs Russell” = exceso mediano sobre QQQ e IWM
+  en la misma ventana, en puntos porcentuales.
+</p>
+
+<figure>
+  <svg class="chart" viewBox="0 0 720 300" role="img" aria-label="Exceso mediano a 12 meses sobre el Russell 2000 por tramo de compra">
+    <line class="c-axis" x1="160" y1="34" x2="160" y2="266"></line>
+    <line class="c-axis" x1="284" y1="34" x2="284" y2="266"></line>
+    <line class="c-axis" x1="408" y1="34" x2="408" y2="266"></line>
+    <line class="c-zero" x1="532" y1="28" x2="532" y2="272"></line>
+    <text class="c-tick" x="160" y="288" text-anchor="middle">−30</text>
+    <text class="c-tick" x="284" y="288" text-anchor="middle">−20</text>
+    <text class="c-tick" x="408" y="288" text-anchor="middle">−10</text>
+    <text class="c-tick" x="532" y="288" text-anchor="middle">0</text>
+    <text class="c-tick" x="656" y="288" text-anchor="middle">+10</text>
+
+    <text class="c-lab" x="12" y="52">&lt; 0,01 %</text>
+    <rect class="c-bar-neg" x="499.8" y="38" width="32.2" height="24"></rect>
+    <text class="c-val" x="493.8" y="55" text-anchor="end">−2,6</text>
+
+    <text class="c-lab" x="12" y="98">0,01 – 0,05 %</text>
+    <rect class="c-bar-neg" x="435.3" y="84" width="96.7" height="24"></rect>
+    <text class="c-val" x="429.3" y="101" text-anchor="end">−7,8</text>
+
+    <text class="c-lab" x="12" y="144">0,05 – 0,15 %</text>
+    <rect class="c-bar-neg" x="456.4" y="130" width="75.6" height="24"></rect>
+    <text class="c-val" x="450.4" y="147" text-anchor="end">−6,1</text>
+
+    <text class="c-lab" x="12" y="190">0,15 – 0,50 %</text>
+    <rect class="c-bar-pos" x="532" y="176" width="33.5" height="24"></rect>
+    <text class="c-val" x="571.5" y="193" text-anchor="start">+2,7</text>
+
+    <text class="c-lab" x="12" y="236">&gt; 0,50 %</text>
+    <rect class="c-bar-neg" x="257.9" y="222" width="274.1" height="24"></rect>
+    <text class="c-val" x="251.9" y="239" text-anchor="end">−22,1</text>
+  </svg>
+  <figcaption>
+    Exceso mediano a 12 meses sobre el Russell 2000 (IWM), en puntos porcentuales. Sólo un tramo
+    queda por encima de cero, y el tramo de compras más grandes se hunde.
+  </figcaption>
+</figure>
+
+<div class="col">
+  <p>
+    La forma no es una rampa, es una <strong>U invertida rota</strong>. Subir de 1 pb a 15–50 pb ayuda algo;
+    pasar de ahí destruye el resultado. Y no es un efecto de tamaño de empresa disfrazado: el tramo alto
+    pierde también dentro de casi todos los cubos de capitalización.
+  </p>
+</div>
+
+<div class="scroll">
+  <table>
+    <caption>Control por tamaño de empresa — exceso mediano a 12 m sobre Russell 2000</caption>
+    <thead><tr><th>Capitalización</th><th>Tramo bajo (&lt;0,05 %)</th><th>n</th><th>Tramo alto (≥0,15 %)</th><th>n</th></tr></thead>
+    <tbody>
+      <tr><td>Nano &lt; 50 M$</td><td class="neg">−10,5</td><td>56</td><td class="pos">+4,5</td><td>64</td></tr>
+      <tr><td>Micro 50–300 M$</td><td class="neg">−7,8</td><td>275</td><td class="neg">−17,7</td><td>86</td></tr>
+      <tr><td>Small 0,3–2 B$</td><td class="pos">+2,9</td><td>268</td><td class="pos">+2,8</td><td>38</td></tr>
+      <tr><td>Mid/Large &gt; 2 B$</td><td class="neg">−3,8</td><td>428</td><td class="neg">−10,9</td><td>13</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col">
+  <h2>El importe en dólares tampoco ordena nada</h2>
+  <p>
+    Por si el problema era la métrica, probé el tamaño absoluto de la compra. Es aún más plano:
+    ningún tramo bate al índice y no hay tendencia monótona.
+  </p>
+</div>
+
+<div class="scroll">
+  <table>
+    <caption>Retorno a 12 meses según importe absoluto comprado por directivos</caption>
+    <thead><tr><th>Importe</th><th>n</th><th>Cap. mediana</th><th>Mediana</th><th>Media</th><th>Aciertos</th><th>vs Russell</th></tr></thead>
+    <tbody>
+      <tr><td>&lt; 10 k$</td><td>280</td><td>75 M$</td><td>+6,0 %</td><td>+6,9 %</td><td>62 %</td><td class="neg">−2,8</td></tr>
+      <tr><td>10 – 50 k$</td><td>357</td><td>576 M$</td><td>+5,2 %</td><td>+9,6 %</td><td>58 %</td><td class="neg">−6,5</td></tr>
+      <tr><td>50 – 250 k$</td><td>393</td><td>597 M$</td><td>+7,3 %</td><td>+27,9 %</td><td>57 %</td><td class="neg">−3,4</td></tr>
+      <tr><td>250 k$ – 1 M$</td><td>215</td><td>1.236 M$</td><td>+10,8 %</td><td>+20,7 %</td><td>60 %</td><td class="neg">−5,7</td></tr>
+      <tr><td>&gt; 1 M$</td><td>165</td><td>4.628 M$</td><td>+5,6 %</td><td>+11,9 %</td><td>54 %</td><td class="neg">−4,2</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col">
+  <h2>La prueba estadística: el tramo no separa</h2>
+  <p>
+    Remuestreando <em>por empresa</em> (bootstrap de clústeres, 4.000 repeticiones — necesario porque
+    varios eventos comparten emisor y no son independientes):
+  </p>
+  <ul>
+    <li>
+      (≥0,15 % del capital) − (&lt;0,05 %): <strong>−3,1 pp</strong>,
+      IC 95 % <code>[−16,2 ; +8,5]</code>. El intervalo cruza el cero de lado a lado.
+    </li>
+    <li>
+      (≥250 k$) − (&lt;50 k$): <strong>+0,2 pp</strong>, IC 95 % <code>[−6,4 ; +9,3]</code>. Nada.
+    </li>
+  </ul>
+  <p>
+    Es decir: con 1.762 eventos y doce años de datos <strong>no se puede afirmar que el tramo de compra
+    prediga nada</strong> en la mediana. Lo que sí cambia entre tramos es la <em>media</em>
+    (+9 % en el tramo bajo frente a +35 % en 0,15–0,50 %), y eso es una pista real, pero de otra cosa:
+    asimetría. Las compras grandes en empresas pequeñas producen de vez en cuando un +300 %,
+    y esa cola es la que levanta la media mientras la mediana empeora.
+  </p>
+
+  <h2>Qué habrías ganado de verdad</h2>
+  <p>
+    Cartera implementable: cada trimestre compras todas las señales del trimestre a peso igual y
+    las mantienes 3 meses. Aquí la asimetría sí juega a favor, porque una cartera diversificada
+    captura la media, no la mediana.
+  </p>
+</div>
+
+<div class="scroll">
+  <table>
+    <caption>Cartera trimestral equiponderada, 2014–2025</caption>
+    <thead><tr>
+      <th>Filtro</th><th>Trim.</th><th>Posic./trim.</th><th>Vol. trim.</th>
+      <th>Corr. Nasdaq</th><th>Beta</th><th>CAGR</th><th>CAGR sin 2020</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Todas las compras</td><td>47</td><td>~26</td><td>11,1 %</td><td>+0,50</td><td>0,79</td><td>22,4 %</td><td>12,8 %</td></tr>
+      <tr class="hi"><td>≥ 0,05 % del capital</td><td>41</td><td>8</td><td>26,9 %</td><td>+0,44</td><td>1,49</td><td>42,6 %</td><td class="neg">16,4 %</td></tr>
+      <tr><td>≥ 0,15 % del capital</td><td>34</td><td>4</td><td>30,3 %</td><td>+0,51</td><td>1,78</td><td>30,1 %</td><td class="neg">6,6 %</td></tr>
+      <tr><td>≥ 250 k$</td><td>44</td><td>~12</td><td>12,9 %</td><td>+0,68</td><td>1,23</td><td>24,9 %</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col">
+  <p class="note">
+    QQQ en el mismo periodo: ~5,3–6,1 % por trimestre. Los tres mejores trimestres de la estrategia
+    filtrada son 2020-Q2, Q3 y Q4 (+57 %, +112 %, +103 %).
+  </p>
+  <p>
+    Aquí está el punto que te ahorra dinero: el filtro <strong>≥0,05 %</strong> parece dar
+    <strong>42,6 % anual</strong> — y <strong>16,4 % quitando 2020</strong>. El filtro ≥0,15 % pasa de
+    30,1 % a <strong>6,6 %</strong>. Prácticamente toda la ventaja viene de que los directivos
+    compraron a manos llenas en el crash de marzo de 2020 y todo rebotó. Eso es una observación
+    real sobre los insiders — <em>compran pánico</em> — pero no es un tramo, es un régimen.
+    Y con 4–8 posiciones por trimestre no es una cartera diversificada: es una apuesta concentrada
+    en microcaps con 30 % de volatilidad trimestral.
+  </p>
+
+  <h2>Sobre la correlación con el Nasdaq</h2>
+  <p>
+    Para lo que buscas — rentabilidad tipo Nasdaq con poca correlación — el dato es moderadamente
+    alentador: la correlación trimestral está entre <strong>+0,44 y +0,51</strong> para las versiones
+    filtradas, frente a +0,68 del filtro por importe. No es descorrelación real (nada que tenga beta
+    1,5–1,8 lo es), pero sí es sustancialmente menos que una cartera de acciones típica.
+    El problema es que la rentabilidad que acompaña a esa correlación baja no es robusta.
+  </p>
+
+  <h2>Lo que sí sobrevive</h2>
+  <p>
+    Dos cosas quedan en pie después de todos los filtros, y las dos son modestas:
+  </p>
+  <ul>
+    <li>
+      <strong>Compras muy pequeñas ≠ inútiles.</strong> El tramo &lt;0,01 % tiene 63 % de aciertos y
+      +8,2 % mediana — el mejor porcentaje de acierto de la tabla. Son grandes empresas y el retorno
+      se parece al del mercado, pero la señal no es ruido puro. Tu premisa de que “no valen para nada”
+      no se sostiene: son poco informativas, no contraindicadoras.
+    </li>
+    <li>
+      <strong>El tramo &gt;0,50 % es una señal negativa consistente.</strong> −7,8 % mediana, 42 %
+      de aciertos, −22 pp contra el Russell, y se mantiene excluyendo 2020 (−9,2 %, 39 % de aciertos).
+      Cuando un directivo mete más del 0,5 % de la capitalización de su empresa, suele ser una empresa
+      en apuros haciendo una ampliación, no una ganga.
+    </li>
+  </ul>
+
+  <h2>Limitaciones que importan</h2>
+  <ul>
+    <li>
+      <strong>Sesgo de supervivencia.</strong> El universo se construyó desde empresas con actividad
+      insider reciente (2022–2026), así que las que quebraron entre 2014 y 2021 están infrarrepresentadas.
+      Esto infla los retornos justo donde viven los tramos altos (microcaps). El resultado real de los
+      tramos altos es probablemente <em>peor</em> que el que ves aquí.
+    </li>
+    <li>
+      <strong>116 empresas, no todo el mercado.</strong> La API limita la paginación a 100 páginas,
+      así que muestreé un universo estratificado por capitalización en vez de la población completa.
+    </li>
+    <li>
+      <strong>Sin costes ni liquidez.</strong> Muchas de estas microcaps mueven menos de 100 k$/día;
+      el spread se comería parte del resultado.
+    </li>
+    <li>
+      <strong>n pequeño en los extremos.</strong> El tramo &gt;0,50 % son 64 eventos en 26 empresas.
+    </li>
+  </ul>
+
+  <h2>Por dónde seguir</h2>
+  <p>
+    Si quieres perseguir esto, yo abandonaría el tamaño como variable de orden y probaría estas tres,
+    que son las que en la literatura sí separan y que aquí quedan a mano con los mismos datos:
+  </p>
+  <ul>
+    <li><strong>Compra tras caída fuerte</strong> (insider comprando con la acción −30 % a 6 meses) — es lo que capturó 2020, pero convertido en regla explícita y testeable en todos los años.</li>
+    <li><strong>Racha del insider concreto</strong>: seguir a los CIK cuyas compras pasadas funcionaron, en vez de tratar a todos los directivos igual.</li>
+    <li><strong>Compra contra la tendencia del sector</strong>, y agrupación de varios insiders distintos en pocas semanas (aquí “2+ insiders” ya da −1,9 pp frente a −6,6 pp del filtro por tamaño solo: la menos mala de todas las variantes).</li>
+  </ul>
+
+  <hr>
+
+  <p class="kicker">Método</p>
+  <p class="note">
+    1.762 eventos mes-empresa, 116 empresas, transacciones entre 2014-01 y 2025-08 (para que todas
+    tengan 12 meses de retorno posterior). Fuente: Financial Modeling Prep — Form 4 <code>P-Purchase</code>,
+    precios EOD ajustados por dividendos, capitalización histórica diaria. Sólo acciones ordinarias
+    (se excluyen warrants, preferentes, unidades, opciones y convertibles). Se descartan enmiendas
+    presentadas más de 45 días después de la operación. Entrada: cierre del primer día hábil tras la
+    última fecha de publicación del grupo. Universo estratificado en 5 cubos de capitalización.
+    Datos y scripts en <code>research/insider-tiers/</code>.
+  </p>
+  <div class="meta">
+    <span>1.762 eventos</span><span>116 empresas</span><span>2014–2025</span>
+    <span>Bootstrap 4.000 reps</span><span>Retornos totales</span>
+  </div>
+</div>
+</div>
