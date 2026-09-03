@@ -285,6 +285,24 @@ con **5 nombres** la mediana es 10,05% y bate al Nasdaq el **19%** de las veces;
 dispersión, no la esperanza**, y el panel no registra las muertes (A1), así que la cola
 izquierda real es peor que la medida: la lotería es peor de lo que sale.
 
+**C18. La cola izquierda no son quiebras: son supervivientes.** En 2021–2023 las balas
+(ticker que desaparece con retorno del último año < −25%) son solo el **1,2%** del universo,
+promedian −54,2%, y **en el peor 1% del universo solo son el 15,6%**: el otro 84% son
+empresas vivas cayendo 60–90%. En el decil inferior completo, las balas son el **7,4%**.
+**Un filtro perfecto de solvencia mueve el percentil 10 de −55,4% a −54,2%** — 1,2 pp — y la
+media +0,66 pp (+1,21 si las balas van de verdad a −100%). **El premio es diez veces menor
+que el error de medición de ±11,5 pp (B6)**, así que no es detectable con estos datos.
+Corolario que va en contra de la intuición: **el 2,6% que sale por COMPRA rinde +16,7% de
+media**, así que una corrección ingenua del sesgo que cuente toda salida como muerte
+empeoraría la estimación. Ver `ESTUDIO-CUANTO-VALE-ESQUIVAR-BALAS.md`.
+
+**C19. El premio hay que medirlo dentro de la cartera candidata, no en el universo.** El 1,2%
+de balas es la media del mercado entero. Una cartera que busque deliberadamente cíclicas
+hundidas y apalancadas —lo que propone el bloque B del diseño— tendría una tasa mucho mayor.
+**Regla: el estudio de supervivencia se ejecuta cuando exista una cartera candidata concreta,
+y se mide dentro de ella.** Medirlo en el universo es promediar algo que solo importa en la
+cola.
+
 ---
 
 ## D. La conclusión que ordena todo lo demás
