@@ -1,0 +1,675 @@
+<title>Descorrelación con retorno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F4F4F1; --surface:#FFFFFF; --sunken:#EDEDE8;
+  --ink:#16181A; --ink-2:#4A4E54; --ink-3:#767B82;
+  --rule:#DDDCD5; --rule-strong:#C6C5BC;
+  --bench:#3060B0; --brass:#B0731A; --plum:#8A3E8C;
+  --pos:#1E6E4E; --neg:#A8342A;
+  --band:rgba(176,115,26,.09);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+  --col:70ch; --wide:1080px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#15161A; --surface:#1D1F24; --sunken:#202329;
+    --ink:#E9E8E4; --ink-2:#B4B7BC; --ink-3:#888C93;
+    --rule:#2E3138; --rule-strong:#3C4048;
+    --bench:#6B92D8; --brass:#BE8426; --plum:#AE6FB1;
+    --pos:#4FA97F; --neg:#D4675A;
+    --band:rgba(190,132,38,.11);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15161A; --surface:#1D1F24; --sunken:#202329;
+  --ink:#E9E8E4; --ink-2:#B4B7BC; --ink-3:#888C93;
+  --rule:#2E3138; --rule-strong:#3C4048;
+  --bench:#6B92D8; --brass:#BE8426; --plum:#AE6FB1;
+  --pos:#4FA97F; --neg:#D4675A;
+  --band:rgba(190,132,38,.11);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.page{max-width:var(--wide);margin:0 auto;padding:0 24px 96px}
+.col{max-width:var(--col);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;text-wrap:balance;line-height:1.16;margin:0}
+h1{font-size:clamp(2.3rem,5.6vw,3.6rem);letter-spacing:-.015em}
+h2{font-size:clamp(1.6rem,3.2vw,2.05rem);letter-spacing:-.01em}
+h3{font-size:1.15rem;letter-spacing:-.005em}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:var(--mono)}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+header{padding:64px 0 40px;border-bottom:1px solid var(--rule-strong)}
+header .col{display:flex;flex-direction:column;gap:20px}
+.kicker{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.dek{font-family:var(--serif);font-size:1.28rem;line-height:1.5;color:var(--ink-2)}
+.byline{font-family:var(--mono);font-size:.74rem;color:var(--ink-3);
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.byline span{white-space:nowrap}
+.byline i{font-style:normal;color:var(--rule-strong)}
+
+/* ---------- verdict strip ---------- */
+.verdict{margin:0;padding:34px 0 40px;border-bottom:1px solid var(--rule)}
+.verdict-grid{display:grid;gap:1px;background:var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border:1px solid var(--rule)}
+.vcell{background:var(--surface);padding:20px 22px;display:flex;flex-direction:column;gap:6px}
+.vcell .figure{font-family:var(--serif);font-size:2.35rem;line-height:1;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+.vcell .cap{font-size:.86rem;color:var(--ink-2);line-height:1.42}
+.vcell .tick{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)}
+.f-brass{color:var(--brass)} .f-plum{color:var(--plum)} .f-bench{color:var(--bench)}
+
+/* ---------- sections ---------- */
+section{padding:52px 0 0}
+.lede{font-size:1.06rem;color:var(--ink-2);margin-top:12px}
+.col > p + p{margin-top:1.05em}
+.col > h2{margin-top:6px}
+.sec-head{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.tickmark{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  padding:3px 8px;border:1px solid var(--rule-strong);border-radius:2px;color:var(--ink-2);
+  align-self:flex-start}
+
+/* ---------- figures ---------- */
+figure{margin:34px 0 0;background:var(--surface);border:1px solid var(--rule);padding:22px 22px 18px}
+figure.wide{max-width:var(--wide)}
+figcaption{font-size:.855rem;color:var(--ink-2);line-height:1.5;margin-top:14px;
+  padding-top:13px;border-top:1px solid var(--rule)}
+.fig-title{font-family:var(--serif);font-size:1.12rem;font-weight:600;margin-bottom:3px}
+.fig-sub{font-size:.83rem;color:var(--ink-3);margin-bottom:16px}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.8rem;color:var(--ink-2);margin-bottom:14px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.swatch{width:11px;height:11px;border-radius:50%;display:inline-block}
+.chart-scroll{overflow-x:auto}
+
+/* ---------- tables ---------- */
+.table-wrap{overflow-x:auto;margin-top:26px;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.87rem;min-width:640px}
+th,td{padding:9px 13px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--rule)}
+th{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);background:var(--sunken);
+  position:sticky;top:0;text-align:right}
+th:first-child,td:first-child{text-align:left}
+th:nth-child(2),td:nth-child(2){text-align:left}
+td.t{font-family:var(--mono);font-weight:600;font-size:.83rem}
+td.num,th.num{font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+tr.bench td{background:var(--sunken);font-weight:600}
+tr.star td{background:var(--band)}
+.pos{color:var(--pos);font-weight:600}
+.neg{color:var(--neg)}
+
+/* ---------- callout ---------- */
+.callout{margin-top:30px;padding:20px 22px;background:var(--surface);
+  border:1px solid var(--rule);border-left:3px solid var(--brass)}
+.callout .eyebrow{display:block;margin-bottom:8px}
+.callout p{font-size:.95rem;color:var(--ink-2)}
+.callout strong{color:var(--ink)}
+
+/* ---------- ucits list ---------- */
+.ucits{margin-top:24px;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.urow{background:var(--surface);padding:13px 18px;display:grid;gap:4px 18px;
+  grid-template-columns:minmax(0,1fr) auto;align-items:baseline}
+.urow .what{font-size:.92rem}
+.urow .what em{font-style:normal;color:var(--ink-3);font-family:var(--mono);font-size:.78rem}
+.urow .where{font-family:var(--mono);font-size:.8rem;color:var(--ink-2);text-align:right}
+.urow .where b{color:var(--brass);font-weight:600}
+.urow.none .where{color:var(--neg)}
+
+/* ---------- tooltip ---------- */
+#tip{position:fixed;pointer-events:none;opacity:0;transition:opacity .12s;z-index:50;
+  background:var(--surface);border:1px solid var(--rule-strong);padding:9px 12px;
+  font-size:.8rem;line-height:1.45;box-shadow:0 6px 22px rgba(0,0,0,.14);max-width:250px}
+#tip .tt{font-family:var(--mono);font-weight:600;font-size:.78rem;margin-bottom:3px}
+#tip .tr{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.hit{cursor:crosshair}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+
+footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--rule-strong);
+  font-size:.83rem;color:var(--ink-3);line-height:1.6}
+footer p+p{margin-top:.9em}
+</style>
+
+<div class="page">
+
+<header>
+<div class="col">
+  <div class="kicker">
+    <span class="eyebrow">Estudio cuantitativo</span>
+    <span class="eyebrow" style="color:var(--rule-strong)">·</span>
+    <span class="eyebrow">Interactive Brokers · FMP</span>
+  </div>
+  <h1>Buscando lo que no se mueve con el Nasdaq</h1>
+  <p class="dek">Se cribaron 65 ETFs y fondos buscando algo raro: rentabilidad parecida
+  al Nasdaq-100 sin moverse con él. Diez años de datos dicen que solo un activo lo
+  consigue de verdad — y que dos de los candidatos más rentables son el Nasdaq disfrazado.</p>
+  <div class="byline">
+    <span>16 series · 117 meses</span><i>|</i>
+    <span>nov-2016 → ago-2026</span><i>|</i>
+    <span>retorno total en USD</span><i>|</i>
+    <span>3 sep 2026</span>
+  </div>
+</div>
+</header>
+
+<div class="verdict" style="max-width:var(--wide);margin-inline:auto">
+  <div class="verdict-grid">
+    <div class="vcell">
+      <span class="tick">GLD · oro</span>
+      <span class="figure f-brass num">0,12</span>
+      <span class="cap">Correlación con el Nasdaq. El único activo que la mantiene
+      cerca de cero en los cuatro regímenes analizados.</span>
+    </div>
+    <div class="vcell">
+      <span class="tick">GLD · decil peor</span>
+      <span class="figure f-brass num">+1,1 %</span>
+      <span class="cap">Su rentabilidad media en los 12 meses en que el Nasdaq cayó
+      −8,7 %. Es el único del estudio que gana ahí.</span>
+    </div>
+    <div class="vcell">
+      <span class="tick">GDX · mineras de oro</span>
+      <span class="figure f-brass num">18,4 %</span>
+      <span class="cap">Anual, con correlación 0,25. Lo más cerca que hay de
+      «rentabilidad Nasdaq sin correlación Nasdaq».</span>
+    </div>
+    <div class="vcell">
+      <span class="tick">GDX · sin 2025</span>
+      <span class="figure f-plum num">7,4 %</span>
+      <span class="cap">El mismo activo excluyendo un solo año natural. Ahí está
+      el asterisco de todo el estudio.</span>
+    </div>
+  </div>
+</div>
+
+<section>
+<div class="col">
+  <div class="sec-head">
+    <span class="tickmark">El mapa</span>
+    <h2>Nadie bate al Nasdaq. La pregunta útil es otra.</h2>
+  </div>
+  <p>Ningún activo del universo superó al Nasdaq-100 en la última década. Eso ya es
+  un resultado: «lo mismo pero descorrelacionado» no ha existido. Así que la pregunta
+  deja de ser <em>qué lo sustituye</em> y pasa a ser <em>qué se le puede añadir sin
+  pagar rentabilidad</em>.</p>
+  <p>El cuadrante que importa está arriba a la izquierda: rentabilidad alta,
+  correlación baja. Está prácticamente vacío, y lo que hay dentro es oro.</p>
+</div>
+
+<figure class="wide">
+  <div class="fig-title">Rentabilidad frente a correlación con el Nasdaq</div>
+  <div class="fig-sub">nov-2016 → ago-2026 · el tamaño del punto es la volatilidad anualizada</div>
+  <div class="legend">
+    <span><i class="swatch" style="background:var(--bench)"></i>Nasdaq-100 (referencia)</span>
+    <span><i class="swatch" style="background:var(--brass)"></i>Correlación baja (&lt;0,35)</span>
+    <span><i class="swatch" style="background:var(--plum)"></i>Correlación alta (≥0,35)</span>
+  </div>
+  <div class="chart-scroll"><svg id="scatter" viewBox="0 0 780 480" role="img"
+    aria-label="Diagrama de dispersión: correlación con el Nasdaq en el eje horizontal, rentabilidad anualizada en el vertical. Oro y mineras de oro son los únicos activos con correlación baja y rentabilidad alta."></svg></div>
+  <figcaption>La banda sombreada marca la zona buscada: correlación por debajo de 0,35
+  y más de un 14 % anual. Solo la ocupan <b class="mono">GLD</b> (oro) y
+  <b class="mono">GDX</b> (mineras de oro). <b class="mono">EWT</b> y
+  <b class="mono">EWY</b> —Taiwán y Corea— son los más rentables del resto, pero se
+  sientan a la derecha del todo.</figcaption>
+</figure>
+</section>
+
+<section>
+<div class="col">
+  <div class="sec-head">
+    <span class="tickmark">GLD</span>
+    <h2>El oro es el único diversificador estructural</h2>
+  </div>
+  <p>La correlación media engaña, porque casi todo se correlaciona cuando el mercado
+  cae. Lo que separa a un diversificador de verdad de uno de mentira es el
+  comportamiento en la cola: los meses en que el Nasdaq se hunde.</p>
+  <p>En los 12 peores meses del periodo, con el Nasdaq cayendo un 8,7 % de media,
+  el oro <strong>ganó</strong> un 1,1 %. Todo lo demás perdió.</p>
+</div>
+
+<figure class="wide">
+  <div class="fig-title">Qué hizo cada activo en el decil peor del Nasdaq</div>
+  <div class="fig-sub">rentabilidad media en los 12 meses con peor comportamiento del QQQ (media −8,7 %)</div>
+  <div class="chart-scroll"><svg id="tail" viewBox="0 0 780 430" role="img"
+    aria-label="Barras horizontales: rentabilidad media de cada activo en los doce peores meses del Nasdaq. Solo el oro es positiva."></svg></div>
+  <figcaption>Barras a la derecha de la línea cero = ganó dinero mientras el Nasdaq
+  caía. Solo hay una. Las mineras de oro se quedan en −1,6 %, y Metales y Minería
+  (<b class="mono">XME</b>) llega a amplificar la caída hasta −11,5 %.</figcaption>
+</figure>
+
+<div class="col">
+  <div class="callout">
+    <span class="eyebrow">Lo que cuesta y lo que compra</span>
+    <p>Una cartera <strong>75 % Nasdaq / 25 % oro</strong> habría rentado un
+    <strong>20,0 %</strong> anual frente al 21,2 % del Nasdaq puro: 1,2 puntos menos.
+    A cambio, la volatilidad baja del 19,3 % al 15,4 % y la caída máxima del
+    −32,6 % al −26,9 %. El Sharpe pasa de 1,00 a 1,17.</p>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="col">
+  <div class="sec-head">
+    <span class="tickmark">EWT · EWY</span>
+    <h2>La trampa: Taiwán y Corea no diversifican nada</h2>
+  </div>
+  <p>Son los dos países más rentables del cribado —19,8 % y 15,6 % anual— y por eso
+  aparecen en cualquier búsqueda de alternativas. Pero Taiwán correlaciona 0,72 con
+  el Nasdaq, y <strong>0,77 en el tramo 2023-2026</strong>: es la única correlación
+  del estudio que sube con el tiempo. Corea tiene beta 1,01 y captura el 92 % de las
+  caídas del Nasdaq.</p>
+  <p>No es casualidad. Son TSMC, Samsung y SK Hynix. Comprarlos es doblar la apuesta
+  de semiconductores, no repartirla.</p>
+</div>
+
+<figure class="wide">
+  <div class="fig-title">Correlación con el Nasdaq por régimen de mercado</div>
+  <div class="fig-sub">correlación de retornos mensuales dentro de cada tramo</div>
+  <div class="chart-scroll"><svg id="regimes" viewBox="0 0 780 400" role="img"
+    aria-label="Líneas de correlación con el Nasdaq en cuatro tramos: 2017-2019, 2020-2021, 2022 y 2023-2026."></svg></div>
+  <figcaption>Todo se correlaciona en 2020-21 y en el mercado bajista de 2022, y casi
+  todo se relaja después. Las dos excepciones tiran en direcciones opuestas: el oro
+  vuelve a cero, y Taiwán se queda arriba.</figcaption>
+</figure>
+</section>
+
+<section>
+<div class="col">
+  <div class="sec-head">
+    <span class="tickmark">El asterisco</span>
+    <h2>Casi todo el resultado de los diversificadores es el año 2025</h2>
+  </div>
+  <p>Aquí está la parte incómoda. En 2025 las mineras de oro hicieron
+  <strong>+181 %</strong>, las de plata +201 %, el cobre +127 %, el oro +84 %,
+  Grecia +96 % y España +88 %. El Nasdaq hizo +23 %.</p>
+  <p>Si se quita ese único año natural, el orden se desmonta. El Nasdaq apenas se
+  mueve (21,2 % → 21,3 %) porque 2025 fue para él un año normal. Los demás se caen
+  por un precipicio.</p>
+</div>
+
+<figure class="wide">
+  <div class="fig-title">Rentabilidad anualizada con y sin el año 2025</div>
+  <div class="fig-sub">misma ventana de 9,75 años, eliminando los 12 meses de 2025</div>
+  <div class="chart-scroll"><svg id="dumb" viewBox="0 0 780 450" role="img"
+    aria-label="Gráfico de rangos: rentabilidad anualizada de cada activo con y sin el año 2025. El Nasdaq no varía; los diversificadores caen mucho."></svg></div>
+  <figcaption>El punto hueco es el CAGR excluyendo 2025; el macizo, el CAGR completo.
+  La longitud de la línea es cuánto de la última década se concentró en doce meses.
+  <b class="mono">QQQ</b> es el único sin línea.</figcaption>
+</figure>
+
+<div class="col">
+  <div class="callout">
+    <span class="eyebrow">Prueba de robustez en cuatro ventanas</span>
+    <p>El oro <strong>mejora el Sharpe en las cuatro</strong> (1,03 · 1,10 · 0,82 ·
+    0,96 frente a 0,94 · 1,00 · 0,66 · 0,92 del Nasdaq solo), siempre a cambio de 1-2
+    puntos de rentabilidad. Las mineras de oro <strong>solo lo mejoran si se incluye
+    2025</strong>: en 2014-2024 un 80/20 con <b class="mono">GDX</b> renta 16,9 % con
+    Sharpe 0,85, por debajo del 18,6 % y 0,92 del Nasdaq puro. Lo primero parece una
+    propiedad estructural; lo segundo, de momento, un episodio.</p>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="col">
+  <div class="sec-head">
+    <span class="tickmark">Los datos</span>
+    <h2>Las 16 series, completas</h2>
+  </div>
+  <p>Ventana nov-2016 → ago-2026. Retorno total con dividendos reinvertidos, en USD,
+  sin costes ni retenciones. Sombreadas, las dos que ocupan el cuadrante objetivo.</p>
+</div>
+<div class="table-wrap" style="max-width:var(--wide)">
+<table>
+<thead><tr>
+  <th>Ticker</th><th>Qué es</th><th class="num">CAGR</th><th class="num">Vol</th>
+  <th class="num">Sharpe</th><th class="num">Caída máx.</th><th class="num">Corr. QQQ</th>
+  <th class="num">Beta</th><th class="num">Decil peor</th><th class="num">Sin 2025</th>
+</tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+</section>
+
+<section>
+<div class="col">
+  <div class="sec-head">
+    <span class="tickmark">La letra pequeña</span>
+    <h2>El cuello de botella no es encontrarlos: es poder comprarlos</h2>
+  </div>
+  <p>La cuenta de IBKR tiene divisa base EUR y posiciones en Euronext Ámsterdam. Bajo
+  PRIIPs, un minorista del EEE <strong>no puede comprar ETFs domiciliados en Estados
+  Unidos</strong>: no tienen KID. Encaja con la cartera actual, donde hay
+  <span class="mono">PSLV</span> y <span class="mono">SPCX</span> —closed-end funds,
+  exentos— y ningún ETF estadounidense.</p>
+  <p>Los tickers de este estudio son el <em>vehículo de análisis</em>, no el vehículo
+  de compra. Estos son los equivalentes UCITS localizados en el contrato de IBKR:</p>
+</div>
+
+<div class="ucits col">
+  <div class="urow"><span class="what">Oro físico <em>GLD</em></span>
+    <span class="where"><b>SGLN</b> · LSEETF &nbsp;/&nbsp; <b>WGLD</b> · LSEETF &nbsp;/&nbsp; <b>GLDD</b> · AEB</span></div>
+  <div class="urow"><span class="what">Mineras de oro <em>GDX</em></span>
+    <span class="where"><b>GDX</b> · LSEETF &nbsp;/&nbsp; <b>GDX1</b> · SBF</span></div>
+  <div class="urow"><span class="what">Mineras de oro junior <em>GDXJ</em></span>
+    <span class="where"><b>GDXJ</b> · LSEETF</span></div>
+  <div class="urow"><span class="what">Mineras de plata <em>SIL</em></span>
+    <span class="where"><b>SILV</b> · BVME.ETF &nbsp;/&nbsp; <b>SILG</b> · LSEETF</span></div>
+  <div class="urow"><span class="what">Mineras de cobre <em>COPX</em></span>
+    <span class="where"><b>COPX</b> · LSEETF</span></div>
+  <div class="urow"><span class="what">Uranio <em>URA</em></span>
+    <span class="where"><b>URNU</b> · BVME.ETF</span></div>
+  <div class="urow"><span class="what">Defensa <em>ITA</em></span>
+    <span class="where"><b>DFNG</b> · LSEETF</span></div>
+  <div class="urow"><span class="what">España <em>EWP</em></span>
+    <span class="where"><b>LYXIB</b> · BM &nbsp;/&nbsp; <b>BBVAI</b> · BM</span></div>
+  <div class="urow none"><span class="what">Grecia <em>GREK</em></span>
+    <span class="where">sin equivalente UCITS</span></div>
+  <div class="urow none"><span class="what">Argentina <em>ARGT</em></span>
+    <span class="where">sin equivalente UCITS</span></div>
+</div>
+
+<div class="col">
+  <div class="callout" style="border-left-color:var(--plum)">
+    <span class="eyebrow">Lo que se queda fuera</span>
+    <p>Grecia y Argentina son dos de las sorpresas del cribado y <strong>no hay forma
+    limpia de comprarlas</strong> desde una cuenta minorista europea. Lo mismo pasa
+    con los fondos de primas alternativas (<span class="mono">QSPIX</span>,
+    <span class="mono">AQMIX</span>) y con los managed futures
+    (<span class="mono">DBMF</span>), que además rentan alrededor de un 7 % anual.
+    Conviene confirmar en la cuenta que cada instrumento es comprable y en qué divisa
+    liquida antes de operar.</p>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="col">
+  <div class="sec-head">
+    <span class="tickmark">Qué queda</span>
+    <h2>Cinco conclusiones</h2>
+  </div>
+  <p><strong>No existe «el Nasdaq pero descorrelacionado».</strong> En diez años nada
+  del universo lo ha batido, y lo que más se le acerca en rentabilidad es Nasdaq
+  encubierto.</p>
+  <p><strong>El oro es el diversificador estructural.</strong> El único con
+  correlación ~0 en todos los regímenes y el único que gana en los peores meses del
+  Nasdaq. Cuesta 1-2 puntos de rentabilidad y compra 6-11 puntos de caída máxima.</p>
+  <p><strong>Las mineras de oro son la mejor candidata a rentabilidad sin
+  correlación</strong>, con el asterisco de 2025 bien visible.</p>
+  <p><strong>Grecia, España, Italia y Polonia son reales pero frágiles:</strong> el
+  resultado depende casi por completo de empezar a medir en el suelo de 2016. Movida
+  la ventana a 2014, Grecia pasa del 17,3 % al 4,1 % y España del 13,4 % al 6,9 %.</p>
+  <p><strong>La optimización pura no sirve aquí.</strong> El máximo Sharpe cae en un
+  45-50 % de oro, que es sobreajuste a la mayor década del metal desde los setenta.
+  La zona defendible está en el 15-25 %, donde la mejora se sostiene en todas las
+  ventanas de control.</p>
+</div>
+</section>
+
+<footer class="col">
+  <p><strong>Método.</strong> Precios mensuales del histórico de Interactive Brokers
+  (barras mensuales, ajustadas por splits). El retorno total se deriva de las series
+  ajustadas por dividendos de Financial Modeling Prep: como están retro-ajustadas,
+  <span class="mono">precio_hoy / adjClose(30-nov-2016)</span> da el retorno total
+  exacto del periodo, del que se despeja la tasa de dividendo implícita de cada fondo.
+  Tipo sin riesgo del 2,0 % para el Sharpe. Cribado inicial sobre ~65 ETFs y fondos.</p>
+  <p><strong>Limitaciones.</strong> Dividendos repartidos de forma uniforme entre meses.
+  Todo en USD: para una cuenta en EUR hay un riesgo divisa adicional no modelado. Sin
+  costes de transacción, spreads ni retenciones fiscales.</p>
+  <p>Estudio cuantitativo con fines de análisis. No es una recomendación de inversión.
+  Rentabilidades pasadas no garantizan resultados futuros — y este estudio muestra
+  precisamente cuánto cambian las conclusiones al mover la ventana de medición.</p>
+</footer>
+
+</div>
+
+<div id="tip" role="status" aria-live="polite"></div>
+
+<script>
+const A=[
+ {t:"QQQ", n:"Nasdaq-100",          cagr:21.2, corr:1.00, vol:19.3, sh:1.00, dd:-32.6, beta:1.00, tail:-8.7, ex:21.3, c:"bench"},
+ {t:"EWT", n:"Taiwán",              cagr:19.8, corr:0.72, vol:23.1, sh:0.77, dd:-36.3, beta:0.86, tail:-9.1, ex:18.0, c:"hi"},
+ {t:"COPX",n:"Mineras de cobre",    cagr:18.7, corr:0.48, vol:35.4, sh:0.47, dd:-55.9, beta:0.88, tail:-8.7, ex:10.3, c:"hi"},
+ {t:"GDX", n:"Mineras de oro",      cagr:18.4, corr:0.25, vol:34.8, sh:0.47, dd:-43.4, beta:0.45, tail:-1.6, ex:7.4,  c:"lo"},
+ {t:"URA", n:"Uranio",              cagr:18.1, corr:0.43, vol:37.2, sh:0.43, dd:-44.1, beta:0.84, tail:-9.0, ex:10.6, c:"hi"},
+ {t:"GREK",n:"Grecia",              cagr:17.3, corr:0.45, vol:25.5, sh:0.60, dd:-46.2, beta:0.60, tail:-4.0, ex:10.7, c:"hi"},
+ {t:"ARGT",n:"Argentina",           cagr:16.9, corr:0.44, vol:33.7, sh:0.44, dd:-55.8, beta:0.77, tail:-6.0, ex:16.7, c:"hi"},
+ {t:"XME", n:"Metales y minería",   cagr:16.1, corr:0.55, vol:32.1, sh:0.44, dd:-56.0, beta:0.91, tail:-11.5,ex:8.5,  c:"hi"},
+ {t:"EWY", n:"Corea del Sur",       cagr:15.6, corr:0.63, vol:31.1, sh:0.44, dd:-47.9, beta:1.01, tail:-10.1,ex:6.1,  c:"hi"},
+ {t:"EWI", n:"Italia",              cagr:15.2, corr:0.53, vol:21.7, sh:0.61, dd:-33.9, beta:0.59, tail:-6.3, ex:11.0, c:"hi"},
+ {t:"GLD", n:"Oro físico",          cagr:14.2, corr:0.12, vol:15.1, sh:0.81, dd:-23.8, beta:0.10, tail:1.1,  ex:8.3,  c:"lo"},
+ {t:"ITA", n:"Defensa US",          cagr:13.7, corr:0.54, vol:21.7, sh:0.54, dd:-37.6, beta:0.61, tail:-7.4, ex:9.4,  c:"hi"},
+ {t:"EWP", n:"España",              cagr:13.4, corr:0.45, vol:20.8, sh:0.55, dd:-38.6, beta:0.49, tail:-5.0, ex:7.1,  c:"hi"},
+ {t:"EPOL",n:"Polonia",             cagr:13.3, corr:0.50, vol:27.6, sh:0.41, dd:-58.0, beta:0.72, tail:-5.6, ex:7.2,  c:"hi"},
+ {t:"SIL", n:"Mineras de plata",    cagr:12.9, corr:0.32, vol:37.0, sh:0.29, dd:-51.6, beta:0.61, tail:-4.1, ex:0.9,  c:"lo"},
+ {t:"EWZ", n:"Brasil",              cagr:6.2,  corr:0.31, vol:31.1, sh:0.14, dd:-49.5, beta:0.50, tail:-4.5, ex:0.4,  c:"lo"}
+];
+const REG=[
+ {t:"GLD", v:[0.04,0.32,0.33,-0.00], c:"lo"},
+ {t:"GDX", v:[-0.01,0.57,0.50,0.07], c:"lo"},
+ {t:"SIL", v:[0.14,0.62,0.65,0.11],  c:"lo"},
+ {t:"EWZ", v:[0.10,0.47,0.55,0.11],  c:"lo"},
+ {t:"GREK",v:[0.26,0.63,0.60,0.35],  c:"hi"},
+ {t:"EWP", v:[0.49,0.55,0.64,0.23],  c:"hi"},
+ {t:"COPX",v:[0.48,0.64,0.61,0.29],  c:"hi"},
+ {t:"XME", v:[0.59,0.62,0.71,0.43],  c:"hi"},
+ {t:"EWY", v:[0.56,0.67,0.80,0.64],  c:"hi"},
+ {t:"EWT", v:[0.67,0.63,0.70,0.77],  c:"hi"}
+];
+const NS="http://www.w3.org/2000/svg";
+const CS=getComputedStyle(document.documentElement);
+const col=k=>CS.getPropertyValue(k).trim();
+const COL={bench:"var(--bench)",lo:"var(--brass)",hi:"var(--plum)"};
+const el=(p,tag,at={})=>{const e=document.createElementNS(NS,tag);
+  for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e;};
+const txt=(p,x,y,s,at={})=>{const e=el(p,"text",Object.assign(
+  {x,y,fill:"var(--ink-3)","font-size":"11.5","font-family":"var(--mono)"},at));
+  e.textContent=s;return e;};
+
+/* ---- tooltip ---- */
+const tip=document.getElementById("tip");
+function bind(node,html){
+  const show=e=>{tip.innerHTML=html;tip.style.opacity="1";
+    const r=tip.getBoundingClientRect();
+    let x=e.clientX+14,y=e.clientY-10;
+    if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;
+    if(y+r.height>innerHeight-8)y=innerHeight-r.height-8;
+    tip.style.left=x+"px";tip.style.top=Math.max(8,y)+"px";};
+  node.classList.add("hit");
+  node.addEventListener("mousemove",show);
+  node.addEventListener("mouseenter",show);
+  node.addEventListener("mouseleave",()=>tip.style.opacity="0");
+}
+const pct=v=>(v>0?"+":"")+v.toFixed(1).replace(".",",")+" %";
+
+/* ---------- 1. scatter ---------- */
+(function(){
+  const s=document.getElementById("scatter"),W=780,H=480,
+        M={t:22,r:26,b:52,l:60};
+  const x=v=>M.l+(v-(-0.05))/(1.05-(-0.05))*(W-M.l-M.r);
+  const y=v=>H-M.b-(v-4)/(23-4)*(H-M.t-M.b);
+  // banda objetivo
+  el(s,"rect",{x:x(-0.05),y:y(23),width:x(0.35)-x(-0.05),height:y(14)-y(23),fill:"var(--band)"});
+  txt(s,x(0.35)-8,y(22.2),"zona objetivo",{"text-anchor":"end","font-size":"11",
+    "letter-spacing":".08em",fill:"var(--brass)"});
+  // grid + ejes
+  for(const g of [5,10,15,20]){
+    el(s,"line",{x1:M.l,x2:W-M.r,y1:y(g),y2:y(g),stroke:"var(--rule)","stroke-width":1});
+    txt(s,M.l-10,y(g)+4,g+" %",{"text-anchor":"end"});
+  }
+  for(const g of [0,0.25,0.5,0.75,1]){
+    el(s,"line",{x1:x(g),x2:x(g),y1:M.t,y2:H-M.b,stroke:"var(--rule)","stroke-width":1});
+    txt(s,x(g),H-M.b+22,g.toFixed(2).replace(".",","),{"text-anchor":"middle"});
+  }
+  el(s,"line",{x1:M.l,x2:W-M.r,y1:H-M.b,y2:H-M.b,stroke:"var(--rule-strong)","stroke-width":1});
+  txt(s,(M.l+W-M.r)/2,H-M.b+43,"CORRELACIÓN CON EL NASDAQ-100 →",
+    {"text-anchor":"middle","font-size":"10.5","letter-spacing":".12em",fill:"var(--ink-3)"});
+  txt(s,M.l-44,M.t+4,"CAGR",{"font-size":"10.5","letter-spacing":".12em"});
+  const LP={GDX:[0,-1],GLD:[0,-1],SIL:[0,1],EWZ:[0,1],QQQ:[-1,0],EWT:[0,-1],EWY:[1,0],
+            COPX:[0,-1],URA:[0,1],GREK:[-1,0],ARGT:[1,0],XME:[1,0],EWI:[1,0],ITA:[0,1],
+            EWP:[-1,0],EPOL:[0,1]};
+  A.forEach(a=>{
+    const r=5+a.vol*0.30, cx=x(a.corr), cy=y(a.cagr), c=COL[a.c];
+    const g=el(s,"g",{});
+    el(g,"circle",{cx,cy,r,fill:c,"fill-opacity":a.c==="bench"?.28:.20,
+      stroke:c,"stroke-width":a.c==="bench"?2.2:1.6});
+    el(g,"circle",{cx,cy,r:3,fill:c});
+    const d=LP[a.t]||[1,0];
+    let tx=cx+d[0]*(r+7), ty=cy+d[1]*(r+15)+(d[1]===0?4:0), anc="middle";
+    if(d[0]>0)anc="start"; if(d[0]<0)anc="end";
+    txt(g,tx,ty,a.t,{"text-anchor":anc,"font-size":"12","font-weight":"600",
+      fill:a.c==="bench"?"var(--bench)":"var(--ink)"});
+    bind(g,`<div class="tt" style="color:${c}">${a.t} · ${a.n}</div>
+      <div class="tr">CAGR ${pct(a.cagr)}<br>Correlación ${a.corr.toFixed(2).replace(".",",")}<br>
+      Volatilidad ${a.vol.toFixed(1).replace(".",",")} %<br>Sharpe ${a.sh.toFixed(2).replace(".",",")}</div>`);
+  });
+})();
+
+/* ---------- 2. tail bars ---------- */
+(function(){
+  const s=document.getElementById("tail"),W=780,H=430,M={t:16,r:30,b:40,l:112};
+  const d=[...A].filter(a=>a.t!=="QQQ").sort((a,b)=>b.tail-a.tail);
+  const x=v=>M.l+(v-(-13))/(3-(-13))*(W-M.l-M.r);
+  const bh=(H-M.t-M.b)/d.length, bar=bh-6;
+  for(const g of [-12,-9,-6,-3,0,3]){
+    el(s,"line",{x1:x(g),x2:x(g),y1:M.t-4,y2:H-M.b,
+      stroke:g===0?"var(--rule-strong)":"var(--rule)","stroke-width":1});
+    txt(s,x(g),H-M.b+20,(g>0?"+":"")+g+" %",{"text-anchor":"middle"});
+  }
+  // referencia QQQ
+  el(s,"line",{x1:x(-8.7),x2:x(-8.7),y1:M.t-4,y2:H-M.b,stroke:"var(--bench)",
+    "stroke-width":1.5,"stroke-dasharray":"4 4"});
+  txt(s,x(-8.7)-7,M.t+8,"QQQ −8,7 %",{"text-anchor":"end","font-size":"11",
+    "font-weight":"600",fill:"var(--bench)"});
+  d.forEach((a,i)=>{
+    const cy=M.t+i*bh, c=a.tail>0?"var(--pos)":"var(--neg)";
+    const x0=Math.min(x(0),x(a.tail)), w=Math.abs(x(a.tail)-x(0));
+    const g=el(s,"g",{});
+    el(g,"rect",{x:x0,y:cy,width:Math.max(w,2),height:bar,fill:c,
+      rx:3,"fill-opacity":a.tail>0?.95:.78});
+    txt(g,M.l-12,cy+bar/2+4,a.t,{"text-anchor":"end","font-size":"11.5",
+      "font-weight":"600",fill:"var(--ink)"});
+    txt(g,a.tail>0?x(a.tail)+8:x0-8,cy+bar/2+4,pct(a.tail),
+      {"text-anchor":a.tail>0?"start":"end","font-size":"11",
+       fill:a.tail>0?"var(--pos)":"var(--ink-2)"});
+    el(g,"rect",{x:0,y:cy-3,width:W,height:bh,fill:"transparent"});
+    bind(g,`<div class="tt">${a.t} · ${a.n}</div><div class="tr">
+      Media en el decil peor: <b>${pct(a.tail)}</b><br>
+      Captura bajista frente al QQQ</div>`);
+  });
+})();
+
+/* ---------- 3. regimes ---------- */
+(function(){
+  const s=document.getElementById("regimes"),W=780,H=400,M={t:22,r:104,b:56,l:52};
+  const L=["2017-2019","2020-2021","2022","2023-2026"];
+  const x=i=>M.l+i*(W-M.l-M.r)/3;
+  const y=v=>H-M.b-(v-(-0.1))/(0.9-(-0.1))*(H-M.t-M.b);
+  for(const g of [0,0.2,0.4,0.6,0.8]){
+    el(s,"line",{x1:M.l,x2:W-M.r,y1:y(g),y2:y(g),stroke:"var(--rule)","stroke-width":1});
+    txt(s,M.l-10,y(g)+4,g.toFixed(1).replace(".",","),{"text-anchor":"end"});
+  }
+  el(s,"line",{x1:M.l,x2:W-M.r,y1:y(0),y2:y(0),stroke:"var(--rule-strong)","stroke-width":1});
+  L.forEach((l,i)=>txt(s,x(i),H-M.b+24,l,{"text-anchor":i===0?"start":i===3?"end":"middle",
+    "font-size":"11"}));
+  txt(s,M.l,M.t-6,"CORRELACIÓN MENSUAL CON EL QQQ",{"font-size":"10.5","letter-spacing":".12em"});
+  const HL={GLD:1,EWT:1,GDX:1};
+  // reparte las etiquetas del borde derecho para que no se solapen
+  const lab=REG.map(r=>({t:r.t,y:y(r.v[3]),c:COL[r.c],hi:HL[r.t]})).sort((a,b)=>a.y-b.y);
+  const GAP=14;
+  for(let i=1;i<lab.length;i++) if(lab[i].y-lab[i-1].y<GAP) lab[i].y=lab[i-1].y+GAP;
+  const over=lab[lab.length-1].y-(H-M.b);
+  if(over>0) lab.forEach(l=>l.y-=over);
+  const LY=Object.fromEntries(lab.map(l=>[l.t,l.y]));
+  REG.forEach(r=>{
+    const c=COL[r.c], hi=HL[r.t];
+    const pts=r.v.map((v,i)=>[x(i),y(v)]);
+    const g=el(s,"g",{});
+    el(g,"polyline",{points:pts.map(p=>p.join(",")).join(" "),fill:"none",stroke:c,
+      "stroke-width":hi?2.4:1.4,"stroke-opacity":hi?1:.42,
+      "stroke-linejoin":"round","stroke-linecap":"round"});
+    pts.forEach(p=>el(g,"circle",{cx:p[0],cy:p[1],r:hi?4:2.6,fill:c,
+      "fill-opacity":hi?1:.42,stroke:"var(--surface)","stroke-width":1.5}));
+    const ly=LY[r.t];
+    if(Math.abs(ly-y(r.v[3]))>1.5)
+      el(g,"path",{d:`M${W-M.r} ${y(r.v[3])} L${W-M.r+5} ${ly}`,fill:"none",
+        stroke:c,"stroke-width":1,"stroke-opacity":.5});
+    txt(g,W-M.r+10,ly+4,r.t,{"font-size":"11.5","font-weight":hi?"600":"400",
+      fill:hi?c:"var(--ink-3)","text-anchor":"start"});
+    bind(g,`<div class="tt" style="color:${c}">${r.t}</div><div class="tr">
+      2017-19 &nbsp;${r.v[0].toFixed(2).replace(".",",")}<br>
+      2020-21 &nbsp;${r.v[1].toFixed(2).replace(".",",")}<br>
+      2022 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${r.v[2].toFixed(2).replace(".",",")}<br>
+      2023-26 &nbsp;${r.v[3].toFixed(2).replace(".",",")}</div>`);
+  });
+})();
+
+/* ---------- 4. dumbbell ---------- */
+(function(){
+  const s=document.getElementById("dumb"),W=780,H=450,M={t:22,r:64,b:44,l:64};
+  const d=[...A].sort((a,b)=>b.cagr-a.cagr);
+  const x=v=>M.l+v/23*(W-M.l-M.r);
+  const rh=(H-M.t-M.b)/d.length;
+  for(const g of [0,5,10,15,20]){
+    el(s,"line",{x1:x(g),x2:x(g),y1:M.t-4,y2:H-M.b,stroke:"var(--rule)","stroke-width":1});
+    txt(s,x(g),H-M.b+20,g+" %",{"text-anchor":"middle"});
+  }
+  txt(s,W-M.r,M.t-8,"CAGR ANUALIZADO",{"text-anchor":"end","font-size":"10.5",
+    "letter-spacing":".12em"});
+  d.forEach((a,i)=>{
+    const cy=M.t+i*rh+rh/2, c=a.c==="bench"?"var(--bench)":COL[a.c];
+    const g=el(s,"g",{});
+    el(g,"line",{x1:x(a.ex),x2:x(a.cagr),y1:cy,y2:cy,stroke:c,"stroke-width":2.5,
+      "stroke-opacity":.42,"stroke-linecap":"round"});
+    el(g,"circle",{cx:x(a.ex),cy,r:4.5,fill:"var(--surface)",stroke:c,"stroke-width":2});
+    el(g,"circle",{cx:x(a.cagr),cy,r:5,fill:c});
+    txt(g,M.l-12,cy+4,a.t,{"text-anchor":"end","font-size":"11.5","font-weight":"600",
+      fill:"var(--ink)"});
+    txt(g,x(a.cagr)+11,cy+4,a.cagr.toFixed(1).replace(".",","),
+      {"font-size":"11",fill:"var(--ink-2)"});
+    el(g,"rect",{x:0,y:cy-rh/2,width:W,height:rh,fill:"transparent"});
+    bind(g,`<div class="tt" style="color:${c}">${a.t} · ${a.n}</div><div class="tr">
+      Con 2025: <b>${pct(a.cagr)}</b><br>Sin 2025: <b>${pct(a.ex)}</b><br>
+      Diferencia: ${(a.cagr-a.ex).toFixed(1).replace(".",",")} pp</div>`);
+  });
+  // leyenda
+  const lg=el(s,"g",{});
+  el(lg,"circle",{cx:M.l+4,cy:H-8,r:5,fill:"var(--ink-3)"});
+  txt(lg,M.l+14,H-4,"con 2025",{"font-size":"11"});
+  el(lg,"circle",{cx:M.l+96,cy:H-8,r:4.5,fill:"var(--surface)",stroke:"var(--ink-3)","stroke-width":2});
+  txt(lg,M.l+106,H-4,"sin 2025",{"font-size":"11"});
+})();
+
+/* ---------- table ---------- */
+(function(){
+  const tb=document.getElementById("tbody");
+  const f=(v,d=1)=>v.toFixed(d).replace(".",",");
+  A.forEach(a=>{
+    const tr=document.createElement("tr");
+    if(a.c==="bench")tr.className="bench";
+    else if(a.t==="GLD"||a.t==="GDX")tr.className="star";
+    tr.innerHTML=`<td class="t" style="color:${a.c==="bench"?"var(--bench)":a.c==="lo"?"var(--brass)":"var(--ink)"}">${a.t}</td>
+      <td>${a.n}</td><td class="num">${f(a.cagr)} %</td><td class="num">${f(a.vol)} %</td>
+      <td class="num">${f(a.sh,2)}</td><td class="num">${f(a.dd)} %</td>
+      <td class="num" style="font-weight:${a.corr<0.35?"600":"400"};color:${a.corr<0.35&&a.c!=="bench"?"var(--brass)":"inherit"}">${f(a.corr,2)}</td>
+      <td class="num">${f(a.beta,2)}</td>
+      <td class="num ${a.tail>0?"pos":""}">${a.tail>0?"+":""}${f(a.tail)} %</td>
+      <td class="num">${f(a.ex)} %</td>`;
+    tb.appendChild(tr);
+  });
+})();
+</script>
