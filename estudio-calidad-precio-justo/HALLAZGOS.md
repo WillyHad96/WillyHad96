@@ -68,7 +68,7 @@ el mercado real encogió (8.025 cotizadas en 1996 → 4.102 en 2012, Doidge/Karo
 Firma inequívoca de un panel construido desde una lista actual con historia hacia atrás.
 
 **A3. `sector` no es nulo: es el centinela `'desconocido'`**, que cubre 5.105 de 6.967
-tickers (73%).
+tickers (73%). **Ver A7: ese centinela es el marcador de muerte.**
 
 **A4. Ese centinela predice el retorno.** Dentro del **mismo año y el mismo sector**, las
 empresas sin clasificar rinden **−8,98 pp (p = 0,064)**, o −12,63 pp ponderado
@@ -88,6 +88,24 @@ El arranque en 2007 de `c4_base.sql` no era conservadurismo, era el primer año 
 Queda un **~8% residual entre 2007 y 2020** que sí afecta a producción: `mom12` es la
 variable de selección, así que ese 8% del universo está **excluido en silencio del top 20%**
 por un defecto de datos. Sin medir si rinde distinto. Ver `NOTA-PRECIOS-PLANOS-PRE-2007.md`.
+
+**A7. Las muertes están en el panel: son el cubo `'desconocido'`.** El 33,7% de los tickers
+sin sector (1.619 de 4.808) desaparecen del panel, frente al **0,4%** de los cíclicos (3 de
+704) y el 0,3% del resto de sectores. **Ochenta veces más mortalidad en el cubo sin sector.**
+`'desconocido'` no es "falta el dato": es el marcador de muerte, porque el panel se construyó
+desde una lista de vivos y las bajas quedaron sin clasificar. **Esto explica A4 entero**: el
+centinela predecía −9 a −12,6 pp porque *es* la tasa de mortalidad colándose por la puerta de
+atrás. Y significa que **todo el análisis sectorial de la serie (C2, C12, C13, C14, colas,
+piloto) ha corrido sobre un universo con 0,4% de mortalidad**. Pero las bajas son
+recuperables: en 2021–2023 hay **126 balas reales** (retorno del último año < −25%) y 182
+compras con prima — SIVB, SBNY, FRC, RAD, ENDP, MNK, YELL, WPG, AMRS, CANO y una docena con
+sufijo Q. Ver `NOTA-DONDE-ESTAN-LAS-MUERTES.md`.
+
+**A8. `AGENDA-ESTUDIOS.md` daba por bloqueadas dos cosas que no lo están.** En plan Premium
+funcionan **los trimestrales de `statements`** (80 trimestres hasta 2006) y
+**`company/delisted-companies`** con paginación. Ambas se daban por imposibles y ambas son la
+llave de los dos estudios que quedaban. **Reverificar el plan antes de dar nada por
+bloqueado.**
 
 ---
 
