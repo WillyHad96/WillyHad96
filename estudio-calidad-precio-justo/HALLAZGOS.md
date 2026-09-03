@@ -8,7 +8,8 @@
 |---|---|---|---|
 | C4 vs Nasdaq (2007–2023) | +0,27 pp de CAGR | 0,05 | la estrategia original: nada |
 | Pasar el filtro vs no pasarlo | +2,98 pp | 1,86 | el filtro elige bien dentro del universo |
-| **Barato en Industrials+Materials (C21)** | **+6,76 pp** | **+2,38** | **el único que pasa los cinco controles** |
+| Barato en Industrials+Materials (C21) | +6,76 pp vs su pool | +2,38 | pasa los cinco controles, **pero beta 1,46 y alfa Jensen solo +0,87%** |
+| **Barato en INDUSTRIALS solo (C23)** | **alfa Jensen +1,71%** | — | **el único alfa Jensen positivo; beta 1,11; cae menos que el índice en años malos** |
 | Overlay de tendencia | −1,31 pp | −1,10 | cuesta |
 
 **C21 es lo único de la serie con |t| > 2**, replicado en ambas mitades, monótono entre
@@ -320,6 +321,24 @@ cambiar de signo**; y la trampa de valor, medida sobre el universo CON muertos, 
 ~0,7 pp de los 21,6 pp de diferencial. **Pero no descorrelaciona** (0,785, real −0,031) y en
 2008 hizo −43,6% frente al −30,1% del Nasdaq. Es la prima de valor, documentada desde
 Fama-French: robusta, pero no es un descubrimiento nuestro. Ver `ESTUDIO-SUBTIPOS-CICLICOS.md`.
+
+**C22. El CAGR ordena por beta; el alfa no. Y eso corrige C21.** Sobre las carteras medidas,
+**corr(CAGR, correlación con el Nasdaq) = +0,704 pero corr(alfa, correlación) = +0,195**: la
+proporcionalidad entre rentabilidad y correlación es aritmética de mercado alcista, no una
+ley. Se invierte en años malos — Consumer Cyclical (β 1,35) hizo **−19,2%** y Industrials
+(β 0,80) **−10,4%** en los 4 años de caída del Nasdaq. **Corrección a C21:** el cuartil barato
+de Indu+Basi tiene **beta 1,46 y alfa Jensen de solo +0,87%** — su 17,79% era casi todo beta.
+
+**C23. Separado por subtipo, el efecto valor es un efecto de INDUSTRIALS.** Cuartil barato
+dentro de cada sector: **Industrials baratas es la única cartera de la serie con alfa Jensen
+positivo (+1,71%)**, CAGR 15,40% vs 14,29% del Nasdaq, **beta 1,11**, y en años malos del
+Nasdaq **−10,9% frente a −12,3%**: cae menos que el índice. El alfa replica (+8,1 pares,
++5,5 impares). Los contrastes enseñan más: **Basic Materials baratas da el CAGR más alto de
+todo el estudio (20,99%) y es la peor idea** — beta **2,38**, volatilidad **73,5%**, alfa
+−1,72%: es Nasdaq apalancado, no estrategia. En **Consumer Cyclical barato NO funciona**
+(alfa −5,62%) y en **Energy no replica** (+6,4 pares, −3,1 impares). **Regla que queda: la
+métrica de selección es alfa Jensen con beta ≤ 1,2, nunca CAGR bruto.** Ver
+`ESTUDIO-ALFA-VS-BETA.md`.
 
 ---
 
