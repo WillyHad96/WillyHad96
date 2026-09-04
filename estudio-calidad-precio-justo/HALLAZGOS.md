@@ -354,6 +354,18 @@ para elegir qué Industriales comprar, no para decidir comprar Industriales en v
 Criterio declarado para que sea alternativa de cartera y no solo selector: **alfa Jensen con
 t ≥ 2 y Sharpe ≥ 0,512**. Ver `NOTA-INDUSTRIALS-NO-BATE-AL-NASDAQ.md`.
 
+**C25. El sesgo de supervivencia infla el NIVEL ~5 pp, pero no crea el efecto valor.** En el
+universo **elegible** (el que la estrategia mira), el cubo `'desconocido'` muere el **59,1%**
+(596 de 1.008) frente al **0,2%** del sectorizado: **596 tickers elegibles, el 32% del
+universo verdadero, están ausentes de todo análisis sectorial**. Metiéndolos, el cuartil
+barato cae de **20,05% a 15,35%** (−4,70 pp) y el caro de 12,22% a 7,00% (−5,22 pp) — **pero
+el spread barato−caro no se encoge: crece de +7,83 a +8,35 pp.** Los muertos castigan a
+baratas y caras casi por igual. **Es B4 medido en vez de asumido: la comparación interna es
+robusta al sesgo, la comparación contra un índice no.** Consecuencia: el CAGR de 15,40% de
+C23/C24 baja a **~10–11% estimado frente al 13,26% del Nasdaq**, así que **C24 sale
+reforzado** (la distancia al índice es mayor de lo que parecía) **y C23 también** (su alfa
+interno no se apoyaba en el sesgo). Ver `ESTUDIO-SUPERVIVENCIA-EFECTO-VALOR.md`.
+
 ---
 
 ## D. La conclusión que ordena todo lo demás
