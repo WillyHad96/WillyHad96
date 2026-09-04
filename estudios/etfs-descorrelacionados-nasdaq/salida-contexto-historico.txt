@@ -1,0 +1,110 @@
+==========================================================================
+1. RENTABILIDAD POR ANO NATURAL (precio, sin dividendos)
+==========================================================================
+Anos completos analizados: 54 (1972-2025) + 2026 parcial
+Media aritmetica: 13.5% | Mediana: 15.5% | Desv.: 25.3%
+Anos negativos: 14 de 55 (25%)
+
+Los 6 peores:
+   2008   -40.5%
+   2000   -39.3%
+   1974   -35.1%
+   2022   -33.1%
+   2002   -31.5%
+   1973   -31.1%
+Los 6 mejores:
+   1999    85.6%
+   1991    56.8%
+   2003    50.0%
+   2009    43.9%
+   2020    43.6%
+   2023    43.4%
+
+Ultimos 11 anos:
+   2016     7.5%
+   2017    28.2%
+   2018    -3.9%
+   2019    35.2%
+   2020    43.6%
+   2021    21.4%
+   2022   -33.1%
+   2023    43.4%
+   2024    28.6%
+   2025    20.4%
+   2026    14.4%  <- parcial (hasta 3-sep)
+
+==========================================================================
+2. RENTABILIDAD ANUALIZADA A 10 ANOS, TODAS LAS VENTANAS (1981-2026)
+==========================================================================
+Ventanas de 10 anos naturales: 45
+Media: 11.0% | Mediana: 11.6% | Min: -5.7% | Max: 24.5%
+
+VENTANA ACTUAL (dic-2016 -> 3-sep-2026, 9.67 anos): 17.9% anual
+Percentil frente a las 45 ventanas historicas: 91%
+Ventanas historicas que la superan: 4
+
+Las 8 mejores decadas del Nasdaq:
+   1989-1999   24.5% anual   (  8.9x)
+   1990-2000   20.8% anual   (  6.6x)
+   2011-2021   19.6% anual   (  6.0x)
+   1988-1998   19.1% anual   (  5.7x)
+   2010-2020   17.1% anual   (  4.9x)
+   1987-1997   16.9% anual   (  4.8x)
+   2015-2025   16.6% anual   (  4.6x)
+   2008-2018   15.5% anual   (  4.2x)
+
+Las 5 peores:
+   1999-2009   -5.7% anual   (  0.6x)
+   1998-2008   -3.2% anual   (  0.7x)
+   2000-2010    0.7% anual   (  1.1x)
+   2001-2011    2.9% anual   (  1.3x)
+   1997-2007    5.4% anual   (  1.7x)
+
+Decadas terminadas en cada ano desde 2010:
+   2000-2010    0.7% anual
+   2001-2011    2.9% anual
+   2002-2012    8.5% anual
+   2003-2013    7.6% anual
+   2004-2014    8.1% anual
+   2005-2015    8.5% anual
+   2006-2016    8.3% anual
+   2007-2017   10.0% anual
+   2008-2018   15.5% anual
+   2009-2019   14.7% anual
+   2010-2020   17.1% anual
+   2011-2021   19.6% anual
+   2012-2022   13.2% anual
+   2013-2023   13.6% anual
+   2014-2024   15.1% anual
+   2015-2025   16.6% anual
+
+==========================================================================
+3. CONSTANCIA: RACHAS Y CAIDAS (cierres anuales)
+==========================================================================
+Racha positiva mas larga: 6 anos (1975-1980)
+Racha positiva actual: 4 anos (2023-2026, 2026 en curso)
+Todas las rachas de 4+ anos positivos:
+   1975-1980  (6 anos)
+   1995-1999  (5 anos)
+   2003-2007  (5 anos)
+   2012-2017  (6 anos)
+   2023-2026  (4 anos)
+
+Peor caida en cierres anuales: -67.2% (1999 -> 2002)
+El cierre de 1999 (4069) no se supero hasta 2013 (4177): 14 anos
+Caida acumulada 1999->2002: -67.2%
+Caida acumulada 2007->2008: -40.5%
+Caida del ano 2022:         -33.1%
+
+==========================================================================
+4. COMPARACION CON EL S&P 500 (precio)
+==========================================================================
+Misma decada (dic-2016 -> hoy):
+   Nasdaq Composite 17.9% anual   (4.94x)
+   S&P 500          13.7% anual   (3.46x)
+   Diferencial      +4.3 pp anuales
+
+Decada de los 90 (1989-1999):
+   Nasdaq Composite 24.5% anual   (8.95x)
+   S&P 500          15.3% anual   (4.16x)
+   Diferencial      +9.2 pp anuales
