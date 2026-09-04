@@ -366,6 +366,27 @@ C23/C24 baja a **~10–11% estimado frente al 13,26% del Nasdaq**, así que **C2
 reforzado** (la distancia al índice es mayor de lo que parecía) **y C23 también** (su alfa
 interno no se apoyaba en el sesgo). Ver `ESTUDIO-SUPERVIVENCIA-EFECTO-VALOR.md`.
 
+**C26. Ninguna métrica de valoración de FMP mejora al P/S del panel.** Estudio 2 sobre 60
+Industrials con `key-metrics` trimestral, 772 decisiones. **P/S del panel: alfa interno
+7,31 pp, t = 2,17, y es la única que replica** (+7,9 pares / +6,8 impares). EV/ventas 3,74;
+EV/EBITDA 2,34; **P/valor tangible 0,12 pp con t = 0,04 — literalmente nada**; earnings yield
+1,94. **Refuta la hipótesis del diseño** de que para cíclicas hay que usar EV (incluye deuda)
+y P/B (no explota en el suelo): las dos rinden peor que el P/S simple. **Y el split evitó una
+trampa de libro:** FCF yield tiene el mejor alfa Jensen (5,14%) y la beta más baja (0,72)
+—justo lo que se buscaba— pero su alfa interno es **−1,5 pares / +9,0 impares: no replica**.
+Tres de las seis métricas habrían pasado por buenas mirando solo el agregado. Ver
+`ESTUDIO-METRICAS-VALORACION.md`.
+
+**C27. Las opciones no añaden alfa: convierten rentabilidad en seguro.** A mismo nocional
+sobre el cuartil barato de Industrials, valorando con Black-Scholes a la volatilidad
+realizada (45,2%): acciones 15,40% de CAGR con peor año −45,8%; call ATM **10,54%** con peor
+año **−17,1%**; call 25% OTM 7,27% con peor año −8,8%. **Menos CAGR, menos riesgo.** Y
+"ejecutar solo los percentiles que interesen" **es lo que una call hace sola** — la prima se
+paga sobre todas por adelantado, así que no hay ahí ventaja que capturar. FMP **no** tiene
+histórico de opciones ni de volatilidad implícita; la aproximación por Black-Scholes no zanja
+la rentabilidad porque subestima la cola (BS es lognormal) a la vez que la sigma realizada
+está por debajo de la implícita. Ver `NOTA-OPCIONES.md`.
+
 ---
 
 ## D. La conclusión que ordena todo lo demás
