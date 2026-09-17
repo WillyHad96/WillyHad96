@@ -45,6 +45,13 @@ rentabilidad ~3,0 pp— **están por debajo de ese suelo.** No hemos medido que 
 hemos medido que no podemos verlas. Y el P/S en Industrials (7,31 pp) es lo único que hemos
 encontrado porque es lo único lo bastante grande para asomar por encima del ruido.
 
+**Y un defecto de datos encontrado el 17-9-2026 (A9):** la columna de retorno del panel
+(`fwd_4t`) **no cuadra con la columna de precios del propio panel**: mediana 1,6 pp de error,
+p90 8,6 pp, 3,1% con el signo cambiado. Verificado contra FMP: los **precios** son correctos,
+la **columna de retorno** no. Rehecho el hallazgo principal con precios verificados, aguanta:
+**+5,52 pp de alfa interno, t=2,37, mitades 5,6 / 5,4** — más limpio que antes. El resto de la
+serie se midió con la columna mala y lleva ±2 pp de margen hasta que se rehaga.
+
 **Lo siguiente, y es barato:** pasar el test de ventanas (B8) a todo lo medido sobre 17 años,
 empezando por C7. Se hace hoy, solo con el índice. Lo que sobreviva a eso será lo primero de
 la serie con derecho a llevar dinero encima.
@@ -114,6 +121,26 @@ funcionan **los trimestrales de `statements`** (80 trimestres hasta 2006) y
 **`company/delisted-companies`** con paginación. Ambas se daban por imposibles y ambas son la
 llave de los dos estudios que quedaban. **Reverificar el plan antes de dar nada por
 bloqueado.**
+
+**A9. EL DEFECTO MÁS GRAVE DE LA SERIE: la columna de retorno del panel no cuadra con la
+columna de precios del propio panel.** `fwd_4t` —lo que hemos usado como retorno en **todos**
+los estudios— comparada con `precio_post` sobre 224.041 observaciones que pasan todas las
+guardas: diferencia **mediana 1,64 pp**, **p90 8,57 pp**, un **44,6%** difiere en más de 2 pp
+y un **3,1% tiene el signo contrario**. Ejemplo literal: DY el 2-3-2022, el precio va de 90,60
+a 97,02 (**+7,1%**) y `fwd_4t` dice **−7,1%**. Árbitro independiente (precios de FMP en las
+**fechas exactas del panel**, 43 observaciones): recalcular desde `precio_post` acierta con
+error mediano de **0,03 pp**; `fwd_4t` se equivoca en **2,31 pp de mediana y 4,98 de media**,
+con errores de hasta 19,4 pp. **No son dividendos** (DY no paga y falla; FRO paga mucho y falla
+a la baja). **`precio_post` es correcto; `fwd_4t` no.** Regla: **el retorno se recalcula
+siempre como `p4/precio_post - 1`**, nunca se lee `fwd_4t`; `c4_base.sql` hay que corregirlo.
+Consecuencia: los números de A1–C31 se midieron con la columna mala y llevan un margen de
+±2 pp mientras no se rehagan. Ver `AUDITORIA-COLUMNA-RETORNOS.md`.
+
+**A10. Pero el defecto NO explica que "no salga nada".** Rehecho el hallazgo principal con
+precios verificados, **sobrevive y replica mejor**: alfa interno **+5,52 pp (t=2,37)** con
+mitades **5,6 / 5,4**, frente a +5,89 (t=2,66) y 6,5 / 5,3 con la columna corrupta. Y el suelo
+de detección **no se mueve** (4,4 pp con la columna mala, 4,5 pp con la buena): el error es
+idiosincrásico y se promedia dentro de una cartera de 11 nombres. C31 sigue en pie.
 
 ---
 

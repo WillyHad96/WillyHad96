@@ -4,11 +4,17 @@
 --          regla40 > p25 del anho, mcap > p25 del anho.
 -- Seleccion: top 20% por momento 12m. Pesos: rank^2. Venta a 12 meses.
 -- Guardas de calidad de datos: ver consultas.sql (defectos 2, 7, 8). No quitar ninguna.
+-- CORRECCION 17-9-2026 (hallazgo A9): la columna fwd_4t del panel NO cuadra con precio_post
+-- (mediana 1,6 pp de error, 3,1% con el signo cambiado; verificado contra FMP, gana
+-- precio_post con 0,03 pp de error). El retorno se recalcula desde el precio. Ver
+-- AUDITORIA-COLUMNA-RETORNOS.md. NO volver a leer fwd_4t.
 with clean as (
   select ticker, fecha, precio_post, sector, ingresos_ttm, multiplo_ps, regla40,
     case when margen_bruto between 0.05 and 0.95 then margen_bruto end mb,
     case when crecimiento between -0.99 and 3.0 then crecimiento end cr,
-    case when fwd_4t is not null and fwd_4t between -0.99 and 10 then fwd_4t end f4r,
+    -- A9: fwd_4t esta corrupta. Se conserva solo para derivar los relativos a indice,
+    -- que son diferencias y no tienen sustituto directo; el retorno propio (f4r) se
+    -- recalcula abajo desde precio_post.
     case when fwd_4t is not null and fwd_4t between -0.99 and 10
            then fwd_4t - fwd_4t_rel_qqq end qqq0,
     case when fwd_4t is not null and fwd_4t between -0.99 and 10
@@ -24,6 +30,8 @@ px as (
     (precio_post is not distinct from lag(precio_post) over w) ff_ini,
     lag(precio_post,4)  over w p_1y,
     lead(precio_post,4) over w p4,
+    case when lead(precio_post,4) over w / nullif(precio_post,0) - 1 between -0.99 and 10
+           then lead(precio_post,4) over w / nullif(precio_post,0) - 1 end f4r,  -- A9
     lead(fecha,4)       over w f4,
     lead(precio_post,3) over w p4p,
     stddev_samp(mb) over w8 sd_mb,
