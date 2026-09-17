@@ -1,60 +1,72 @@
 # Hallazgos que sobreviven
 
-## ESTADO ACTUAL — dónde estamos, en dos cifras
+## ESTADO ACTUAL — dónde estamos (rehecho el 17-9-2026 con precios verificados)
 
-**Alfa: cero en la estrategia original — pero C21 encontró uno que sí sobrevive.**
+> **Todo lo anterior al 17-9-2026 se midió con una columna de retorno corrupta (A9).** Lo que
+> sigue está rehecho desde `precio_post`, verificado contra FMP, y con el índice calculado en
+> las fechas exactas de cada posición. Ver `REHECHO-CON-PRECIOS-VERIFICADOS.md`.
+> **El listón es ahora el Nasdaq-100 (QQQ), no el Composite**: QQQ rindió ~2,9 pp anuales más
+> en 2007–2023, y es lo que se compra de verdad.
+
+**Hay alfa de selección, grande y replicado. No hay alfa contra el Nasdaq.**
 
 | medida | valor | t | qué es |
 |---|---|---|---|
-| C4 vs Nasdaq (2007–2023) | +0,27 pp de CAGR | 0,05 | la estrategia original: nada |
-| Pasar el filtro vs no pasarlo | +2,98 pp | 1,86 | el filtro elige bien dentro del universo |
-| Barato en Industrials+Materials (C21) | +6,76 pp vs su pool | +2,38 | pasa los cinco controles, **pero beta 1,46 y alfa Jensen solo +0,87%** |
-| **Barato en INDUSTRIALS, alfa INTERNO (C23)** | **+6,73 pp** | **+2,31** | **lo único con \|t\|>2: elige bien dentro del sector** |
-| Barato en Industrials vs Nasdaq (C24) | alfa Jensen +2,86% | **+0,48** | **no establecido; Sharpe 0,423 vs 0,512 — pierde ajustado por riesgo** |
-| Overlay de tendencia | −1,31 pp | −1,10 | cuesta |
+| **Pasar el filtro C4 vs no pasarlo** | **+3,73 pp** | **3,86** | el filtro sí elige bien (antes t=1,86) |
+| **Barato en Basic Materials (interno)** | **+12,14 pp** | **4,24** | lo más fuerte de la serie; **beta 2,11** |
+| **Barato en Financial Services (interno)** | **+6,87 pp** | **5,13** | lo más consistente (7,1 / 6,6) |
+| **Barato en Industrials (interno)** | **+3,85 pp** | **2,20** | tercero, no primero: corrige C23 |
+| **Valor neutral por sector, 130 nombres** | **+2,85 pp** | **3,36** | suelo de detección 1,7 pp |
+| C4 vs QQQ | +2,72 pp de CAGR | 1,22 | **no establecido** |
+| C4, alfa de Jensen vs QQQ | +3,41% | 1,05 | **no establecido** |
+| Basic Materials barato vs QQQ | alfa Jensen +2,35% | **0,14** | **todo era beta** |
+| Industrials barato vs QQQ | alfa Jensen +1,91% | 0,30 | **no establecido** |
+| Valor neutral por sector vs QQQ | alfa Jensen −1,58% | −0,24 | **pierde** |
 
-**C21 es lo único de la serie con |t| > 2**, replicado en ambas mitades, monótono entre
-cuartiles y estable al quitar cualquier año. **Pero no descorrelaciona** (0,785).
+**El diagnóstico, corregido.** Antes decía "no hay alfa". Con datos buenos la frase correcta
+es: **hay un alfa de selección grande, real y replicado —elegir barato dentro del sector—,
+pero llega con una beta de 1,2 a 2,1 que se come toda la ventaja frente al Nasdaq.** El
+problema ya no es encontrar señal; es que la señal viene envuelta en riesgo de mercado.
+La pregunta siguiente no es "¿qué otro filtro busco?" sino **"¿cómo me quedo con la selección
+sin la beta?"**.
 
-**Correlación: 0,918, sin ninguna forma establecida de bajarla.**
+**Y una trampa que el protocolo honesto destapó (C34):** elegir "los 3 sectores buenos"
+mirando los 17 años no replica. Eligiendo con años pares salen {Basic Materials, Energy,
+Utilities} y en impares dan t=1,77 y −8,13 pp contra QQQ. Al revés salen {Basic Materials,
+Financial Services, Real Estate}. **Coinciden 1 de 3: solo Basic Materials.** El efecto valor
+*dentro* de un sector replica; *cuál es el mejor sector*, no.
+
+**Correlación: 0,894 (antes 0,918), y sigue sin forma establecida de bajarla.**
 
 | vía | correlación | descorrelación real | estado |
 |---|---|---|---|
-| C4 tal cual | 0,918 | — | punto de partida |
-| 7 variantes cíclicas | ~0,90 | ±0,03 | nada (C5) |
-| Cíclicas con filtros invertidos | 0,29–0,78 | −0,34 a +0,30 | fallan las 4 en confirmación (C13) |
+| C4 tal cual | 0,894 | **+0,099** | correlaciona MÁS que carteras aleatorias |
+| Basic Materials barato | 0,649 | +0,020 | nada |
+| Financial Services barato | 0,835 | +0,086 | nada |
+| Industrials barato | 0,742 | −0,047 | dentro del ruido |
+| Energy (sector entero) | 0,485 | — | la única baja de verdad, y rinde 5,50% |
 | Defensivos + momento | 0,62 | −0,14 | sin respaldo: 29% de ventanas lo dan por azar (B8) |
 | Overlay de tendencia | 0,78 | −0,081 (p=0,15) | no significativo (C10) |
 
-La distinción que lo ordena todo: **la correlación bruta sí baja, la descorrelación real no.**
-Estar fuera del mercado el 22% de los años baja la correlación sola, se elijan los años que
-se elijan — el efectivo no correlaciona con nada. Bajar la correlación es gratis y trivial:
-basta con tener menos dinero invertido. **Lo que no hay evidencia de que nadie pueda hacer es
-bajarla eligiendo el momento.**
+La distinción que lo ordena todo sigue igual: **la correlación bruta sí baja, la descorrelación
+real no.** Y se mantiene lo que el usuario detectó: **más CAGR viene con más correlación**
+(Consumer Cyclical 15,91% y 0,884; Energy 5,50% y 0,485).
 
-**Consecuencia práctica:** con lo que sabemos hoy, este compartimento no se justifica frente
-a comprar más Nasdaq. No aporta rentabilidad ni diversificación, y cuesta trabajo, comisiones
-e impuestos que el ETF no cuesta. Eso no prueba que la estrategia sea mala: prueba que **con
-17 años de un panel roto no se puede demostrar que sea buena**, y el listón para meter dinero
-propio es demostrarlo.
+**El suelo de detección ya no es fijo (corrige C31).** Depende de cuántos nombres lleves:
 
-**Y el marco que explica los 28 hallazgos anteriores (C31):** con 17 años y 11 nombres, el
-efecto anual más pequeño que estos datos pueden distinguir del azar es **4,4 pp**. Con 20
-nombres, ~3,6 pp. Las primas documentadas en la literatura —valor ~3,5 pp, inversión ~3,5 pp,
-rentabilidad ~3,0 pp— **están por debajo de ese suelo.** No hemos medido que no funcionen:
-hemos medido que no podemos verlas. Y el P/S en Industrials (7,31 pp) es lo único que hemos
-encontrado porque es lo único lo bastante grande para asomar por encima del ruido.
+| nombres en cartera | suelo de detección (t=2) |
+|---|---|
+| 11 | 4,5 pp |
+| 20 | ~3,6 pp |
+| **130** | **1,7 pp** |
 
-**Y un defecto de datos encontrado el 17-9-2026 (A9):** la columna de retorno del panel
-(`fwd_4t`) **no cuadra con la columna de precios del propio panel**: mediana 1,6 pp de error,
-p90 8,6 pp, 3,1% con el signo cambiado. Verificado contra FMP: los **precios** son correctos,
-la **columna de retorno** no. Rehecho el hallazgo principal con precios verificados, aguanta:
-**+5,52 pp de alfa interno, t=2,37, mitades 5,6 / 5,4** — más limpio que antes. El resto de la
-serie se midió con la columna mala y lleva ±2 pp de margen hasta que se rehaga.
+Con 130 nombres sí se ven efectos de 3 pp — y de hecho se ve uno (+2,85 pp, t=3,36). La
+restricción real es la cartera de 15–20 posiciones que quiere el usuario, no los datos.
 
-**Lo siguiente, y es barato:** pasar el test de ventanas (B8) a todo lo medido sobre 17 años,
-empezando por C7. Se hace hoy, solo con el índice. Lo que sobreviva a eso será lo primero de
-la serie con derecho a llevar dinero encima.
+**Consecuencia práctica, sin adornos:** sigue sin haber una configuración que bata al Nasdaq
+con significación estadística. Pero ya no es cierto que "no salga nada": el alfa de selección
+está establecido con t de 2,2 a 5,1 en tres sectores distintos, replicado en ambas mitades y
+monótono entre cuartiles. Lo que falta es neutralizar la beta.
 
 ---
 
@@ -473,6 +485,47 @@ momentum/UMD ~7,5 pp → al límite; **nuestro P/S en Industrials 7,31 pp → vi
 lo único que hemos visto en 28 hallazgos.** La frase correcta no es "no sale nada": es **"este
 instrumento no puede ver efectos de menos de ~4,5 pp"**. Corolario incómodo: un efecto medido
 en 7,3 pp con un suelo de 4,4 pp puede ser uno de 4 pp que tuvo suerte.
+
+**C32. REHECHO TODO: el efecto valor no es de Industrials, es más grande y está en otro
+sitio.** Con retornos verificados y el índice en fechas exactas, el cuartil barato por P/S
+contra su propio sector da: **Basic Materials +12,14 pp (t=4,24, pares 10,6 / impares 13,5)**,
+**Financial Services +6,87 pp (t=5,13, pares 7,1 / impares 6,6)**, **Industrials +3,85 pp
+(t=2,20, pares 4,8 / impares 3,0)**. Los tres son monótonos entre cuartiles (BM 20,8/10,2/3,3/3,4;
+Fin 12,5/5,0/3,2/1,5; Indu 15,3/13,1/10,3/5,2) y estables al quitar cualquier año. Los demás
+sectores no dan nada. **Corrige C23**: Industrials era el tercero, no el único; con la columna
+corrupta los otros dos estaban escondidos. Ver `REHECHO-CON-PRECIOS-VERIFICADOS.md`.
+
+**C33. Y sin embargo ninguno bate al Nasdaq: toda la ventaja es beta.** Alfa de Jensen contra
+QQQ: Basic Materials **+2,35% con t=0,14** (beta 2,11, volatilidad 74,9%), Industrials +1,91%
+con t=0,30, Financial Services −0,30% (su CAGR 12,68% está **por debajo** del QQQ). El valor
+neutral por sector con 130 nombres da alfa de Jensen **−1,58%** y CAGR −0,34 pp contra QQQ,
+con beta 1,25. **Confirma y generaliza C22 y C24**: el CAGR ordena por beta; el alfa no.
+**El problema ya no es encontrar señal, es que la señal viene con riesgo de mercado pegado.**
+
+**C34. Elegir "los sectores buenos" no replica; el efecto dentro del sector sí.** Protocolo
+honesto: elegir los 3 mejores sectores con **años pares** da {Basic Materials, Energy,
+Utilities}, y medidos en **impares** dan alfa interno +5,50 pp con **t=1,77 (no confirma)** y
+**−8,13 pp contra QQQ**. Al revés (elegir en impares) da {Basic Materials, Financial Services,
+Real Estate} y +7,41 pp en pares. **Coinciden 1 de 3: solo Basic Materials.** Regla: el filtro
+de valor se aplica **dentro de todos los sectores**, nunca sobre una lista de sectores elegida
+mirando el resultado.
+
+**C35. El suelo de detección NO es fijo: depende de cuántos nombres lleves. Corrige C31.**
+Con 11 nombres el suelo es 4,5 pp; con 20, ~3,6 pp; **con 130 nombres baja a 1,7 pp**
+(SE 0,85 pp). Y con ese instrumento **sí se ve** un efecto de 2,85 pp con t=3,36, replicado
+(2,44 / 3,22). O sea: los efectos de 3 pp de la literatura **sí son visibles con estos datos**,
+pero solo llevando más de 100 nombres. **La restricción es la cartera de 15–20 posiciones que
+quiere el usuario, no los datos.** Lo que C31 decía sigue valiendo para una cartera pequeña, y
+ahí la conclusión es la misma: con 11–20 nombres, lo que mida menos de ~3,6 pp es ruido.
+
+**C36. El índice de referencia estaba mal elegido, y eso también importaba.** Los estudios
+viejos comparaban contra el **Nasdaq Composite** (^IXIC). Lo que se compra de verdad es el
+**Nasdaq-100 (QQQ)**, que en 2007–2023 rindió **13,56% frente a 10,70%: 2,9 pp anuales más**.
+Todo exceso medido contra el Composite estaba inflado en ~2,9 pp. Además la columna `qqq` del
+panel derivaba de `fwd_4t` y heredaba su corrupción: la rentabilidad del índice implícita
+variaba **40 puntos entre acciones del mismo año**. Regla: el índice se descarga aparte
+(QQQ y ^IXIC diarios, validados contra `nasdaq_febrero.csv`, 20 de 20 años exactos) y se mide
+**en las fechas exactas de entrada y salida de cada posición**.
 
 ---
 
