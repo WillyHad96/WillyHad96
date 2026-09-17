@@ -387,6 +387,21 @@ histórico de opciones ni de volatilidad implícita; la aproximación por Black-
 la rentabilidad porque subestima la cola (BS es lognormal) a la vez que la sigma realizada
 está por debajo de la implícita. Ver `NOTA-OPCIONES.md`.
 
+**C28. El protocolo /cyclical_clock no añade señal sobre el P/S, y su tesis central es una
+trampa de mitad de muestra.** Test de C1–C6 sobre 60 Industrials, 634 decisiones, con desfase
+anti-look-ahead. **C5 secuencial —la segunda derivada, su tesis central— da AUC 0,645 en años
+pares y 0,490 en impares.** Sin partir la muestra, el titular habría sido "funciona, AUC
+0,645"; es el séptimo caso de la serie con ese patrón, y el protocolo no tiene por diseño
+ningún mecanismo que lo evite. El resto (C2 margen, C3 en sus tres variantes, C4, C6) queda
+entre 0,47 y 0,53: nada. **El control, el P/S simple del panel, da 0,452/0,446 replicado — más
+fuerte que cualquier métrica del protocolo.** Matiz justo: el protocolo **no afirma** predecir
+retornos (su §0 prohíbe verbos prescriptivos y se define como diagnóstico), así que esto no lo
+refuta como marco de análisis; refuta su uso como fuente de alfa transversal. Crítica
+constructiva: **C5 debería definirse interanual, no secuencial** — en industriales
+estacionales lo secuencial mide calendario, y la versión interanual es la única que mantiene
+el signo en ambas mitades (0,529/0,523, aunque dentro del ruido). Sus avisos de integridad
+(§4) sí son correctos y necesarios. Ver `ESTUDIO-PROTOCOLO-CYCLICAL-CLOCK.md`.
+
 ---
 
 ## D. La conclusión que ordena todo lo demás
