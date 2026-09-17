@@ -38,6 +38,13 @@ e impuestos que el ETF no cuesta. Eso no prueba que la estrategia sea mala: prue
 17 años de un panel roto no se puede demostrar que sea buena**, y el listón para meter dinero
 propio es demostrarlo.
 
+**Y el marco que explica los 28 hallazgos anteriores (C31):** con 17 años y 11 nombres, el
+efecto anual más pequeño que estos datos pueden distinguir del azar es **4,4 pp**. Con 20
+nombres, ~3,6 pp. Las primas documentadas en la literatura —valor ~3,5 pp, inversión ~3,5 pp,
+rentabilidad ~3,0 pp— **están por debajo de ese suelo.** No hemos medido que no funcionen:
+hemos medido que no podemos verlas. Y el P/S en Industrials (7,31 pp) es lo único que hemos
+encontrado porque es lo único lo bastante grande para asomar por encima del ruido.
+
 **Lo siguiente, y es barato:** pasar el test de ventanas (B8) a todo lo medido sobre 17 años,
 empezando por C7. Se hace hoy, solo con el índice. Lo que sobreviva a eso será lo primero de
 la serie con derecho a llevar dinero encima.
@@ -401,6 +408,44 @@ constructiva: **C5 debería definirse interanual, no secuencial** — en industr
 estacionales lo secuencial mide calendario, y la versión interanual es la única que mantiene
 el signo en ambas mitades (0,529/0,523, aunque dentro del ruido). Sus avisos de integridad
 (§4) sí son correctos y necesarios. Ver `ESTUDIO-PROTOCOLO-CYCLICAL-CLOCK.md`.
+
+**C29. El factor de crecimiento de activos —lo más fuerte de la literatura— no aparece aquí, y
+sé por qué.** Cooper-Gulen-Schill (2008, *Journal of Finance*) documentan que el decil que menos
+creció su activo bate al que más creció por ~20 pp anuales sobre 40 años, en grandes y pequeñas,
+persistiendo cinco años, **y con la prima empezando en el enero siguiente** — justo nuestro
+rebalanceo. Probé nueve variables de ese eje sobre 60 Industrials y 772 decisiones: crecimiento
+de capital invertido (1 y 2 años), activos tangibles (1 y 2 años), circulante, capex/ventas,
+capex/depreciación, dilución. **Ninguna replica.** Cuatro cambian de signo entre mitades.
+Explicación, y es comprobable: la anomalía vive en buena parte de que el que sobreinvierte
+*acaba mal*, y nuestro panel **no contiene a los que acabaron mal** — son parte de los 596
+tickers elegibles muertos de C25. Medimos el factor solo entre supervivientes de haber
+sobreinvertido. Con universo point-in-time debería reaparecer. Ver
+`ESTUDIO-FACTORES-LITERATURA.md`.
+
+**C30. AUC contra el decil superior NO es un criterio válido de selección de variables, y esto
+invalida parte del método de la serie.** El ROIC bajo replica en AUC con el mismo tamaño que el
+P/S (0,413 / 0,445 vs 0,437 / 0,424) y en cartera da **alfa interno −0,55 pp (t = −0,21)** y un
+CAGR de 8,88% frente al 10,75% de su propia familia. No es contradicción: **el AUC mide si
+aciertas la cola derecha; el alfa interno mide si ganas dinero de media.** Una variable puede
+cargar las dos colas y perder en media — el ROIC bajo hace exactamente eso: entre las poco
+rentables hay más multibaggers *y* más ruinas, y ganan las ruinas. **Regla nueva: ninguna
+variable se da por buena sin pasar por alfa interno**, y los barridos que usaron AUC como
+criterio (`auc_barrido.py`, `auc_ciclo.py`) quedan degradados a exploratorios. Combinar tampoco
+suma: P/S+ROIC da alfa Jensen 1,51% y beta 1,14, peor que el P/S solo (4,96% y 0,99).
+
+**C31. EL HALLAZGO QUE REORDENA LA SERIE: casi todo lo que la literatura documenta está por
+debajo del suelo de detección de estos datos.** Bootstrap de carteras aleatorias dentro de
+Industrials: la dispersión transversal dentro del año es de **34 pp**, y de ahí sale el ruido
+de medición. Con 17 años, el efecto anual mínimo distinguible del azar (t=2) es **4,4 pp con 11
+nombres** y **~3,6 pp con 20**. Ampliar el universo casi no ayuda (con 11 nombres el suelo se
+estanca en ~4,9 pp aunque haya 1.000 donde elegir): **manda cuántos nombres llevas, no entre
+cuántos eliges.** El cuello de botella son los años — un efecto de 3,5 pp necesita **19 años**
+con 20 nombres, y uno de 3,0 pp necesita **26**. Tenemos 17. Comparación directa: valor/HML
+~3,5 pp → invisible; inversión/CMA ~3,5 pp → invisible; rentabilidad/RMW ~3,0 pp → invisible;
+momentum/UMD ~7,5 pp → al límite; **nuestro P/S en Industrials 7,31 pp → visible, y por eso es
+lo único que hemos visto en 28 hallazgos.** La frase correcta no es "no sale nada": es **"este
+instrumento no puede ver efectos de menos de ~4,5 pp"**. Corolario incómodo: un efecto medido
+en 7,3 pp con un suelo de 4,4 pp puede ser uno de 4 pp que tuvo suerte.
 
 ---
 
